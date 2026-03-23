@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "description": "Structured evidence exports for the Pole's Shadow / cognitive-budget hypothesis.",
+  "assumptions": {
+    "system_family": "Continuous-time second-order closed-loop transfer functions with wn=1.0 and varying damping ratio zeta.",
+    "time_grid": {
+      "start": 0.0,
+      "end": 150.0,
+      "points": 8000
+    },
+    "frequency_grid": {
+      "start": 0.0,
+      "end": 0.25,
+      "points": 1200
+    },
+    "epsilons": [
+      0.1,
+      0.05,
+      0.02
+    ],
+    "slow_band_limits": [
+      0.03,
+      0.05,
+      0.1
+    ],
+    "candidate_metrics": {
+      "shadow_horizon": "Time after which the impulse response remains below epsilon times its peak magnitude.",
+      "shadow_mass_l1": "Integral of absolute impulse response.",
+      "shadow_mass_l2": "Integral of squared impulse response magnitude.",
+      "slow_band_deficit": "Integral of |1 - T(jw)|^2 over a low-frequency band."
+    }
+  },
+  "files": {
+    "system_metrics_csv": "data/cognitive_budget_system_metrics.csv",
+    "tracking_metrics_csv": "data/cognitive_budget_tracking_metrics.csv",
+    "time_series_dir": "data/time_series"
+  },
+  "robust_vs_light_summary": [
+    {
+      "test_name": "ramp",
+      "test_title": "Pure Slow Ramp",
+      "robust_zeta": 0.707,
+      "light_shadow_zeta": 0.25,
+      "robust_iae": 5.277514367391063,
+      "light_shadow_iae": 1.8937492673904401,
+      "iae_ratio_robust_over_light": 2.7868073447037705,
+      "winner": "light_shadow"
+    },
+    {
+      "test_name": "ramp_sine",
+      "test_title": "Ramp + Low-Freq Sine",
+      "robust_zeta": 0.707,
+      "light_shadow_zeta": 0.25,
+      "robust_iae": 6.24333648387358,
+      "light_shadow_iae": 2.2332504401290185,
+      "iae_ratio_robust_over_light": 2.7956275622687854,
+      "winner": "light_shadow"
+    },
+    {
+      "test_name": "slow_sine",
+      "test_title": "Ultra-Slow Sine",
+      "robust_zeta": 0.707,
+      "light_shadow_zeta": 0.25,
+      "robust_iae": 1.5780071117667849,
+      "light_shadow_iae": 0.5618950306865761,
+      "iae_ratio_robust_over_light": 2.8083663773260774,
+      "winner": "light_shadow"
+    },
+    {
+      "test_name": "noisy",
+      "test_title": "Slow Input + Noise",
+      "robust_zeta": 0.707,
+      "light_shadow_zeta": 0.25,
+      "robust_iae": 10.83171406853351,
+      "light_shadow_iae": 9.788602484085002,
+      "iae_ratio_robust_over_light": 1.1065638926643993,
+      "winner": "light_shadow"
+    }
+  ]
+}

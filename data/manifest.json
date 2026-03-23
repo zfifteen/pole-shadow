@@ -1,0 +1,12 @@
+{
+  "generated_by": "generate_cognitive_budget_data.py",
+  "outputs": [
+    "data/cognitive_budget_system_metrics.csv",
+    "data/cognitive_budget_tracking_metrics.csv",
+    "data/cognitive_budget_summary.json",
+    "data/time_series/ramp.csv",
+    "data/time_series/ramp_sine.csv",
+    "data/time_series/slow_sine.csv",
+    "data/time_series/noisy.csv"
+  ]
+}
