@@ -1,0 +1,102 @@
+{
+  "objective": "Test whether the preferred shadow-mass budget shifts inward as noise and uncertainty increase, rather than remaining fixed at the longest-shadow design.",
+  "candidate_proxy": "occupancy_proxy_l2 = noise_power * shadow_mass_l2",
+  "clean_baseline_true_iae": {
+    "0.1": 0.9637788478357874,
+    "0.15": 1.3645993280450914,
+    "0.2": 1.7921393539352053,
+    "0.25": 2.2332441569080084,
+    "0.3": 2.673884191767236,
+    "0.4": 3.553767585816903,
+    "0.55": 4.870092080952677,
+    "0.707": 6.2433301517796895,
+    "1.0": 8.793711179842926
+  },
+  "global_correlations": {
+    "occupancy_proxy_l2_vs_excess_penalty_spearman": 0.808083717357911,
+    "noise_power_vs_excess_penalty_spearman": 0.5468509984639017,
+    "zeta_vs_excess_penalty_spearman": -0.6752592165898618
+  },
+  "per_mode_correlations": {
+    "command": {
+      "occupancy_proxy_l2_vs_excess_penalty_spearman": 0.7106227106227105,
+      "noise_power_vs_excess_penalty_spearman": 0.23382173382173382
+    },
+    "measurement": {
+      "occupancy_proxy_l2_vs_excess_penalty_spearman": 0.8782496782496784,
+      "noise_power_vs_excess_penalty_spearman": 0.6808236808236808
+    }
+  },
+  "environment_highlights": [
+    {
+      "mode": "command",
+      "clean_best_zeta": 0.1,
+      "heaviest_best_zeta": 0.25,
+      "heaviest_long_shadow_gap_vs_best": 1.2279310821256058,
+      "best_path": [
+        {
+          "level": "clean",
+          "noise_std": 0.0,
+          "best_zeta_by_mean_true_iae": 0.1,
+          "best_shadow_mass_l2": 2.5
+        },
+        {
+          "level": "light",
+          "noise_std": 0.03,
+          "best_zeta_by_mean_true_iae": 0.1,
+          "best_shadow_mass_l2": 2.4949702896584904
+        },
+        {
+          "level": "moderate",
+          "noise_std": 0.06,
+          "best_zeta_by_mean_true_iae": 0.15,
+          "best_shadow_mass_l2": 1.69151688921637
+        },
+        {
+          "level": "heavy",
+          "noise_std": 0.1,
+          "best_zeta_by_mean_true_iae": 0.25,
+          "best_shadow_mass_l2": 1.0164744535096701
+        }
+      ]
+    },
+    {
+      "mode": "measurement",
+      "clean_best_zeta": 0.1,
+      "heaviest_best_zeta": 0.3,
+      "heaviest_long_shadow_gap_vs_best": 1.5626721382381872,
+      "best_path": [
+        {
+          "level": "clean",
+          "noise_std": 0.0,
+          "best_zeta_by_mean_true_iae": 0.1,
+          "best_shadow_mass_l2": 2.5
+        },
+        {
+          "level": "light",
+          "noise_std": 0.02,
+          "best_zeta_by_mean_true_iae": 0.1,
+          "best_shadow_mass_l2": 2.4900657565113002
+        },
+        {
+          "level": "moderate",
+          "noise_std": 0.04,
+          "best_zeta_by_mean_true_iae": 0.15,
+          "best_shadow_mass_l2": 1.6626040467342325
+        },
+        {
+          "level": "heavy",
+          "noise_std": 0.08,
+          "best_zeta_by_mean_true_iae": 0.2,
+          "best_shadow_mass_l2": 1.250674006064655
+        },
+        {
+          "level": "extreme",
+          "noise_std": 0.12,
+          "best_zeta_by_mean_true_iae": 0.3,
+          "best_shadow_mass_l2": 0.8393788994319052
+        }
+      ]
+    }
+  ]
+}
