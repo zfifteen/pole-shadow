@@ -1,0 +1,352 @@
+{
+  "objective": "Second-pass aircraft variant study for matched-transient strengthening and boundary-case confirmation.",
+  "variant_definition": {
+    "inner_loop_retune": "Retune baseline inner-loop gains toward a common pitch-step target.",
+    "primary_mission": "slow_glide_profile_variant",
+    "reference_formula": "h_ref(t) = -1.5 t + 60 sin(0.006 t)",
+    "gust_tau_seconds": 8.0
+  },
+  "baseline_reference_summary": "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/data/aircraft_autopilot_summary.json",
+  "best_design_by_environment": {
+    "command_clean": {
+      "mode": "command",
+      "level": "clean",
+      "noise_std": 0.0,
+      "baseline_best_zeta": 0.2,
+      "variant_best_zeta": 0.2,
+      "variant_best_mean_true_iae": 299.07476177327885
+    },
+    "command_light": {
+      "mode": "command",
+      "level": "light",
+      "noise_std": 5.0,
+      "baseline_best_zeta": 0.2,
+      "variant_best_zeta": 0.2,
+      "variant_best_mean_true_iae": 309.6483437282001
+    },
+    "command_moderate": {
+      "mode": "command",
+      "level": "moderate",
+      "noise_std": 10.0,
+      "baseline_best_zeta": 0.2,
+      "variant_best_zeta": 0.15,
+      "variant_best_mean_true_iae": 369.6539765793821
+    },
+    "command_heavy": {
+      "mode": "command",
+      "level": "heavy",
+      "noise_std": 20.0,
+      "baseline_best_zeta": 0.2,
+      "variant_best_zeta": 0.15,
+      "variant_best_mean_true_iae": 586.2552457536117
+    },
+    "measurement_clean": {
+      "mode": "measurement",
+      "level": "clean",
+      "noise_std": 0.0,
+      "baseline_best_zeta": 0.2,
+      "variant_best_zeta": 0.2,
+      "variant_best_mean_true_iae": 299.07476177327885
+    },
+    "measurement_light": {
+      "mode": "measurement",
+      "level": "light",
+      "noise_std": 3.0,
+      "baseline_best_zeta": 0.2,
+      "variant_best_zeta": 0.15,
+      "variant_best_mean_true_iae": 301.9843586099986
+    },
+    "measurement_moderate": {
+      "mode": "measurement",
+      "level": "moderate",
+      "noise_std": 6.0,
+      "baseline_best_zeta": 0.2,
+      "variant_best_zeta": 0.15,
+      "variant_best_mean_true_iae": 323.490103259393
+    },
+    "measurement_heavy": {
+      "mode": "measurement",
+      "level": "heavy",
+      "noise_std": 12.0,
+      "baseline_best_zeta": 0.2,
+      "variant_best_zeta": 0.15,
+      "variant_best_mean_true_iae": 455.6701855133129
+    },
+    "measurement_extreme": {
+      "mode": "measurement",
+      "level": "extreme",
+      "noise_std": 18.0,
+      "baseline_best_zeta": 0.2,
+      "variant_best_zeta": 0.15,
+      "variant_best_mean_true_iae": 617.0448189711658
+    }
+  },
+  "matched_pairs": {
+    "top_supportive_pair": null,
+    "pair_count_meeting_threshold": 0,
+    "top_pairs_by_iae_ratio": [
+      {
+        "left_zeta": 0.2,
+        "right_zeta": 0.25,
+        "settling_diff_pct": 63.3009708737864,
+        "left_variant_iae": 299.07476177327885,
+        "right_variant_iae": 436.5909065857538,
+        "iae_ratio": 1.4598052473472254
+      },
+      {
+        "left_zeta": 0.15,
+        "right_zeta": 0.25,
+        "settling_diff_pct": 69.04761904761905,
+        "left_variant_iae": 305.3850257303136,
+        "right_variant_iae": 436.5909065857538,
+        "iae_ratio": 1.429640846147147
+      },
+      {
+        "left_zeta": 0.2,
+        "right_zeta": 0.35,
+        "settling_diff_pct": 11.260053619302948,
+        "left_variant_iae": 299.07476177327885,
+        "right_variant_iae": 379.31944855074096,
+        "iae_ratio": 1.2683097908418417
+      },
+      {
+        "left_zeta": 0.25,
+        "right_zeta": 1.0,
+        "settling_diff_pct": 67.45562130177515,
+        "left_variant_iae": 436.5909065857538,
+        "right_variant_iae": 351.0159113485154,
+        "iae_ratio": 1.2437923537667586
+      },
+      {
+        "left_zeta": 0.15,
+        "right_zeta": 0.35,
+        "settling_diff_pct": 17.67955801104972,
+        "left_variant_iae": 305.3850257303136,
+        "right_variant_iae": 379.31944855074096,
+        "iae_ratio": 1.2421023186831663
+      },
+      {
+        "left_zeta": 0.2,
+        "right_zeta": 0.707,
+        "settling_diff_pct": 4.057971014492753,
+        "left_variant_iae": 299.07476177327885,
+        "right_variant_iae": 363.9069712925809,
+        "iae_ratio": 1.2167759296535017
+      }
+    ]
+  },
+  "movement_summary": {
+    "clean_best_zeta": 0.2,
+    "any_movement_exists": true,
+    "inward_movement_exists": false,
+    "outward_movement_exists": true
+  },
+  "occupancy_proxy_summary": {
+    "global_occupancy_proxy_vs_excess_true_iae_spearman": 0.9287755102040816,
+    "global_raw_nuisance_vs_excess_true_iae_spearman": 0.947378779283609
+  },
+  "pairwise_reliability": {
+    "0.15_vs_0.707": [
+      {
+        "environment_name": "measurement_clean",
+        "level": "clean",
+        "noise_std": 0.0,
+        "left_zeta": 0.15,
+        "right_zeta": 0.707,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      },
+      {
+        "environment_name": "measurement_light",
+        "level": "light",
+        "noise_std": 3.0,
+        "left_zeta": 0.15,
+        "right_zeta": 0.707,
+        "true_winner_probability_left": 0.945,
+        "true_winner_ci_low": 0.91,
+        "true_winner_ci_high": 0.975,
+        "observed_winner_probability_left": 0.955,
+        "observed_winner_ci_low": 0.92,
+        "observed_winner_ci_high": 0.9801249999999999
+      },
+      {
+        "environment_name": "measurement_moderate",
+        "level": "moderate",
+        "noise_std": 6.0,
+        "left_zeta": 0.15,
+        "right_zeta": 0.707,
+        "true_winner_probability_left": 0.88,
+        "true_winner_ci_low": 0.83,
+        "true_winner_ci_high": 0.925,
+        "observed_winner_probability_left": 0.89,
+        "observed_winner_ci_low": 0.85,
+        "observed_winner_ci_high": 0.93
+      },
+      {
+        "environment_name": "measurement_heavy",
+        "level": "heavy",
+        "noise_std": 12.0,
+        "left_zeta": 0.15,
+        "right_zeta": 0.707,
+        "true_winner_probability_left": 0.86,
+        "true_winner_ci_low": 0.81,
+        "true_winner_ci_high": 0.91,
+        "observed_winner_probability_left": 0.855,
+        "observed_winner_ci_low": 0.8,
+        "observed_winner_ci_high": 0.900125
+      },
+      {
+        "environment_name": "measurement_extreme",
+        "level": "extreme",
+        "noise_std": 18.0,
+        "left_zeta": 0.15,
+        "right_zeta": 0.707,
+        "true_winner_probability_left": 0.86,
+        "true_winner_ci_low": 0.809875,
+        "true_winner_ci_high": 0.905,
+        "observed_winner_probability_left": 0.875,
+        "observed_winner_ci_low": 0.825,
+        "observed_winner_ci_high": 0.915
+      }
+    ],
+    "0.25_vs_0.707": [
+      {
+        "environment_name": "measurement_clean",
+        "level": "clean",
+        "noise_std": 0.0,
+        "left_zeta": 0.25,
+        "right_zeta": 0.707,
+        "true_winner_probability_left": 0.0,
+        "true_winner_ci_low": 0.0,
+        "true_winner_ci_high": 0.0,
+        "observed_winner_probability_left": 0.0,
+        "observed_winner_ci_low": 0.0,
+        "observed_winner_ci_high": 0.0
+      },
+      {
+        "environment_name": "measurement_light",
+        "level": "light",
+        "noise_std": 3.0,
+        "left_zeta": 0.25,
+        "right_zeta": 0.707,
+        "true_winner_probability_left": 0.07,
+        "true_winner_ci_low": 0.035,
+        "true_winner_ci_high": 0.11,
+        "observed_winner_probability_left": 0.055,
+        "observed_winner_ci_low": 0.025,
+        "observed_winner_ci_high": 0.09
+      },
+      {
+        "environment_name": "measurement_moderate",
+        "level": "moderate",
+        "noise_std": 6.0,
+        "left_zeta": 0.25,
+        "right_zeta": 0.707,
+        "true_winner_probability_left": 0.165,
+        "true_winner_ci_low": 0.11987500000000001,
+        "true_winner_ci_high": 0.215,
+        "observed_winner_probability_left": 0.17,
+        "observed_winner_ci_low": 0.12,
+        "observed_winner_ci_high": 0.23
+      },
+      {
+        "environment_name": "measurement_heavy",
+        "level": "heavy",
+        "noise_std": 12.0,
+        "left_zeta": 0.25,
+        "right_zeta": 0.707,
+        "true_winner_probability_left": 0.26,
+        "true_winner_ci_low": 0.2,
+        "true_winner_ci_high": 0.325,
+        "observed_winner_probability_left": 0.25,
+        "observed_winner_ci_low": 0.19,
+        "observed_winner_ci_high": 0.30512499999999987
+      },
+      {
+        "environment_name": "measurement_extreme",
+        "level": "extreme",
+        "noise_std": 18.0,
+        "left_zeta": 0.25,
+        "right_zeta": 0.707,
+        "true_winner_probability_left": 0.295,
+        "true_winner_ci_low": 0.234875,
+        "true_winner_ci_high": 0.36012499999999986,
+        "observed_winner_probability_left": 0.325,
+        "observed_winner_ci_low": 0.26,
+        "observed_winner_ci_high": 0.4001249999999999
+      }
+    ],
+    "0.35_vs_0.707": [
+      {
+        "environment_name": "measurement_clean",
+        "level": "clean",
+        "noise_std": 0.0,
+        "left_zeta": 0.35,
+        "right_zeta": 0.707,
+        "true_winner_probability_left": 0.0,
+        "true_winner_ci_low": 0.0,
+        "true_winner_ci_high": 0.0,
+        "observed_winner_probability_left": 0.0,
+        "observed_winner_ci_low": 0.0,
+        "observed_winner_ci_high": 0.0
+      },
+      {
+        "environment_name": "measurement_light",
+        "level": "light",
+        "noise_std": 3.0,
+        "left_zeta": 0.35,
+        "right_zeta": 0.707,
+        "true_winner_probability_left": 0.39,
+        "true_winner_ci_low": 0.324875,
+        "true_winner_ci_high": 0.455,
+        "observed_winner_probability_left": 0.36,
+        "observed_winner_ci_low": 0.295,
+        "observed_winner_ci_high": 0.42
+      },
+      {
+        "environment_name": "measurement_moderate",
+        "level": "moderate",
+        "noise_std": 6.0,
+        "left_zeta": 0.35,
+        "right_zeta": 0.707,
+        "true_winner_probability_left": 0.37,
+        "true_winner_ci_low": 0.304875,
+        "true_winner_ci_high": 0.44,
+        "observed_winner_probability_left": 0.39,
+        "observed_winner_ci_low": 0.315,
+        "observed_winner_ci_high": 0.46
+      },
+      {
+        "environment_name": "measurement_heavy",
+        "level": "heavy",
+        "noise_std": 12.0,
+        "left_zeta": 0.35,
+        "right_zeta": 0.707,
+        "true_winner_probability_left": 0.415,
+        "true_winner_ci_low": 0.349875,
+        "true_winner_ci_high": 0.49,
+        "observed_winner_probability_left": 0.39,
+        "observed_winner_ci_low": 0.325,
+        "observed_winner_ci_high": 0.455
+      },
+      {
+        "environment_name": "measurement_extreme",
+        "level": "extreme",
+        "noise_std": 18.0,
+        "left_zeta": 0.35,
+        "right_zeta": 0.707,
+        "true_winner_probability_left": 0.485,
+        "true_winner_ci_low": 0.415,
+        "true_winner_ci_high": 0.555,
+        "observed_winner_probability_left": 0.46,
+        "observed_winner_ci_low": 0.39487500000000003,
+        "observed_winner_ci_high": 0.520125
+      }
+    ]
+  },
+  "final_recommendation": "keep_as_boundary_case"
+}

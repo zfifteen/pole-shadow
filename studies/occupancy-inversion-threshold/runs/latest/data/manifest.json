@@ -1,0 +1,16 @@
+{
+  "study": "occupancy-inversion-threshold",
+  "scripts": [
+    "scripts/occupancy_inversion_study.py"
+  ],
+  "data_files": [
+    "data/occupancy_inversion_summary.json",
+    "data/occupancy_inversion_grid.csv",
+    "data/occupancy_inversion_trial_samples.csv"
+  ],
+  "plot_files": [
+    "plots/occupancy_inversion_true_vs_observed.png",
+    "plots/occupancy_inversion_parity_ratio.png",
+    "plots/occupancy_inversion_winner_probability.png"
+  ]
+}

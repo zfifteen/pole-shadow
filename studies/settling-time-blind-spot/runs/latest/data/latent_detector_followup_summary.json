@@ -1,0 +1,99 @@
+{
+  "objective": "Clarify whether slow-band deficit is primarily a settling-time correction, a bandwidth surrogate, or a more portable low-band diagnostic.",
+  "families_compared": [
+    {
+      "family": "synthetic_matched_family",
+      "label": "Synthetic matched family",
+      "primary_task": "ramp+sine"
+    },
+    {
+      "family": "out-of-family-plant-pi-validation",
+      "label": "Explicit plant + PI",
+      "primary_task": "ramp+sine"
+    },
+    {
+      "family": "out-of-family-aircraft-longitudinal-autopilot",
+      "label": "Aircraft autopilot",
+      "primary_task": "glide_profile"
+    }
+  ],
+  "clean_metric_role_table": [
+    {
+      "family": "synthetic_matched_family",
+      "family_label": "Synthetic matched family",
+      "primary_task": "ramp+sine",
+      "settling_rank_fidelity": 0.4285714285714286,
+      "bandwidth_rank_fidelity": -1.0,
+      "slow_band_rank_fidelity": 1.0,
+      "abs_settling_rank_fidelity": 0.4285714285714286,
+      "abs_bandwidth_rank_fidelity": 1.0,
+      "abs_slow_band_rank_fidelity": 1.0,
+      "slow_band_minus_settling_abs": 0.5714285714285714,
+      "slow_band_minus_bandwidth_abs": 0.0,
+      "matched_pair_support_exists": true,
+      "pair_count_meeting_threshold": 3,
+      "top_pair_settling_diff_pct": 8.049535603715185,
+      "top_pair_iae_ratio": 21.926758684966803,
+      "command_max_noise_ordering_spearman": 0.4780952380952381,
+      "measurement_max_noise_ordering_spearman": 0.9161904761904762,
+      "nuisance_note": "One-shot ordering degrades strongly under command noise but remains strong under measurement noise."
+    },
+    {
+      "family": "out-of-family-plant-pi-validation",
+      "family_label": "Explicit plant + PI",
+      "primary_task": "ramp+sine",
+      "settling_rank_fidelity": 0.01801874925391118,
+      "bandwidth_rank_fidelity": -1.0,
+      "slow_band_rank_fidelity": 1.0,
+      "abs_settling_rank_fidelity": 0.01801874925391118,
+      "abs_bandwidth_rank_fidelity": 1.0,
+      "abs_slow_band_rank_fidelity": 1.0,
+      "slow_band_minus_settling_abs": 0.9819812507460888,
+      "slow_band_minus_bandwidth_abs": 0.0,
+      "matched_pair_support_exists": true,
+      "pair_count_meeting_threshold": 8,
+      "top_pair_settling_diff_pct": 10.309278350515456,
+      "top_pair_iae_ratio": 21.588392285183584,
+      "command_max_noise_ordering_spearman": null,
+      "measurement_max_noise_ordering_spearman": null,
+      "nuisance_note": "At max measurement noise, true winner probability for 0.15 vs 0.707 is 0.520 while observed winner probability is 0.285."
+    },
+    {
+      "family": "out-of-family-aircraft-longitudinal-autopilot",
+      "family_label": "Aircraft autopilot",
+      "primary_task": "glide_profile",
+      "settling_rank_fidelity": 0.8928571428571429,
+      "bandwidth_rank_fidelity": -0.9285714285714288,
+      "slow_band_rank_fidelity": 0.9642857142857145,
+      "abs_settling_rank_fidelity": 0.8928571428571429,
+      "abs_bandwidth_rank_fidelity": 0.9285714285714288,
+      "abs_slow_band_rank_fidelity": 0.9642857142857145,
+      "slow_band_minus_settling_abs": 0.07142857142857162,
+      "slow_band_minus_bandwidth_abs": 0.0357142857142857,
+      "matched_pair_support_exists": false,
+      "pair_count_meeting_threshold": 0,
+      "top_pair_settling_diff_pct": null,
+      "top_pair_iae_ratio": null,
+      "command_max_noise_ordering_spearman": null,
+      "measurement_max_noise_ordering_spearman": null,
+      "nuisance_note": "At max measurement noise, true winner probability for 0.15 vs 0.707 is 1.000 while observed winner probability is 1.000."
+    }
+  ],
+  "nuisance_mode_observations": {
+    "synthetic_command_vs_measurement": "Command-side noise degrades one-shot rollout ordering far more than measurement noise in the matched synthetic family.",
+    "plant_pi_measurement_extreme_pair_gap": "At max measurement noise, true winner probability for 0.15 vs 0.707 is 0.520 while observed winner probability is 0.285.",
+    "aircraft_measurement_extreme_pair_gap": "At max measurement noise, true winner probability for 0.15 vs 0.707 is 1.000 while observed winner probability is 1.000."
+  },
+  "headline_checks": {
+    "slow_band_beats_settling_in_all_families": true,
+    "bandwidth_nearly_matches_slow_band_in_all_families": true,
+    "at_least_one_family_has_matched_pair_support": true,
+    "max_slow_band_minus_settling_abs": 0.9819812507460888,
+    "max_slow_band_minus_bandwidth_abs": 0.0357142857142857
+  },
+  "conclusion": "slow_band_adds_information_beyond_settling_time_but_not_beyond_bandwidth",
+  "interpretation": {
+    "slow_band_role": "Slow-band deficit consistently outperforms settling-time summaries as a clean-task ordering statistic.",
+    "bandwidth_role": "Bandwidth remains nearly as informative as slow-band deficit in these follow-up families, so the evidence supports a settling-time blind spot more strongly than a slow-band uniqueness claim."
+  }
+}

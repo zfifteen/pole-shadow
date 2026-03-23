@@ -1,5 +1,15 @@
 # Settling-Time Blind Spot Hardening Plan
 
+## Execution Outcome
+
+Completed on `2026-03-23`.
+
+- Added a cross-family follow-up study comparing the synthetic matched family, the explicit plant-plus-PI family, and the aircraft autopilot family.
+- The follow-up confirmed that slow-band deficit consistently outperforms settling-time summaries as a clean-task ordering statistic.
+- The same follow-up also showed that bandwidth remains nearly as informative as slow-band deficit across the compared families.
+
+Current interpretation: this capsule now supports a strong settling-time blind-spot claim and a weaker, more qualified slow-band claim.
+
 ## Goal
 
 Sharpen the study from “interesting matched-settling result” into a cleaner claim about what settling-time summaries miss and what slow-band deficit adds.

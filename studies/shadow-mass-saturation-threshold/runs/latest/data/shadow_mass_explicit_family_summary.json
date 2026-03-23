@@ -1,0 +1,97 @@
+{
+  "objective": "Replicate the shadow-mass moving-optimum and occupancy-proxy story in an explicit plant-plus-PI-controller family.",
+  "source_study": "out-of-family-plant-pi-validation",
+  "source_summary": "studies/out-of-family-plant-pi-validation/runs/latest/data/plant_pi_summary.json",
+  "candidate_proxy": "occupancy_proxy_l2 = noise_power * shadow_mass_l2",
+  "global_correlations": {
+    "occupancy_proxy_l2_vs_excess_penalty_spearman": 0.8428571428571426,
+    "noise_power_vs_excess_penalty_spearman": 0.33551495229769857
+  },
+  "per_mode_correlations": {
+    "command": {
+      "occupancy_proxy_l2_vs_excess_penalty_spearman": 0.9077922077922078,
+      "noise_power_vs_excess_penalty_spearman": 0.41415134408456294
+    },
+    "measurement": {
+      "occupancy_proxy_l2_vs_excess_penalty_spearman": 0.7657361795292829,
+      "noise_power_vs_excess_penalty_spearman": 0.2530909862209218
+    }
+  },
+  "environment_highlights": [
+    {
+      "mode": "command",
+      "clean_best_zeta": 0.15,
+      "heaviest_best_zeta": 0.35,
+      "heaviest_long_shadow_gap_vs_best": 2.7750330571396327,
+      "best_path": [
+        {
+          "level": "clean",
+          "noise_std": 0.0,
+          "best_zeta_by_mean_true_iae": 0.15,
+          "best_shadow_mass_l2": 4.084562319877964
+        },
+        {
+          "level": "light",
+          "noise_std": 0.03,
+          "best_zeta_by_mean_true_iae": 0.25,
+          "best_shadow_mass_l2": 1.58009823675325
+        },
+        {
+          "level": "moderate",
+          "noise_std": 0.06,
+          "best_zeta_by_mean_true_iae": 0.35,
+          "best_shadow_mass_l2": 0.8597639456583258
+        },
+        {
+          "level": "heavy",
+          "noise_std": 0.1,
+          "best_zeta_by_mean_true_iae": 0.35,
+          "best_shadow_mass_l2": 0.8685666134291823
+        }
+      ]
+    },
+    {
+      "mode": "measurement",
+      "clean_best_zeta": 0.15,
+      "heaviest_best_zeta": 0.35,
+      "heaviest_long_shadow_gap_vs_best": 3.498846651405345,
+      "best_path": [
+        {
+          "level": "clean",
+          "noise_std": 0.0,
+          "best_zeta_by_mean_true_iae": 0.15,
+          "best_shadow_mass_l2": 4.084562319877964
+        },
+        {
+          "level": "light",
+          "noise_std": 0.02,
+          "best_zeta_by_mean_true_iae": 0.2,
+          "best_shadow_mass_l2": 2.3705646230871036
+        },
+        {
+          "level": "moderate",
+          "noise_std": 0.04,
+          "best_zeta_by_mean_true_iae": 0.25,
+          "best_shadow_mass_l2": 1.594461905475847
+        },
+        {
+          "level": "heavy",
+          "noise_std": 0.08,
+          "best_zeta_by_mean_true_iae": 0.35,
+          "best_shadow_mass_l2": 0.8723251064834545
+        },
+        {
+          "level": "extreme",
+          "noise_std": 0.12,
+          "best_zeta_by_mean_true_iae": 0.35,
+          "best_shadow_mass_l2": 0.8739075412242567
+        }
+      ]
+    }
+  ],
+  "acceptance_check": {
+    "inward_optimum_shift_exists": true,
+    "occupancy_proxy_beats_raw_noise_by_0_10": true,
+    "all_regimes_report_stability": true
+  }
+}

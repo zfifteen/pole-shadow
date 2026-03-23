@@ -1,5 +1,15 @@
 # Out-of-Family Aircraft Longitudinal Autopilot Hardening Plan
 
+## Execution Outcome
+
+Completed on `2026-03-23`.
+
+- Added a second-pass aircraft variant study with tighter pitch-transient retuning, a slower glide mission, and lower-frequency gust structure.
+- The variant made the best `zeta` mobile, but the movement was outward toward a longer shadow rather than inward.
+- No matched pair cleared the stronger `<= 15%` settling and `>= 3x` mission-IAE threshold, and the occupancy proxy still did not dominate raw nuisance power.
+
+Current interpretation: this capsule remains a mission-sensitive boundary case rather than a full positive replication of the stronger saturation story.
+
 ## Goal
 
 Determine whether the aircraft study can be strengthened into a stronger positive validation or should remain an intentional boundary-case result.

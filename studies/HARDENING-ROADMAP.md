@@ -28,15 +28,15 @@ This study is already useful, but it should be hardened after the first two beca
 
 ### Shadow-Mass Saturation Threshold
 
-Current status: strong concept note plus a dedicated synthetic-family study with a visible moving interior optimum and an occupancy-style proxy that beats raw nuisance power. Current limitation: the strongest version of the claim is not yet replicated in an explicit plant/controller family, so portability remains open.
+Current status: hardened. The capsule now has both the original synthetic-family study and an explicit plant-plus-PI replication. The stronger environment-aware story survives the replication: the preferred design moves inward under both command-side and measurement-side nuisance, and the occupancy-style proxy outperforms raw nuisance power by a wide margin. Current interpretation: this is now a real cross-family finding, not just a synthetic-family curiosity.
 
 ### Out-of-Family Aircraft Longitudinal Autopilot
 
-Current status: useful domain-specific validation and boundary case. The core slow-mission-tracking idea survives, but the nuisance-driven optimum shift and strong occupancy advantage do not. Current limitation: the study needs one deliberate second pass so the repo can decide whether this capsule becomes a stronger positive validation or an intentionally preserved negative/boundary result.
+Current status: hardened as a boundary-setting capsule. The baseline study still acts as the core aircraft boundary case, and the second-pass variant now makes that boundary more precise. The aircraft optimum becomes mobile in the variant, but it moves outward toward a longer shadow rather than inward toward a shorter one, and the occupancy proxy still does not dominate raw nuisance power. Current interpretation: this is not a clean positive replication of the saturation story; it is a mission-sensitive counterweight that marks a real limit on portability.
 
 ### Settling-Time Blind Spot
 
-Current status: strong matched-settling evidence that settling-time summaries can miss meaningful slow-tracking differences. Current limitation: the “slow-band deficit as latent detector” framing needs a cleaner separation from bandwidth and a clearer explanation of why the noise story is strong for command noise but weak for measurement noise.
+Current status: hardened and clarified. The new cross-family follow-up shows that slow-band deficit consistently outperforms settling-time summaries as a clean-task ordering statistic, but bandwidth remains nearly as informative across the compared families. Current interpretation: this capsule now supports a strong settling-time blind spot claim and a weaker, more qualified slow-band claim.
 
 ## Sequence and Dependencies
 
@@ -47,11 +47,11 @@ Current status: strong matched-settling evidence that settling-time summaries ca
 
 ## Done Means
 
-- [ ] The shadow-mass story has been tested in at least one explicit plant/controller family.
-- [ ] The aircraft capsule has received one second-pass variant study with a clear yes/no decision on whether it becomes a stronger positive validation.
-- [ ] The settling-time blind-spot capsule has one follow-up experiment that cleanly states what settling time misses and what slow-band deficit adds.
-- [ ] Each of the three target capsules has an updated concept note or README language that matches the strengthened evidence.
-- [ ] The technical note can summarize these three studies without overstating portability or leaving the next implementer guessing what each study now means.
+- [x] The shadow-mass story has been tested in at least one explicit plant/controller family.
+- [x] The aircraft capsule has received one second-pass variant study with a clear yes/no decision on whether it becomes a stronger positive validation.
+- [x] The settling-time blind-spot capsule has one follow-up experiment that cleanly states what settling time misses and what slow-band deficit adds.
+- [x] Each of the three target capsules has an updated concept note or README language that matches the strengthened evidence.
+- [x] The technical note can summarize these three studies without overstating portability or leaving the next implementer guessing what each study now means.
 
 ## Do Not Change Yet
 

@@ -1,0 +1,18 @@
+{
+  "study": "shadow-mass-saturation-threshold-explicit-family-replication",
+  "source_study": "out-of-family-plant-pi-validation",
+  "generated_files": {
+    "csv": [
+      "studies/shadow-mass-saturation-threshold/runs/latest/data/shadow_mass_explicit_family_environment_grid.csv",
+      "studies/shadow-mass-saturation-threshold/runs/latest/data/shadow_mass_explicit_family_best_path.csv"
+    ],
+    "json": [
+      "studies/shadow-mass-saturation-threshold/runs/latest/data/shadow_mass_explicit_family_summary.json",
+      "studies/shadow-mass-saturation-threshold/runs/latest/data/manifest.json"
+    ],
+    "plots": [
+      "studies/shadow-mass-saturation-threshold/runs/latest/plots/shadow_mass_explicit_family_sweet_spot.png",
+      "studies/shadow-mass-saturation-threshold/runs/latest/plots/shadow_mass_explicit_family_occupancy.png"
+    ]
+  }
+}

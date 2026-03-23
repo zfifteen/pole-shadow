@@ -1,5 +1,15 @@
 # Shadow-Mass Saturation Threshold Hardening Plan
 
+## Execution Outcome
+
+Completed on `2026-03-23`.
+
+- Added an explicit plant-plus-PI replication study under this capsule.
+- The moving-optimum story survived the replication.
+- The occupancy proxy `noise_power * shadow_mass_l2` beat raw nuisance power by a wide margin globally and within both nuisance modes.
+
+Current interpretation: this capsule now supports a real cross-family environment-aware finding rather than a synthetic-family-only effect.
+
 ## Goal
 
 Replicate the moving-optimum and occupancy-proxy story in at least one explicit plant/controller family so the strongest version of the shadow-mass claim is no longer supported only by the synthetic second-order family.

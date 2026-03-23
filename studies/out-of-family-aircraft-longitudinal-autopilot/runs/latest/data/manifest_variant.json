@@ -1,0 +1,16 @@
+{
+  "study": "out-of-family-aircraft-longitudinal-autopilot-variant",
+  "generated_files": {
+    "csv": [
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/data/aircraft_autopilot_variant_environment_grid.csv"
+    ],
+    "json": [
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/data/aircraft_autopilot_variant_comparison_summary.json",
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/data/manifest_variant.json"
+    ],
+    "plots": [
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/plots/aircraft_autopilot_variant_matched_transient.png",
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/plots/aircraft_autopilot_variant_best_zeta_path.png"
+    ]
+  }
+}

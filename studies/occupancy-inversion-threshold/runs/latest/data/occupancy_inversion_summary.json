@@ -1,0 +1,93 @@
+{
+  "objective": "Test whether a sensor-side design metric can invert the true ranking between competing feedback designs before the true ranking itself changes sign.",
+  "family": "Explicit plant + PI controller",
+  "nuisance_model": "Pure measurement noise only, no plant jitter, shared noise realization across designs within each trial.",
+  "noise_ladder": {
+    "start": 0.0,
+    "end": 0.16,
+    "step": 0.01,
+    "trials_per_level": 180
+  },
+  "designs": {
+    "0.15": {
+      "zeta": 0.15,
+      "clean_iae": 0.33712568780428753,
+      "clean_ise": 0.0009132977847148005,
+      "shadow_mass_l2": 4.084562319877964
+    },
+    "0.25": {
+      "zeta": 0.25,
+      "clean_iae": 0.9216840989746177,
+      "clean_ise": 0.006271716854617102,
+      "shadow_mass_l2": 1.570340379658791
+    },
+    "0.35": {
+      "zeta": 0.35,
+      "clean_iae": 1.8033996501839749,
+      "clean_ise": 0.023100295182629803,
+      "shadow_mass_l2": 0.8582589217344164
+    },
+    "0.707": {
+      "zeta": 0.707,
+      "clean_iae": 7.27800159773129,
+      "clean_ise": 0.3616508014139059,
+      "shadow_mass_l2": 0.25621414481890314
+    }
+  },
+  "pairwise_findings": {
+    "0.15_vs_0.707": {
+      "left_zeta": 0.15,
+      "right_zeta": 0.707,
+      "clean_advantage_iae": 6.940875909927004,
+      "observed_zero_crossing_noise": 0.1064012775871639,
+      "true_zero_crossing_noise": 0.12367571987163035,
+      "observed_crossing_precedes_true_crossing": true,
+      "parity_ratio_at_observed_crossing": 0.8515989851496741,
+      "inversion_probability_at_observed_crossing": 0.4464614789399632,
+      "max_inversion_probability": 0.6111111111111112,
+      "final_noise_true_gap_iae": -2.06491084497788,
+      "final_noise_observed_gap_iae": -1.0882883638857743,
+      "evidence_of_observed_inversion": true
+    },
+    "0.25_vs_0.707": {
+      "left_zeta": 0.25,
+      "right_zeta": 0.707,
+      "clean_advantage_iae": 6.356317498756673,
+      "observed_zero_crossing_noise": null,
+      "true_zero_crossing_noise": null,
+      "observed_crossing_precedes_true_crossing": false,
+      "parity_ratio_at_observed_crossing": null,
+      "inversion_probability_at_observed_crossing": null,
+      "max_inversion_probability": 0.1111111111111111,
+      "final_noise_true_gap_iae": 1.4100336951680672,
+      "final_noise_observed_gap_iae": 0.16301538848704006,
+      "evidence_of_observed_inversion": false
+    },
+    "0.35_vs_0.707": {
+      "left_zeta": 0.35,
+      "right_zeta": 0.707,
+      "clean_advantage_iae": 5.474601947547314,
+      "observed_zero_crossing_noise": null,
+      "true_zero_crossing_noise": null,
+      "observed_crossing_precedes_true_crossing": false,
+      "parity_ratio_at_observed_crossing": null,
+      "inversion_probability_at_observed_crossing": null,
+      "max_inversion_probability": 0.0,
+      "final_noise_true_gap_iae": 2.7384877724355228,
+      "final_noise_observed_gap_iae": 0.4965520984331912,
+      "evidence_of_observed_inversion": false
+    }
+  },
+  "headline": {
+    "strongest_inverting_pair": "0.15_vs_0.707",
+    "observed_inversion_noise": 0.1064012775871639,
+    "true_crossover_noise": 0.12367571987163035,
+    "parity_ratio_at_observed_inversion": 0.8515989851496741,
+    "observed_precedes_true": true
+  },
+  "interpretation": {
+    "main_claim": "In the strongest pair, the sensor-side metric flips direction before the true pairwise advantage disappears.",
+    "threshold_candidate": "The best current threshold variable is pairwise excess-penalty parity relative to the clean-regime advantage margin, not raw occupancy ratio alone.",
+    "scope_note": "The effect is pair-specific rather than universal even within this family: the 0.15 vs 0.707 pair inverts, while the 0.25 vs 0.707 and 0.35 vs 0.707 control pairs do not within the tested ladder."
+  }
+}

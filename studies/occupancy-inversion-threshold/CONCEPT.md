@@ -1,0 +1,11 @@
+# Occupancy Inversion Threshold
+
+When sensor-side noise loads a high-persistence design faster than the clean-regime advantage separating it from a shorter-shadow competitor, the observed error can reverse the true ranking before the true ranking itself changes sign.
+
+This is not just a story about noisier measurements. In the explicit plant-plus-PI probe, the `zeta = 0.15` versus `zeta = 0.707` pair shows a directional inversion. The true pairwise advantage of the longer-shadow design shrinks steadily as sensor noise rises, but the observed sensor-side metric flips first. In the current dense noise ladder, the observed crossover appears at about `0.106`, while the true crossover arrives later at about `0.124`. The sensor is therefore not merely becoming less certain. It is becoming directionally wrong in the interval between those two thresholds.
+
+The strongest threshold variable is not raw occupancy ratio alone. In this study, the more useful quantity is the pairwise excess-penalty parity ratio: the noise-induced penalty gap divided by the clean-regime advantage margin between the two designs. For the inverting pair, the observed crossover occurs when that ratio is about `0.85`, which means the sensor-side metric turns adversarial before full penalty parity is reached.
+
+The effect is also bounded. Two comparison pairs, `zeta = 0.25` versus `zeta = 0.707` and `zeta = 0.35` versus `zeta = 0.707`, show strong compression of the observed gap but no inversion within the same ladder. That matters because it prevents the concept from becoming a vague universal warning. The inversion appears in the fragile pair where the clean advantage is large but the longer-shadow design is also the most vulnerable to noise-loaded excess penalty.
+
+This suggests a new diagnostic question. A sensor-side error signal is trustworthy only while it preserves the sign of the true pairwise advantage. Once the pairwise excess-penalty ratio approaches parity, the metric may stop being merely noisy and start becoming adversarial for design choice. The practical implication is a two-regime comparison protocol: below the inversion threshold, observed error is still usable for design selection; above it, system-side low-band diagnostics may be more honest than the sensor signal itself.
