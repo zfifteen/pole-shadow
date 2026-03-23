@@ -1,0 +1,537 @@
+{
+  "study": "out-of-family-aircraft-longitudinal-autopilot",
+  "model": {
+    "base_aircraft": "Modified F-8 longitudinal linearization",
+    "trim_altitude_ft": 20000.0,
+    "trim_speed_ft_per_s": 916.6,
+    "state_order": [
+      "q",
+      "u",
+      "alpha",
+      "theta"
+    ],
+    "flight_path_relation": "gamma = theta - alpha"
+  },
+  "primary_mission": "glide_profile",
+  "clean_rank_fidelity": {
+    "pitch_step_settling_time_2pct": 0.8928571428571429,
+    "altitude_bandwidth_3db": -0.9285714285714288,
+    "slow_band_deficit_0_03": 0.9642857142857145,
+    "shadow_mass_l1": 0.4642857142857144,
+    "shadow_mass_l2": -0.8571428571428573
+  },
+  "matched_pairs": {
+    "top_supportive_pair": null,
+    "pair_count_meeting_threshold": 0,
+    "null_report": "No pair met both pitch-step settling <= 15% and glide-profile IAE ratio >= 3x.",
+    "top_pairs_by_iae_ratio": [
+      {
+        "left_zeta": 0.2,
+        "right_zeta": 0.35,
+        "settling_diff_pct": 85.25896414342631,
+        "left_pitch_settling": 3.8425617078052032,
+        "right_pitch_settling": 9.553035356904603,
+        "left_glide_iae": 651.2425879234069,
+        "right_glide_iae": 1075.7470291266332,
+        "iae_ratio": 1.6518376547775044,
+        "better_zeta": 0.2,
+        "worse_zeta": 0.35
+      },
+      {
+        "left_zeta": 0.2,
+        "right_zeta": 0.25,
+        "settling_diff_pct": 80.74534161490685,
+        "left_pitch_settling": 3.8425617078052032,
+        "right_pitch_settling": 9.04603068712475,
+        "left_glide_iae": 651.2425879234069,
+        "right_glide_iae": 1033.4829850508527,
+        "iae_ratio": 1.5869401114357118,
+        "better_zeta": 0.2,
+        "worse_zeta": 0.25
+      },
+      {
+        "left_zeta": 0.15,
+        "right_zeta": 0.35,
+        "settling_diff_pct": 73.80497131931165,
+        "left_pitch_settling": 4.402935290193462,
+        "right_pitch_settling": 9.553035356904603,
+        "left_glide_iae": 715.583938422919,
+        "right_glide_iae": 1075.7470291266332,
+        "iae_ratio": 1.5033135476705646,
+        "better_zeta": 0.15,
+        "worse_zeta": 0.35
+      },
+      {
+        "left_zeta": 0.35,
+        "right_zeta": 1.0,
+        "settling_diff_pct": 88.70967741935485,
+        "left_pitch_settling": 9.553035356904603,
+        "right_pitch_settling": 3.6824549699799864,
+        "left_glide_iae": 1075.7470291266332,
+        "right_glide_iae": 722.472751620923,
+        "iae_ratio": 1.488979379101997,
+        "better_zeta": 1.0,
+        "worse_zeta": 0.35
+      },
+      {
+        "left_zeta": 0.15,
+        "right_zeta": 0.25,
+        "settling_diff_pct": 69.04761904761905,
+        "left_pitch_settling": 4.402935290193462,
+        "right_pitch_settling": 9.04603068712475,
+        "left_glide_iae": 715.583938422919,
+        "right_glide_iae": 1033.4829850508527,
+        "iae_ratio": 1.44425123253682,
+        "better_zeta": 0.15,
+        "worse_zeta": 0.25
+      },
+      {
+        "left_zeta": 0.25,
+        "right_zeta": 1.0,
+        "settling_diff_pct": 84.27672955974845,
+        "left_pitch_settling": 9.04603068712475,
+        "right_pitch_settling": 3.6824549699799864,
+        "left_glide_iae": 1033.4829850508527,
+        "right_glide_iae": 722.472751620923,
+        "iae_ratio": 1.4304802260461096,
+        "better_zeta": 1.0,
+        "worse_zeta": 0.25
+      }
+    ]
+  },
+  "best_design_by_environment": {
+    "command_clean": {
+      "mode": "command",
+      "level": "clean",
+      "noise_std": 0.0,
+      "best_zeta": 0.2,
+      "best_mean_true_iae": 651.2425879234069,
+      "best_zeta_ci_low": 0.2,
+      "best_zeta_ci_high": 0.2,
+      "best_zeta_frequency": {
+        "0_15": 0.0,
+        "0_2": 1.0,
+        "0_25": 0.0,
+        "0_35": 0.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 64.34135049951215,
+      "min_stability_rate": 1.0
+    },
+    "command_light": {
+      "mode": "command",
+      "level": "light",
+      "noise_std": 5.0,
+      "best_zeta": 0.2,
+      "best_mean_true_iae": 649.1987621955366,
+      "best_zeta_ci_low": 0.2,
+      "best_zeta_ci_high": 0.2,
+      "best_zeta_frequency": {
+        "0_15": 0.0,
+        "0_2": 1.0,
+        "0_25": 0.0,
+        "0_35": 0.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 64.81694195259661,
+      "min_stability_rate": 1.0
+    },
+    "command_moderate": {
+      "mode": "command",
+      "level": "moderate",
+      "noise_std": 10.0,
+      "best_zeta": 0.2,
+      "best_mean_true_iae": 662.3135650229733,
+      "best_zeta_ci_low": 0.2,
+      "best_zeta_ci_high": 0.2,
+      "best_zeta_frequency": {
+        "0_15": 0.0,
+        "0_2": 1.0,
+        "0_25": 0.0,
+        "0_35": 0.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 57.6369512457718,
+      "min_stability_rate": 1.0
+    },
+    "command_heavy": {
+      "mode": "command",
+      "level": "heavy",
+      "noise_std": 20.0,
+      "best_zeta": 0.2,
+      "best_mean_true_iae": 756.5278141191619,
+      "best_zeta_ci_low": 0.2,
+      "best_zeta_ci_high": 0.2,
+      "best_zeta_frequency": {
+        "0_15": 0.0,
+        "0_2": 1.0,
+        "0_25": 0.0,
+        "0_35": 0.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 48.331019999733826,
+      "min_stability_rate": 1.0
+    },
+    "measurement_clean": {
+      "mode": "measurement",
+      "level": "clean",
+      "noise_std": 0.0,
+      "best_zeta": 0.2,
+      "best_mean_true_iae": 651.2425879234069,
+      "best_zeta_ci_low": 0.2,
+      "best_zeta_ci_high": 0.2,
+      "best_zeta_frequency": {
+        "0_15": 0.0,
+        "0_2": 1.0,
+        "0_25": 0.0,
+        "0_35": 0.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 64.34135049951215,
+      "min_stability_rate": 1.0
+    },
+    "measurement_light": {
+      "mode": "measurement",
+      "level": "light",
+      "noise_std": 3.0,
+      "best_zeta": 0.2,
+      "best_mean_true_iae": 652.3450678901322,
+      "best_zeta_ci_low": 0.2,
+      "best_zeta_ci_high": 0.2,
+      "best_zeta_frequency": {
+        "0_15": 0.0,
+        "0_2": 1.0,
+        "0_25": 0.0,
+        "0_35": 0.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 64.31032775087363,
+      "min_stability_rate": 1.0
+    },
+    "measurement_moderate": {
+      "mode": "measurement",
+      "level": "moderate",
+      "noise_std": 6.0,
+      "best_zeta": 0.2,
+      "best_mean_true_iae": 651.6211624302059,
+      "best_zeta_ci_low": 0.2,
+      "best_zeta_ci_high": 0.2,
+      "best_zeta_frequency": {
+        "0_15": 0.0,
+        "0_2": 1.0,
+        "0_25": 0.0,
+        "0_35": 0.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 61.45115887832753,
+      "min_stability_rate": 1.0
+    },
+    "measurement_heavy": {
+      "mode": "measurement",
+      "level": "heavy",
+      "noise_std": 12.0,
+      "best_zeta": 0.2,
+      "best_mean_true_iae": 699.8740516626635,
+      "best_zeta_ci_low": 0.2,
+      "best_zeta_ci_high": 0.2,
+      "best_zeta_frequency": {
+        "0_15": 0.0,
+        "0_2": 1.0,
+        "0_25": 0.0,
+        "0_35": 0.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 36.92642446157686,
+      "min_stability_rate": 1.0
+    },
+    "measurement_extreme": {
+      "mode": "measurement",
+      "level": "extreme",
+      "noise_std": 18.0,
+      "best_zeta": 0.2,
+      "best_mean_true_iae": 806.2419546511612,
+      "best_zeta_ci_low": 0.2,
+      "best_zeta_ci_high": 0.2,
+      "best_zeta_frequency": {
+        "0_15": 0.0,
+        "0_2": 1.0,
+        "0_25": 0.0,
+        "0_35": 0.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 12.93028894734175,
+      "min_stability_rate": 1.0
+    }
+  },
+  "occupancy_proxy_summary": {
+    "global_occupancy_proxy_vs_excess_true_iae_spearman": 0.8308163265306122,
+    "global_raw_nuisance_power_vs_excess_true_iae_spearman": 0.8261604739373437,
+    "per_mode": {
+      "command": {
+        "occupancy_proxy_l2_vs_excess_true_iae": 0.9324675324675323,
+        "raw_nuisance_power_vs_excess_true_iae": 0.943879807448539
+      },
+      "measurement": {
+        "occupancy_proxy_l2_vs_excess_true_iae": 0.7536945812807883,
+        "raw_nuisance_power_vs_excess_true_iae": 0.775091145301573
+      }
+    }
+  },
+  "pairwise_reliability": {
+    "0.15_vs_0.707": [
+      {
+        "environment_name": "measurement_clean",
+        "mode": "measurement",
+        "level": "clean",
+        "noise_std": 0.0,
+        "left_zeta": 0.15,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 1,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      },
+      {
+        "environment_name": "measurement_light",
+        "mode": "measurement",
+        "level": "light",
+        "noise_std": 3.0,
+        "left_zeta": 0.15,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      },
+      {
+        "environment_name": "measurement_moderate",
+        "mode": "measurement",
+        "level": "moderate",
+        "noise_std": 6.0,
+        "left_zeta": 0.15,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      },
+      {
+        "environment_name": "measurement_heavy",
+        "mode": "measurement",
+        "level": "heavy",
+        "noise_std": 12.0,
+        "left_zeta": 0.15,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      },
+      {
+        "environment_name": "measurement_extreme",
+        "mode": "measurement",
+        "level": "extreme",
+        "noise_std": 18.0,
+        "left_zeta": 0.15,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      }
+    ],
+    "0.25_vs_0.707": [
+      {
+        "environment_name": "measurement_clean",
+        "mode": "measurement",
+        "level": "clean",
+        "noise_std": 0.0,
+        "left_zeta": 0.25,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 1,
+        "true_winner_probability_left": 0.0,
+        "true_winner_ci_low": 0.0,
+        "true_winner_ci_high": 0.0,
+        "observed_winner_probability_left": 0.0,
+        "observed_winner_ci_low": 0.0,
+        "observed_winner_ci_high": 0.0
+      },
+      {
+        "environment_name": "measurement_light",
+        "mode": "measurement",
+        "level": "light",
+        "noise_std": 3.0,
+        "left_zeta": 0.25,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 0.0,
+        "true_winner_ci_low": 0.0,
+        "true_winner_ci_high": 0.0,
+        "observed_winner_probability_left": 0.0,
+        "observed_winner_ci_low": 0.0,
+        "observed_winner_ci_high": 0.0
+      },
+      {
+        "environment_name": "measurement_moderate",
+        "mode": "measurement",
+        "level": "moderate",
+        "noise_std": 6.0,
+        "left_zeta": 0.25,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 0.0,
+        "true_winner_ci_low": 0.0,
+        "true_winner_ci_high": 0.0,
+        "observed_winner_probability_left": 0.0,
+        "observed_winner_ci_low": 0.0,
+        "observed_winner_ci_high": 0.0
+      },
+      {
+        "environment_name": "measurement_heavy",
+        "mode": "measurement",
+        "level": "heavy",
+        "noise_std": 12.0,
+        "left_zeta": 0.25,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 0.0,
+        "true_winner_ci_low": 0.0,
+        "true_winner_ci_high": 0.0,
+        "observed_winner_probability_left": 0.0,
+        "observed_winner_ci_low": 0.0,
+        "observed_winner_ci_high": 0.0
+      },
+      {
+        "environment_name": "measurement_extreme",
+        "mode": "measurement",
+        "level": "extreme",
+        "noise_std": 18.0,
+        "left_zeta": 0.25,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 0.0,
+        "true_winner_ci_low": 0.0,
+        "true_winner_ci_high": 0.0,
+        "observed_winner_probability_left": 0.0,
+        "observed_winner_ci_low": 0.0,
+        "observed_winner_ci_high": 0.0
+      }
+    ],
+    "0.35_vs_0.707": [
+      {
+        "environment_name": "measurement_clean",
+        "mode": "measurement",
+        "level": "clean",
+        "noise_std": 0.0,
+        "left_zeta": 0.35,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 1,
+        "true_winner_probability_left": 0.0,
+        "true_winner_ci_low": 0.0,
+        "true_winner_ci_high": 0.0,
+        "observed_winner_probability_left": 0.0,
+        "observed_winner_ci_low": 0.0,
+        "observed_winner_ci_high": 0.0
+      },
+      {
+        "environment_name": "measurement_light",
+        "mode": "measurement",
+        "level": "light",
+        "noise_std": 3.0,
+        "left_zeta": 0.35,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 0.0,
+        "true_winner_ci_low": 0.0,
+        "true_winner_ci_high": 0.0,
+        "observed_winner_probability_left": 0.0,
+        "observed_winner_ci_low": 0.0,
+        "observed_winner_ci_high": 0.0
+      },
+      {
+        "environment_name": "measurement_moderate",
+        "mode": "measurement",
+        "level": "moderate",
+        "noise_std": 6.0,
+        "left_zeta": 0.35,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 0.0,
+        "true_winner_ci_low": 0.0,
+        "true_winner_ci_high": 0.0,
+        "observed_winner_probability_left": 0.0,
+        "observed_winner_ci_low": 0.0,
+        "observed_winner_ci_high": 0.0
+      },
+      {
+        "environment_name": "measurement_heavy",
+        "mode": "measurement",
+        "level": "heavy",
+        "noise_std": 12.0,
+        "left_zeta": 0.35,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 0.0,
+        "true_winner_ci_low": 0.0,
+        "true_winner_ci_high": 0.0,
+        "observed_winner_probability_left": 0.0,
+        "observed_winner_ci_low": 0.0,
+        "observed_winner_ci_high": 0.0
+      },
+      {
+        "environment_name": "measurement_extreme",
+        "mode": "measurement",
+        "level": "extreme",
+        "noise_std": 18.0,
+        "left_zeta": 0.35,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 0.0,
+        "true_winner_ci_low": 0.0,
+        "true_winner_ci_high": 0.0,
+        "observed_winner_probability_left": 0.0,
+        "observed_winner_ci_low": 0.0,
+        "observed_winner_ci_high": 0.0
+      }
+    ]
+  },
+  "claim_support": {
+    "clean_slow_tracking_separation_exists": true,
+    "matched_pair_support_exists": false,
+    "nuisance_driven_inward_movement_exists": false,
+    "occupancy_proxy_beats_raw_nuisance_by_0_10": false
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "study": "out-of-family-aircraft-longitudinal-autopilot",
+  "generated_files": {
+    "csv": [
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/data/aircraft_autopilot_system_metrics.csv",
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/data/aircraft_autopilot_clean_tracking_metrics.csv",
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/data/aircraft_autopilot_environment_grid.csv",
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/data/aircraft_autopilot_trial_samples.csv",
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/data/aircraft_autopilot_pairwise_reliability.csv"
+    ],
+    "json": [
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/data/aircraft_autopilot_bootstrap_summary.json",
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/data/aircraft_autopilot_summary.json",
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/data/manifest.json"
+    ],
+    "plots": [
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/plots/aircraft_autopilot_family_overview.png",
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/plots/aircraft_autopilot_settling_blind_spot.png",
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/plots/aircraft_autopilot_noise_conditioned_optimum.png",
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/plots/aircraft_autopilot_shadow_mass_occupancy.png",
+      "studies/out-of-family-aircraft-longitudinal-autopilot/runs/latest/plots/aircraft_autopilot_pairwise_reliability.png"
+    ]
+  }
+}

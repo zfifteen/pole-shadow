@@ -1,6 +1,6 @@
 ---
 title: "A New Diagnostic Framework for Slow-Tracking Performance in Feedback Systems"
-subtitle: "Working Technical Note on Candidate Diagnostics, Matched-Settling Blind Spots, Shadow-Mass Sweet Spots, and Measurement-Noise Regime Shifts"
+subtitle: "Working Technical Note on Candidate Diagnostics, Matched-Settling Blind Spots, Shadow-Mass Sweet Spots, Measurement-Noise Regime Shifts, and Out-of-Family Boundary Cases"
 date: "March 23, 2026"
 documentclass: article
 fontsize: 11pt
@@ -10,7 +10,7 @@ bibliography: references.bib
 link-citations: true
 colorlinks: true
 abstract: |
-  This working technical note proposes a modest diagnostic framework for slow-tracking performance in feedback systems. The note does not claim a new universal law or a finished replacement for classical control metrics. Instead, it asks whether settling-time style summaries leave out a task-relevant temporal dimension and whether low-band diagnostics can partially recover it. The current evidence comes from controlled computational studies in a family of second-order closed-loop models. Those studies suggest four provisional findings. First, matched-settling systems can differ strongly in slow-tracking cost even when settling-time behavior looks similar. Second, low-band system-side metrics can reveal clean-regime slow-tracking liability more clearly than settling-time summaries. Third, once measurement noise enters the feedback path, the true best damping ratio can shift, and observed sensor-side metrics can lag that shift. Fourth, a dedicated shadow-mass study suggests that the preferred temporal budget moves inward as nuisance grows, and that an occupancy-style proxy based on noise power and shadow mass helps track that change. The purpose of this note is to define the framework, summarize the current evidence, and provide a stable manuscript that can be revised as new studies are added.
+  This working technical note proposes a modest diagnostic framework for slow-tracking performance in feedback systems. The note does not claim a new universal law or a finished replacement for classical control metrics. Instead, it asks whether settling-time style summaries leave out a task-relevant temporal dimension and whether low-band diagnostics can partially recover it. The current evidence comes from controlled computational studies in second-order closed-loop families together with two out-of-family validations. Those studies suggest four provisional findings. First, matched-settling systems can differ strongly in slow-tracking cost even when settling-time behavior looks similar. Second, low-band system-side metrics can reveal clean-regime slow-tracking liability more clearly than settling-time summaries. Third, once measurement noise enters the feedback path, the true best damping ratio can shift, and observed sensor-side metrics can lag that shift. Fourth, dedicated shadow-mass studies suggest that the preferred temporal budget can move inward as nuisance grows, and that an occupancy-style proxy based on noise power and shadow mass may help track that change in some families. The out-of-family results strengthen the core diagnostic claim while also narrowing the portability of the stronger environment-aware claims. The purpose of this note is to define the framework, summarize the current evidence, and provide a stable manuscript that can be revised as new studies are added.
 ---
 
 **Keywords:** slow tracking; feedback systems; settling time; damping ratio; low-frequency tracking; diagnostic framework; measurement noise; shadow mass
@@ -19,7 +19,7 @@ abstract: |
 
 This note addresses a narrow but potentially useful control question: can slow-tracking performance require its own diagnostic layer beyond ordinary transient summaries?
 
-The issue is not whether settling time, overshoot, bandwidth, and stability margins are useful. They are. The issue is whether those familiar quantities fully characterize how well a feedback system follows gradual change over time. The current studies in this repository suggest that they do not.
+The issue is not whether settling time, overshoot, bandwidth, and stability margins are useful. They are. The issue is whether those familiar quantities fully characterize how well a feedback system follows gradual change over time. The current studies in this repository, including two explicit out-of-family validations, suggest that they do not.
 
 The note therefore proposes a modest framework rather than a finished doctrine. It does not claim a universal law, and it does not claim that classical control metrics should be replaced. It proposes that slow-tracking quality deserves a more explicit diagnostic vocabulary, especially in regimes where step-response summaries compress away a task-relevant temporal dimension.
 
@@ -140,27 +140,40 @@ The point is not that this proxy is already a finished diagnostic. The point is 
 
 This study changes the framework in an important way. Shadow mass is no longer only a candidate intrinsic descriptor of persistence. It is also a candidate ingredient in an environment-aware design diagnostic.
 
+# Study 5: Out-of-Family Validation and Boundary Cases
+
+The newer out-of-family studies make the note stronger by changing the question from "does this happen in the original model family?" to "which parts of the story survive when the family changes?"
+
+The first out-of-family validation uses an explicit plant-plus-PI architecture. In that study, the stronger story largely survives: clean slow-tracking separation remains large, settling-time summaries still under-characterize task cost, the preferred design moves inward as nuisance grows, and the occupancy-style proxy outperforms raw nuisance power clearly. That study strengthens the framework by showing that the core logic is not confined to a hand-shaped second-order transfer-function sweep.
+
+The second out-of-family validation uses a modified F-8 longitudinal aircraft model with a cascaded elevator autopilot for altitude and glide-profile tracking. That aircraft study is best read as a boundary case. The core claim survives in a narrower form: lower-damping designs still outperform a more textbook `zeta = 0.707` design on the slow glide-profile mission, and slow-band deficit still ranks mission cost slightly more cleanly than pitch-step settling time. But the stronger environment-aware story does not fully travel. In the current aircraft run, the clean optimum is `zeta = 0.2` and remains `zeta = 0.2` across the tested nuisance ladders, while the occupancy-style proxy is only marginally stronger than raw nuisance power.
+
+![Out-of-family aircraft boundary case. In a domain-specific longitudinal autopilot family, slow-band deficit still tracks glide-profile cost slightly better than pitch-step settling time, but the stronger moving-optimum story does not reappear.](figures/figure7_aircraft_boundary_case.png){ width=92% }
+
+The point of these two studies together is not to produce a simple win-or-lose verdict. It is to sharpen the framework. The portable claim now looks stronger: slow-tracking competence is a real dimension that can survive beyond the original model family. The less portable claim is the stronger one: nuisance-driven optimum migration and occupancy-style superiority appear real in some families, but not yet uniformly across them.
+
 # What the Current Evidence Supports
 
 At the current stage of the project, the following claims appear supportable.
 
 1. Standard settling-time summaries do not fully characterize slow-tracking performance.
-2. In controlled second-order families, low-band system-side diagnostics can reveal clean slow-tracking liability more directly than settling-time summaries.
-3. The true best damping ratio for slow tracking can shift when measurement noise enters the feedback path strongly enough.
-4. The preferred shadow-mass budget can move inward as command-side or measurement-side nuisance grows.
-5. Any eventual diagnostic framework for slow tracking will likely need both a clean-regime competence measure and an environment-aware noise sensitivity measure.
+2. In controlled second-order families, low-band system-side diagnostics can reveal clean slow-tracking liability more directly than settling-time summaries, and this core diagnostic contrast survives at least partially in out-of-family validations.
+3. The true best damping ratio for slow tracking can shift when measurement noise enters the feedback path strongly enough in some studied families.
+4. The preferred shadow-mass budget can move inward as command-side or measurement-side nuisance grows in some studied families, but that effect is not yet portable across all out-of-family domains.
+5. Any eventual diagnostic framework for slow tracking will likely need both a clean-regime competence measure and an environment-aware noise sensitivity measure, together with explicit attention to domain-specific boundary cases.
 
 These are meaningful claims, but they are still narrower than a finished theory.
 
 # Limits and Scope
 
-This note is based on controlled computational studies rather than hardware experiments. The systems studied so far are low-order and intentionally structured so that the main effects are legible. That makes the current evidence useful for formulation, but it also limits how broadly the results should be generalized.
+This note is based on controlled computational studies rather than hardware experiments. The systems studied so far are still intentionally structured so that the main effects are legible, even though the evidence base now includes both second-order families and explicit out-of-family validations. That makes the current evidence useful for formulation, but it also limits how broadly the results should be generalized.
 
 The note does not yet establish:
 
 - a universally best scalar diagnostic,
 - a complete mathematical reduction of the "cognitive budget" idea,
 - superiority over all bandwidth-based summaries across broader plant families,
+- a uniform nuisance-driven moving optimum across domain-specific out-of-family studies,
 - or a final design rule for noisy real-world systems.
 
 The current status is best described as a working framework supported by controlled examples.
@@ -191,7 +204,7 @@ This note is meant to evolve. The strongest next steps are:
 
 # Conclusion
 
-This technical note proposes a modest diagnostic framework for slow-tracking performance in feedback systems. The framework is motivated by the observation that ordinary settling-time summaries can compress away a task-relevant temporal dimension. The current evidence suggests that low-band diagnostics can reveal clean-regime slow-tracking liability more clearly, that feedback measurement noise can shift the true best damping ratio in ways that ordinary observed metrics may not show immediately, and that the preferred shadow-mass budget itself can move inward as nuisance grows.
+This technical note proposes a modest diagnostic framework for slow-tracking performance in feedback systems. The framework is motivated by the observation that ordinary settling-time summaries can compress away a task-relevant temporal dimension. The current evidence now supports that core idea across both original model families and explicit out-of-family validations. At the same time, the newer evidence also refines the scope of the stronger claims: low-band diagnostics appear broadly useful, but the more ambitious environment-aware story about moving optima and occupancy-style proxies remains family-dependent.
 
 That is enough to justify continued development. It is not yet enough to declare a finished theory. The value of the framework at this stage is that it turns an intuition into a structured, revisable technical program.
 
@@ -204,3 +217,5 @@ That is enough to justify continued development. It is not yet enough to declare
 - [Settling-time blind-spot study capsule](../studies/settling-time-blind-spot/README.md)
 - [Shadow-mass saturation study capsule](../studies/shadow-mass-saturation-threshold/README.md)
 - [Feedback measurement-noise study capsule](../studies/feedback-measurement-noise-phase-transition/README.md)
+- [Out-of-family plant-plus-PI study capsule](../studies/out-of-family-plant-pi-validation/README.md)
+- [Out-of-family aircraft-autopilot study capsule](../studies/out-of-family-aircraft-longitudinal-autopilot/README.md)
