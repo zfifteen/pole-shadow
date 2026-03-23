@@ -1,6 +1,6 @@
 ---
 title: "A New Diagnostic Framework for Slow-Tracking Performance in Feedback Systems"
-subtitle: "Working Technical Note on Candidate Diagnostics, Matched-Settling Blind Spots, and Measurement-Noise Regime Shifts"
+subtitle: "Working Technical Note on Candidate Diagnostics, Matched-Settling Blind Spots, Shadow-Mass Sweet Spots, and Measurement-Noise Regime Shifts"
 date: "March 23, 2026"
 documentclass: article
 fontsize: 11pt
@@ -10,10 +10,10 @@ bibliography: references.bib
 link-citations: true
 colorlinks: true
 abstract: |
-  This working technical note proposes a modest diagnostic framework for slow-tracking performance in feedback systems. The note does not claim a new universal law or a finished replacement for classical control metrics. Instead, it asks whether settling-time style summaries leave out a task-relevant temporal dimension and whether low-band diagnostics can partially recover it. The current evidence comes from controlled computational studies in a family of second-order closed-loop models. Those studies suggest three provisional findings. First, matched-settling systems can differ strongly in slow-tracking cost even when settling-time behavior looks similar. Second, low-band system-side metrics can reveal clean-regime slow-tracking liability more clearly than settling-time summaries. Third, once measurement noise enters the feedback path, the true best damping ratio can shift, and observed sensor-side metrics can lag that shift. The purpose of this note is to define the framework, summarize the current evidence, and provide a stable manuscript that can be revised as new studies are added.
+  This working technical note proposes a modest diagnostic framework for slow-tracking performance in feedback systems. The note does not claim a new universal law or a finished replacement for classical control metrics. Instead, it asks whether settling-time style summaries leave out a task-relevant temporal dimension and whether low-band diagnostics can partially recover it. The current evidence comes from controlled computational studies in a family of second-order closed-loop models. Those studies suggest four provisional findings. First, matched-settling systems can differ strongly in slow-tracking cost even when settling-time behavior looks similar. Second, low-band system-side metrics can reveal clean-regime slow-tracking liability more clearly than settling-time summaries. Third, once measurement noise enters the feedback path, the true best damping ratio can shift, and observed sensor-side metrics can lag that shift. Fourth, a dedicated shadow-mass study suggests that the preferred temporal budget moves inward as nuisance grows, and that an occupancy-style proxy based on noise power and shadow mass helps track that change. The purpose of this note is to define the framework, summarize the current evidence, and provide a stable manuscript that can be revised as new studies are added.
 ---
 
-**Keywords:** slow tracking; feedback systems; settling time; damping ratio; low-frequency tracking; diagnostic framework; measurement noise
+**Keywords:** slow tracking; feedback systems; settling time; damping ratio; low-frequency tracking; diagnostic framework; measurement noise; shadow mass
 
 # Opening Statement
 
@@ -66,6 +66,8 @@ The working expectation is that no single scalar will do every job well. The mor
 - and a task metric.
 
 That division is a strength rather than a weakness. It lets the framework stay modest while still being useful.
+
+The newer shadow-mass evidence also suggests a possible fourth object, or perhaps a bridge between the second and third roles: an environment-conditioned occupancy proxy. In the current study, the most useful candidate is `noise_power * shadow_mass_l2`, which treats shadow mass not only as a budget but as something the environment can load with nuisance energy.
 
 # Foundation Evidence
 
@@ -120,6 +122,24 @@ This does not weaken the diagnostic framework. It sharpens it. A future slow-tra
 - latent clean-regime liability,
 - and noise-conditioned operating truth.
 
+# Study 4: Shadow-Mass Saturation and the Moving Sweet Spot
+
+The newest study in the repository strengthens that second point by giving the environment-aware story a more concrete mechanism. Instead of asking only whether the best damping ratio moves, it asks whether there is a preferred shadow-mass budget for each operating regime.
+
+The result is a moving sweet spot. In the current study, the clean optimum occurs at `zeta = 0.1` for both nuisance ladders. Under command-side nuisance, the preferred design then moves inward through `zeta = 0.15` and reaches `zeta = 0.25` in the heaviest tested regime. Under measurement-side nuisance, the preferred design moves through `zeta = 0.15` and `zeta = 0.2`, reaching `zeta = 0.3` in the most extreme tested regime.
+
+That result matters because it replaces a vague warning about "too much memory" with a measurable design picture. The longest shadow is best in clean conditions, but not indefinitely. As nuisance grows, the best-performing design shifts toward a smaller but still nonzero shadow mass.
+
+![As command-side and measurement-side nuisance grow, the preferred design moves away from the longest-shadow edge and toward an interior shadow-mass budget.](figures/figure5_shadow_mass_sweet_spot.png){ width=92% }
+
+The study also introduces a candidate explanatory variable: `occupancy_proxy_l2 = noise_power * shadow_mass_l2`. In the current run, this proxy tracks excess slow-tracking penalty more clearly than noise power alone, with a global Spearman correlation of about `0.81` against the mean excess penalty and an even stronger value in the measurement-side nuisance ladder.
+
+The point is not that this proxy is already a finished diagnostic. The point is that shadow mass now has a stronger role than a metaphor. It can be treated as a budget that the environment partially fills, and the quality of a design depends on whether that budget is matched to the nuisance conditions it will face.
+
+![An occupancy-style proxy built from noise power and shadow mass tracks the rising penalty of the longest-shadow design more clearly than noise level alone.](figures/figure6_shadow_mass_occupancy.png){ width=92% }
+
+This study changes the framework in an important way. Shadow mass is no longer only a candidate intrinsic descriptor of persistence. It is also a candidate ingredient in an environment-aware design diagnostic.
+
 # What the Current Evidence Supports
 
 At the current stage of the project, the following claims appear supportable.
@@ -127,7 +147,8 @@ At the current stage of the project, the following claims appear supportable.
 1. Standard settling-time summaries do not fully characterize slow-tracking performance.
 2. In controlled second-order families, low-band system-side diagnostics can reveal clean slow-tracking liability more directly than settling-time summaries.
 3. The true best damping ratio for slow tracking can shift when measurement noise enters the feedback path strongly enough.
-4. Any eventual diagnostic framework for slow tracking will likely need both a clean-regime competence measure and an environment-aware noise sensitivity measure.
+4. The preferred shadow-mass budget can move inward as command-side or measurement-side nuisance grows.
+5. Any eventual diagnostic framework for slow tracking will likely need both a clean-regime competence measure and an environment-aware noise sensitivity measure.
 
 These are meaningful claims, but they are still narrower than a finished theory.
 
@@ -152,13 +173,17 @@ If the environment contains meaningful low-frequency structure, then the designe
 
 > how much slow-tracking competence does this design preserve, and how does that competence change once noise enters the loop?
 
+The newer shadow-mass result sharpens that practical question one step further:
+
+> how much temporal budget does this environment actually permit before extra persistence turns into stored nuisance energy?
+
 That is the design space this framework is trying to make visible.
 
 # Next Revision Targets
 
 This note is meant to evolve. The strongest next steps are:
 
-1. develop the shadow-mass concept into a dedicated computational study,
+1. extend the shadow-mass study beyond the current second-order family and test whether occupancy-style proxies generalize,
 2. prove monotonicity or separation results for one or more candidate diagnostics,
 3. test broader plant and controller families,
 4. sharpen the distinction between clean-regime liability detection and noisy-regime optimum prediction,
@@ -166,7 +191,7 @@ This note is meant to evolve. The strongest next steps are:
 
 # Conclusion
 
-This technical note proposes a modest diagnostic framework for slow-tracking performance in feedback systems. The framework is motivated by the observation that ordinary settling-time summaries can compress away a task-relevant temporal dimension. The current evidence suggests that low-band diagnostics can reveal clean-regime slow-tracking liability more clearly, and that feedback measurement noise can shift the true best damping ratio in ways that ordinary observed metrics may not show immediately.
+This technical note proposes a modest diagnostic framework for slow-tracking performance in feedback systems. The framework is motivated by the observation that ordinary settling-time summaries can compress away a task-relevant temporal dimension. The current evidence suggests that low-band diagnostics can reveal clean-regime slow-tracking liability more clearly, that feedback measurement noise can shift the true best damping ratio in ways that ordinary observed metrics may not show immediately, and that the preferred shadow-mass budget itself can move inward as nuisance grows.
 
 That is enough to justify continued development. It is not yet enough to declare a finished theory. The value of the framework at this stage is that it turns an intuition into a structured, revisable technical program.
 
@@ -177,5 +202,5 @@ That is enough to justify continued development. It is not yet enough to declare
 - [Cognitive-budget note](../docs/COGNITIVE-BUDGET.md)
 - [Foundation study capsule](../studies/foundation-pole-shadow/README.md)
 - [Settling-time blind-spot study capsule](../studies/settling-time-blind-spot/README.md)
-- [Shadow-mass saturation concept capsule](../studies/shadow-mass-saturation-threshold/README.md)
+- [Shadow-mass saturation study capsule](../studies/shadow-mass-saturation-threshold/README.md)
 - [Feedback measurement-noise study capsule](../studies/feedback-measurement-noise-phase-transition/README.md)
