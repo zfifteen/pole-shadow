@@ -1,43 +1,40 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import TransferFunction, lsim
-from pathlib import Path
 from matplotlib.backends.backend_pdf import PdfPages
 
+from plot_theme import (
+    FAST_COLOR,
+    LIGHT_SHADOW_COLOR,
+    REFERENCE_COLOR,
+    NOISE_COLOR,
+    MEMORY_COLOR,
+    apply_plot_style,
+    get_plot_dir,
+    save_figure,
+    style_panel,
+    add_takeaway,
+    highlight_window,
+    cumulative_integral,
+    moving_average,
+)
+
 # Create output directory
-plot_dir = Path(__file__).resolve().parent / "plots"
-plot_dir.mkdir(exist_ok=True)
+apply_plot_style()
+plot_dir = get_plot_dir()
 
 # NumPy compatibility
 trapz = np.trapezoid if hasattr(np, 'trapezoid') else np.trapz
 
-# Plot styling
-plt.style.use('seaborn-v0_8-whitegrid' if 'seaborn-v0_8-whitegrid' in plt.style.available else 'default')
-
 # System parameters
 wn = 1.0
 t = np.linspace(0, 150, 8000)
-
-color_robust = "#1f77b4"
-color_light = "#d95f02"
-color_ref = "#111111"
-color_noise = "#9aa0a6"
-color_cumulative = "#7b3294"
 
 def create_system(zeta):
     return TransferFunction([wn**2], [1, 2*zeta*wn, wn**2])
 
 sys_robust = create_system(0.707)
 sys_light = create_system(0.25)
-
-def cumulative_integral(values, time):
-    cumulative = np.zeros_like(values)
-    cumulative[1:] = np.cumsum(0.5 * (values[1:] + values[:-1]) * np.diff(time))
-    return cumulative
-
-def moving_average(values, window):
-    kernel = np.ones(window) / window
-    return np.convolve(values, kernel, mode='same')
 
 def focus_window_for(name):
     return {
@@ -80,62 +77,45 @@ def run_test(name, u, title, save_name, display_reference=None, noisy_reference=
     ax_err, ax_cum = axs[1]
 
     if noisy_reference is not None:
-        ax_main.plot(t, noisy_reference, color=color_noise, lw=0.9, alpha=0.4, label='Noisy commanded input')
-    ax_main.plot(t, reference_to_show, color=color_ref, ls='--', lw=2, label='Reference trend')
-    ax_main.plot(t, y_robust, color=color_robust, lw=2.4, label=f'Robust (ζ=0.707) | IAE={iae_r:.3f}')
-    ax_main.plot(t, y_light, color=color_light, lw=2.4, label=f'Light Shadow (ζ=0.25) | IAE={iae_l:.3f}')
-    ax_main.axvspan(0, focus_end, color='#e8eef7', alpha=0.35, zorder=0)
-    ax_main.set_title(f'Falsification Test: {title}')
-    ax_main.set_xlabel('Time (s)')
-    ax_main.set_ylabel('Output')
+        ax_main.plot(t, noisy_reference, color=NOISE_COLOR, lw=0.9, alpha=0.4, label='Noisy commanded input')
+    ax_main.plot(t, reference_to_show, color=REFERENCE_COLOR, ls='--', lw=2, label='Reference trend')
+    ax_main.plot(t, y_robust, color=FAST_COLOR, lw=2.4, label=f'Robust (ζ=0.707) | IAE={iae_r:.3f}')
+    ax_main.plot(t, y_light, color=LIGHT_SHADOW_COLOR, lw=2.4, label=f'Light Shadow (ζ=0.25) | IAE={iae_l:.3f}')
+    highlight_window(ax_main, 0, focus_end)
+    style_panel(ax_main, f'Falsification Test: {title}', 'Time (s)', 'Output')
     ax_main.legend(loc='upper left')
-    ax_main.text(
-        0.98,
-        0.03,
-        f'{winner} wins\nFinal IAE ratio: {improvement:.2f}x',
-        transform=ax_main.transAxes,
-        ha='right',
-        va='bottom',
-        bbox=dict(boxstyle='round', facecolor='white', alpha=0.9),
-    )
+    add_takeaway(ax_main, f'{winner} wins\nFinal IAE ratio: {improvement:.2f}x', location='lower right')
 
     if noisy_reference is not None:
-        ax_zoom.plot(t[focus_mask], noisy_reference[focus_mask], color=color_noise, lw=0.8, alpha=0.35, label='Noisy input')
-    ax_zoom.plot(t[focus_mask], reference_to_show[focus_mask], color=color_ref, ls='--', lw=2)
-    ax_zoom.plot(t[focus_mask], y_robust[focus_mask], color=color_robust, lw=2.4)
-    ax_zoom.plot(t[focus_mask], y_light[focus_mask], color=color_light, lw=2.4)
+        ax_zoom.plot(t[focus_mask], noisy_reference[focus_mask], color=NOISE_COLOR, lw=0.8, alpha=0.35, label='Noisy input')
+    ax_zoom.plot(t[focus_mask], reference_to_show[focus_mask], color=REFERENCE_COLOR, ls='--', lw=2)
+    ax_zoom.plot(t[focus_mask], y_robust[focus_mask], color=FAST_COLOR, lw=2.4)
+    ax_zoom.plot(t[focus_mask], y_light[focus_mask], color=LIGHT_SHADOW_COLOR, lw=2.4)
     ax_zoom.set_xlim(0, focus_end)
     ax_zoom.set_ylim(focus_min - focus_pad, focus_max + focus_pad)
-    ax_zoom.set_title(f'Zoomed view (0 to {focus_end:.0f} s)')
-    ax_zoom.set_xlabel('Time (s)')
-    ax_zoom.set_ylabel('Output')
+    style_panel(ax_zoom, f'Zoomed view (0 to {focus_end:.0f} s)', 'Time (s)', 'Output')
 
     if noisy_reference is not None:
         smooth_window = 201
-        ax_err.plot(t, moving_average(err_r, smooth_window), color=color_robust, lw=2.1,
+        ax_err.plot(t, moving_average(err_r, smooth_window), color=FAST_COLOR, lw=2.1,
                     label='Robust rolling mean |error|')
-        ax_err.plot(t, moving_average(err_l, smooth_window), color=color_light, lw=2.1,
+        ax_err.plot(t, moving_average(err_l, smooth_window), color=LIGHT_SHADOW_COLOR, lw=2.1,
                     label='Light Shadow rolling mean |error|')
-        ax_err.set_title('Rolling mean absolute error')
-        ax_err.set_ylabel('Mean |output - input|')
+        style_panel(ax_err, 'Rolling mean absolute error', 'Time (s)', 'Mean |output - input|')
     else:
-        ax_err.plot(t, err_signed_r, color=color_robust, lw=2.0, label='Robust error')
-        ax_err.plot(t, err_signed_l, color=color_light, lw=2.0, label='Light Shadow error')
-        ax_err.axhline(0.0, color=color_ref, lw=1.0, alpha=0.7)
-        ax_err.set_title('Signed tracking error')
-        ax_err.set_ylabel('Output - input')
-    ax_err.set_xlabel('Time (s)')
+        ax_err.plot(t, err_signed_r, color=FAST_COLOR, lw=2.0, label='Robust error')
+        ax_err.plot(t, err_signed_l, color=LIGHT_SHADOW_COLOR, lw=2.0, label='Light Shadow error')
+        ax_err.axhline(0.0, color=REFERENCE_COLOR, lw=1.0, alpha=0.7)
+        style_panel(ax_err, 'Signed tracking error', 'Time (s)', 'Output - input')
     ax_err.legend(loc='upper right')
 
-    ax_cum.plot(t, cumulative_r, color=color_robust, lw=2.2, label='Robust cumulative IAE')
-    ax_cum.plot(t, cumulative_l, color=color_light, lw=2.2, label='Light Shadow cumulative IAE')
-    ax_cum.fill_between(t, cumulative_l, cumulative_r, where=cumulative_r >= cumulative_l, color=color_cumulative, alpha=0.12)
-    ax_cum.set_title('Cumulative absolute error')
-    ax_cum.set_xlabel('Time (s)')
-    ax_cum.set_ylabel('Accumulated error')
+    ax_cum.plot(t, cumulative_r, color=FAST_COLOR, lw=2.2, label='Robust cumulative IAE')
+    ax_cum.plot(t, cumulative_l, color=LIGHT_SHADOW_COLOR, lw=2.2, label='Light Shadow cumulative IAE')
+    ax_cum.fill_between(t, cumulative_l, cumulative_r, where=cumulative_r >= cumulative_l, color=MEMORY_COLOR, alpha=0.12)
+    style_panel(ax_cum, 'Cumulative absolute error', 'Time (s)', 'Accumulated error')
     ax_cum.legend(loc='upper left')
 
-    plt.savefig(plot_dir / save_name, dpi=280, bbox_inches='tight')
+    save_figure(fig, plot_dir, save_name, dpi=280)
     plt.close()
     print(f"✓ {title} | Robust: {iae_r:.3f} | Light: {iae_l:.3f} | Winner: {winner}")
     return {
@@ -194,83 +174,79 @@ for zeta in zetas:
     iae = trapz(np.abs(y - u_sweep), t)
     iaes.append(iae)
 
-fig, ax = plt.subplots(figsize=(10, 6))
-ax.plot(zetas, iaes, 'o-', color='tab:purple', lw=2.5, markersize=5)
-ax.scatter([0.25, 0.707], [
-    np.interp(0.25, zetas, iaes),
-    np.interp(0.707, zetas, iaes),
-], color=[color_light, color_robust], s=80, zorder=3)
-ax.annotate('Light Shadow\nζ=0.25', xy=(0.25, np.interp(0.25, zetas, iaes)),
-            xytext=(0.18, np.interp(0.25, zetas, iaes) + 0.9),
-            arrowprops=dict(arrowstyle='->', color=color_light), color=color_light)
-ax.annotate('Robust\nζ=0.707', xy=(0.707, np.interp(0.707, zetas, iaes)),
-            xytext=(0.76, np.interp(0.707, zetas, iaes) + 0.8),
-            arrowprops=dict(arrowstyle='->', color=color_robust), color=color_robust)
-ax.set_xlabel('Damping Ratio ζ (higher = more "robust")')
-ax.set_ylabel('Integrated Absolute Error (IAE)')
-ax.set_title("Pole's Shadow: Performance vs Damping Ratio\n(Lower IAE = Better. Optimum at lowest ζ)")
-ax.grid(True, alpha=0.3)
-plt.savefig(plot_dir / 'iae_vs_damping_ratio.png', dpi=280, bbox_inches='tight')
-plt.close()
-print("✓ Saved: plots/iae_vs_damping_ratio.png")
+best_iae = min(iaes)
+robust_iae = np.interp(0.707, zetas, iaes)
+light_iae = np.interp(0.25, zetas, iaes)
+penalty = np.array(iaes) / best_iae
+
+fig, axs = plt.subplots(2, 2, figsize=(13, 9), constrained_layout=True)
+ax_main, ax_zoom = axs[0]
+ax_penalty, ax_compare = axs[1]
+
+ax_main.plot(zetas, iaes, 'o-', color=MEMORY_COLOR, lw=2.5, markersize=5)
+ax_main.scatter([0.25, 0.707], [light_iae, robust_iae], color=[LIGHT_SHADOW_COLOR, FAST_COLOR], s=90, zorder=3)
+highlight_window(ax_main, 0.1, 0.75)
+style_panel(ax_main, "Performance sweep", 'Damping ratio ζ', 'Integrated Absolute Error (IAE)')
+add_takeaway(ax_main, f"Robust / Light IAE\n{robust_iae / light_iae:.2f}x", location='upper left')
+
+zoom_mask = (zetas >= 0.1) & (zetas <= 0.8)
+ax_zoom.plot(zetas[zoom_mask], np.array(iaes)[zoom_mask], 'o-', color=MEMORY_COLOR, lw=2.5, markersize=5)
+ax_zoom.scatter([0.25, 0.707], [light_iae, robust_iae], color=[LIGHT_SHADOW_COLOR, FAST_COLOR], s=90, zorder=3)
+style_panel(ax_zoom, 'Zoom on modeled tunings', 'Damping ratio ζ', 'Integrated Absolute Error (IAE)')
+ax_zoom.annotate('Light Shadow', xy=(0.25, light_iae), xytext=(0.18, light_iae + 0.7),
+                 arrowprops=dict(arrowstyle='->', color=LIGHT_SHADOW_COLOR), color=LIGHT_SHADOW_COLOR)
+ax_zoom.annotate('Robust', xy=(0.707, robust_iae), xytext=(0.62, robust_iae + 0.8),
+                 arrowprops=dict(arrowstyle='->', color=FAST_COLOR), color=FAST_COLOR)
+
+ax_penalty.plot(zetas, penalty, 'o-', color=MEMORY_COLOR, lw=2.5, markersize=5)
+ax_penalty.axhline(1.0, color=REFERENCE_COLOR, lw=1.0, alpha=0.7, linestyle='--')
+style_panel(ax_penalty, 'Penalty relative to best sweep result', 'Damping ratio ζ', 'IAE / best IAE')
+
+comparison_labels = ['Best ζ=0.10', 'Light ζ=0.25', 'Robust ζ=0.707']
+comparison_values = [best_iae, light_iae, robust_iae]
+comparison_colors = [MEMORY_COLOR, LIGHT_SHADOW_COLOR, FAST_COLOR]
+ax_compare.bar(comparison_labels, comparison_values, color=comparison_colors)
+style_panel(ax_compare, 'Representative comparison', 'Tuning', 'Integrated Absolute Error (IAE)')
+add_takeaway(ax_compare, f"Lowest tested damping\nwins this sweep", location='upper right')
+
+save_figure(fig, plot_dir, 'iae_vs_damping_ratio.png', dpi=280)
+plt.close(fig)
 
 # === NEW: One-Page Visual Proof PDF ===
 print("\nGenerating one-page Visual Proof PDF...")
 with PdfPages(plot_dir / 'visual_proof_pole_shadow.pdf') as pdf:
-    fig = plt.figure(figsize=(11, 8.5))
-    fig.suptitle("Visual Proof: The Pole's Shadow Hypothesis\n"
-                 "Robustness vs Temporal Integration Capacity", fontsize=16, fontweight='bold')
+    fig, axs = plt.subplots(2, 2, figsize=(11, 8.5), constrained_layout=True)
+    fig.suptitle("Visual Proof: The Pole's Shadow Hypothesis\nRobustness vs Temporal Integration Capacity",
+                 fontsize=16, fontweight='bold')
+    ax1, ax2 = axs[0]
+    ax3, ax4 = axs[1]
 
-    # ζ Sweep (main plot)
-    ax1 = plt.subplot2grid((2, 2), (0, 0), colspan=2)
-    ax1.plot(zetas, iaes, 'o-', color='tab:purple', lw=3)
-    ax1.scatter([0.25, 0.707], [
-        np.interp(0.25, zetas, iaes),
-        np.interp(0.707, zetas, iaes),
-    ], color=[color_light, color_robust], s=90, zorder=3)
-    ax1.set_xlabel('Damping Ratio ζ (higher = more "robust")')
-    ax1.set_ylabel('Tracking Error (IAE)')
-    ax1.set_title('Performance collapses as damping increases')
-    ax1.grid(True, alpha=0.3)
+    ax1.plot(t, result_ramp_sine["display_reference"], color=REFERENCE_COLOR, ls='--', lw=1.6, label='Reference')
+    ax1.plot(t, result_ramp_sine["y_robust"], color=FAST_COLOR, lw=2.0, label='Robust')
+    ax1.plot(t, result_ramp_sine["y_light"], color=LIGHT_SHADOW_COLOR, lw=2.0, label='Light Shadow')
+    highlight_window(ax1, 0, result_ramp_sine["focus_end"])
+    style_panel(ax1, 'Ramp + low-frequency sine', 'Time (s)', 'Output')
+    ax1.legend(loc='upper left')
 
-    # Text box
-    text = ("Key Finding:\n"
-            "• Lowest damping (ζ≈0.1) gives best performance\n"
-            "• Classical \"robust\" tuning (ζ=0.7) is ~3× worse\n"
-            "• The imaginary axis distance = Cognitive Budget")
-    ax1.text(0.65, 0.75, text, transform=ax1.transAxes,
-             bbox=dict(boxstyle="round", facecolor="wheat", alpha=0.9))
+    focus_mask = t <= result_ramp_sine["focus_end"]
+    ax2.plot(t[focus_mask], result_ramp_sine["display_reference"][focus_mask], color=REFERENCE_COLOR, ls='--', lw=1.6)
+    ax2.plot(t[focus_mask], result_ramp_sine["y_robust"][focus_mask], color=FAST_COLOR, lw=2.0)
+    ax2.plot(t[focus_mask], result_ramp_sine["y_light"][focus_mask], color=LIGHT_SHADOW_COLOR, lw=2.0)
+    style_panel(ax2, 'Zoom on separation', 'Time (s)', 'Output')
 
-    # Example response
-    ax2 = plt.subplot2grid((2, 2), (1, 0))
-    ax2.plot(t, result_ramp_sine["err_signed_r"], color=color_robust, lw=2, label='Robust error')
-    ax2.plot(t, result_ramp_sine["err_signed_l"], color=color_light, lw=2, label='Light Shadow error')
-    ax2.axhline(0.0, color=color_ref, lw=1.0, alpha=0.7)
-    ax2.set_title('Example: Ramp + Low-Freq Sine error')
-    ax2.set_xlabel('Time (s)')
-    ax2.set_ylabel('Output - input')
-    ax2.legend()
-    ax2.grid(True, alpha=0.3)
+    ax3.plot(zetas, iaes, 'o-', color=MEMORY_COLOR, lw=2.6, markersize=5)
+    ax3.scatter([0.25, 0.707], [light_iae, robust_iae], color=[LIGHT_SHADOW_COLOR, FAST_COLOR], s=80, zorder=3)
+    style_panel(ax3, 'Performance sweep', 'Damping ratio ζ', 'Integrated Absolute Error (IAE)')
+    add_takeaway(ax3, f'Robust / Light\n{robust_iae / light_iae:.2f}x', location='upper left')
 
-    # Summary
-    ax3 = plt.subplot2grid((2, 2), (1, 1))
-    ax3.axis('off')
-    summary = f"""SUMMARY OF EVIDENCE
-────────────────────
-Light Shadow (ζ=0.25) wins on all 4 tests
+    ax4.plot(t, result_ramp_sine["cumulative_r"], color=FAST_COLOR, lw=2.0, label='Robust cumulative IAE')
+    ax4.plot(t, result_ramp_sine["cumulative_l"], color=LIGHT_SHADOW_COLOR, lw=2.0, label='Light cumulative IAE')
+    ax4.fill_between(t, result_ramp_sine["cumulative_l"], result_ramp_sine["cumulative_r"],
+                     where=result_ramp_sine["cumulative_r"] >= result_ramp_sine["cumulative_l"],
+                     color=MEMORY_COLOR, alpha=0.12)
+    style_panel(ax4, 'Accumulated evidence', 'Time (s)', 'Cumulative absolute error')
+    ax4.legend(loc='upper left')
 
-Pure Ramp:          Best at low ζ
-Ramp+Sine:          Best at low ζ
-Ultra-Slow Sine:    Best at low ζ
-Noisy Signal:       Best at low ζ
-
-Conclusion:
-Pushing poles deeper left (higher ζ)
-destroys temporal integration capacity.
-The Pole's Shadow is the true budget."""
-    ax3.text(0.05, 0.95, summary, va='top', fontsize=11, fontfamily='monospace')
-
-    plt.tight_layout()
     pdf.savefig(fig, dpi=300)
     plt.close()
 
