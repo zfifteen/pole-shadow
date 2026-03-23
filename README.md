@@ -28,9 +28,10 @@ The concise thesis note for that claim lives in [HYPOTHESIS.md](./HYPOTHESIS.md)
 
 ## What This Repository Contains
 
-This repository has three layers, each written for a different kind of reading.
+This repository has four layers, each written for a different kind of reading.
 
 - [HYPOTHESIS.md](./HYPOTHESIS.md): the compact statement of the core claim and its falsifiable prediction.
+- [COGNITIVE-BUDGET.md](./COGNITIVE-BUDGET.md): the working technical note where the "cognitive budget" framing starts becoming candidate diagnostics.
 - [plots/README.md](./plots/README.md): the long, student-friendly visual walkthrough that teaches the idea step by step.
 - [plots/visual_proof_pole_shadow.pdf](./plots/visual_proof_pole_shadow.pdf): a one-file visual summary.
 
@@ -142,6 +143,7 @@ That is enough to justify the hypothesis as a real design question rather than a
 If you want the project in three different levels of depth:
 
 - Read [HYPOTHESIS.md](./HYPOTHESIS.md) for the concise claim.
+- Read [COGNITIVE-BUDGET.md](./COGNITIVE-BUDGET.md) for the first technical formalization pass.
 - Read [plots/README.md](./plots/README.md) for the full student-oriented visual story.
 - Open [plots/visual_proof_pole_shadow.pdf](./plots/visual_proof_pole_shadow.pdf) for a compact summary artifact.
 
