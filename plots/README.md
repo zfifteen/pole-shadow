@@ -60,7 +60,7 @@ For a beginner, here is the punchline: the orange system is not "better" in ever
 
 Now that we have an intuition, we can state the hypothesis more carefully.
 
-The project README argues that the distance from the imaginary axis is not just a stability label. It may behave like a **time-budget denominator**. If you want the full original framing, you can read the main project README here: [../README.md](../README.md). In other words:
+The hypothesis note argues that the distance from the imaginary axis is not just a stability label. It may behave like a **time-budget denominator**. If you want the full original framing, you can read the concise hypothesis note here: [../HYPOTHESIS.md](../HYPOTHESIS.md). In other words:
 
 - poles closer to the imaginary axis give longer persistence,
 - longer persistence gives a longer window for temporal integration,

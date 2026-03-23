@@ -1,15 +1,155 @@
-The Pole's Shadow: Why the Distance from the Stability Edge Predicts More than Stability and Sets the Cognitive Budget of a System
+# The Pole's Shadow
 
-A system's dominant poles tell you not just whether it will blow up, but how long it will stay "alive" enough to carry useful information before its transient behavior exhausts itself, and this duration is the true hidden resource budget of any linear dynamic system.
+Most introductions to control theory begin with a sensible question: **is the system stable?**
 
-Standard control theory uses pole location to classify stability: left-half plane means stable, right-half plane means unstable, imaginary axis means marginally stable. What that framing misses is that the distance from the imaginary axis is not a binary or even ordinal safety margin. It is a continuous time-budget denominator that determines how long a system can "think" before its response either collapses or explodes.
+That question matters. A stable system settles. An unstable system can run away. But if we stop there, we miss something important. A system can be perfectly stable and still be disappointing. It can be too forgetful. It can settle so aggressively that it loses the ability to respond well to slow changes in the world around it.
 
-The closer the dominant pole sits to the imaginary axis, the longer the system holds its transient aloft. This means information injected into the system at one moment persists, in the form of non-settled response, for a duration inversely proportional to that distance. A system with poles very near the imaginary axis is not just "barely stable": it is a system with a very long memory window.
+This repository is built around that tension.
 
-What is non-obvious is that maximizing stability margin (pushing poles deep into the left-half plane) actively destroys the system's capacity to integrate information over time. Faster decay equals shorter memory equals lower responsiveness to slowly unfolding patterns in the input. Systems tuned for robustness are therefore simultaneously being tuned for temporal myopia.
+The project asks whether the location of a system's dominant poles tells us more than "safe" versus "unsafe." It asks whether pole location also tells us **how long the system stays alive enough to carry useful information forward in time**.
 
-This means there is a direct, quantifiable tradeoff, not just a vague tension, between robustness and temporal integration capacity that standard pole placement and root-locus design procedures never make explicit, because they optimize for speed of settling or overshoot, not for the duration over which a system can carry non-trivial state forward in time.
+That is the idea behind the phrase **the pole's shadow**.
 
-The prediction that follows is concrete: if you compare two physically identical systems (same plant, same actuators) tuned to different damping ratios, the one with poles closer to the imaginary axis will consistently outperform the robustly-tuned one on tasks that require tracking slowly drifting inputs or responding to low-frequency disturbances, despite having a worse classical stability margin. This prediction would be falsified if systems tuned for fast settling proved equally effective at tracking signals whose dominant content falls near the pole frequency of the more lightly-damped design.
+## The Project Idea
 
-Engineers designing control systems for slowly varying environments (climate control, biological regulation, slow structural monitoring) are likely over-damping their systems relative to optimal, because the design criterion they optimize (settling time, phase margin) is orthogonal to the performance criterion that actually matters in those domains (sustained responsiveness to gradual change).
+The short version is simple:
+
+> A pole near the stability edge may give a system a longer useful memory window, while a pole pushed farther into the stable region may buy classical robustness at the cost of temporal sensitivity.
+
+In the language of the project, distance from the imaginary axis may act like a kind of **cognitive budget**. A long shadow means the transient response lingers. A short shadow means the system forgets quickly.
+
+That does not mean "less damping is always better." It means damping may trade one resource for another:
+
+- faster settling,
+- stronger classical stability margin,
+- but shorter temporal integration capacity.
+
+The concise thesis note for that claim lives in [HYPOTHESIS.md](./HYPOTHESIS.md).
+
+## What This Repository Contains
+
+This repository has three layers, each written for a different kind of reading.
+
+- [HYPOTHESIS.md](./HYPOTHESIS.md): the compact statement of the core claim and its falsifiable prediction.
+- [plots/README.md](./plots/README.md): the long, student-friendly visual walkthrough that teaches the idea step by step.
+- [plots/visual_proof_pole_shadow.pdf](./plots/visual_proof_pole_shadow.pdf): a one-file visual summary.
+
+If you want to reproduce the figures, the main scripts are:
+
+- [`pole_shadow_plots.py`](./pole_shadow_plots.py): intuition plots, tradeoff plot, and the first slow-tracking comparison.
+- [`falsify_pole_shadow_prediction.py`](./falsify_pole_shadow_prediction.py): falsification-style tests, damping sweep, and PDF summary.
+
+What follows is a guided landing-page version of the story. It is shorter than the full walkthrough in [`plots/README.md`](./plots/README.md), but it keeps the core arc intact.
+
+## The Story in Pictures
+
+### 1. The First Intuition: Some Systems Forget Faster Than Others
+
+Before talking about formulas, it helps to ask a physical question: after a system is disturbed, how long does the disturbance remain visible in its motion?
+
+![Pole shadow decay](./plots/pole_shadow_decay.png)
+
+The blue system dies away quickly. The orange system keeps oscillating longer. Both may be stable, but they are not equally persistent. That is the first doorway into the project: pole location changes not only whether motion decays, but how long meaningful transient behavior remains available.
+
+The figure is intentionally structured to teach the eye what matters. The full response gives context, the zoom makes the separation readable, the log-scale amplitude view exposes the different decay rates, and the cumulative panel turns "lingering dynamics" into something you can compare directly.
+
+### 2. The Tradeoff: Robustness Can Spend Memory
+
+Once that intuition is in place, the next question is whether it reflects a genuine design tradeoff.
+
+![Tradeoff between robustness and memory](./plots/tradeoff_pole_shadow_memory_vs_robustness.png)
+
+This figure makes the project's central tension explicit. As the stability margin grows, the effective time horizon and memory proxy shrink. In plain language: the more aggressively we push the system away from the stability edge, the less long-term temporal budget it appears to keep.
+
+That is the heart of the hypothesis. Classical design goals such as fast settling and conservative damping are valuable, but they may also make the system temporally myopic.
+
+### 3. The First Prediction: Slow Signals Should Favor a Longer Shadow
+
+If the idea is more than a metaphor, it should produce a concrete prediction: on slowly drifting inputs, a more lightly damped system should sometimes outperform a more heavily damped one.
+
+![Slow tracking prediction test](./plots/pole_shadow_slow_tracking_prediction_test.png)
+
+This figure compares a classically robust tuning with a lighter-damped "long shadow" tuning on a slow ramp plus a low-frequency sine. The top panels show the overall tracking behavior and the early-time separation. The bottom panels reveal the real difference: one system accumulates substantially more tracking error over time.
+
+That cumulative error view matters because near-overlapping response curves can be visually misleading. Two systems can look similar in the large and still differ meaningfully in the total amount of error they generate.
+
+### 4. Supporting Tests: The Claim Should Survive More Than One Example
+
+One plot is never enough. A useful idea should still say something coherent when the input changes shape.
+
+#### Pure Slow Ramp
+
+![Falsification test: pure ramp](./plots/falsification_ramp.png)
+
+The simplest slow signal already reveals the pattern: the more heavily damped system lags more, and that lag accumulates into larger error.
+
+#### Ramp Plus Low-Frequency Sine
+
+![Falsification test: ramp plus low-frequency sine](./plots/falsification_ramp_sine.png)
+
+This is a more realistic slow signal. The same basic story survives: the lighter-damped system remains closer to the target, and the cumulative error panel makes the difference easy to see.
+
+#### Ultra-Slow Sine
+
+![Falsification test: ultra-slow sine](./plots/falsification_slow_sine.png)
+
+This test isolates slow variation without a ramp. The result again points in the same direction, suggesting the effect is not tied to one special input shape.
+
+#### Slow Input with Noise
+
+![Falsification test: slow input with noise](./plots/falsification_noisy.png)
+
+This is the most cautious of the supporting plots. The lighter-damped system still wins on the chosen metric, but the advantage is smaller. That nuance matters. The project looks strongest on slow, clean tracking tasks, and more modest once noise becomes prominent.
+
+### 5. The Broad Summary: What Happens Across Many Damping Ratios?
+
+The final summary plot steps back from one pair of tunings and asks what happens across a sweep.
+
+![Performance sweep across damping ratios](./plots/iae_vs_damping_ratio.png)
+
+For the specific model and signal used here, performance worsens as damping ratio increases. The lighter-damped choice outperforms the more classically robust one, and the sweep makes that penalty visible from several angles rather than just one.
+
+This does not establish a universal law. It does show that, within this family of examples, the pole-shadow hypothesis leaves a measurable footprint.
+
+## What the Results Suggest
+
+Taken together, these plots support a simple but powerful reframing:
+
+**Pole location may regulate not only stability, but also the duration over which a system can integrate information through time.**
+
+That makes the distance from the stability edge interesting in a new way. It is not just a margin. It may also be a budget. A system with a longer shadow has more time to respond to gradual structure in the input. A system with a shorter shadow may be safer in the classical sense while also being less sensitive to slow unfolding change.
+
+For students, this is a useful conceptual upgrade. Control design is not only about preventing instability. It is also about deciding what kind of time-behavior you want the system to have.
+
+## What This Does Not Yet Prove
+
+The repository is making a serious claim, so it is worth being explicit about its limits.
+
+These plots do **not** prove that lighter damping is always better. They do **not** settle questions involving:
+
+- model uncertainty,
+- actuator limits,
+- nonlinear effects,
+- safety-critical robustness requirements,
+- full feedback architecture and measurement noise behavior.
+
+What they do show is narrower and still valuable: in these linear examples, with these slow-signal tasks, the usual instinct to damp more aggressively can carry a hidden performance cost.
+
+That is enough to justify the hypothesis as a real design question rather than a poetic slogan.
+
+## Where to Go Next
+
+If you want the project in three different levels of depth:
+
+- Read [HYPOTHESIS.md](./HYPOTHESIS.md) for the concise claim.
+- Read [plots/README.md](./plots/README.md) for the full student-oriented visual story.
+- Open [plots/visual_proof_pole_shadow.pdf](./plots/visual_proof_pole_shadow.pdf) for a compact summary artifact.
+
+If you want to explore the evidence directly, start with:
+
+- [`pole_shadow_plots.py`](./pole_shadow_plots.py)
+- [`falsify_pole_shadow_prediction.py`](./falsify_pole_shadow_prediction.py)
+
+The deepest question in the repository is also the simplest one:
+
+**How long should a system remember?**
