@@ -1,0 +1,9 @@
+# Missile-Guidance Hypothesis Framing
+
+## Paper-Ready Hypothesis
+
+**Hypothesis.** In missile guidance and autopilot systems, matched-transient control designs are not, in general, equivalent with respect to long-horizon intercept tracking performance. Specifically, among guidance loops with similar conventional transient summaries, such as settling time, designs with smaller low-band deficit or larger effective temporal budget will exhibit lower tracking error for slowly evolving engagement geometry under low-noise conditions. However, as seeker noise, target-motion uncertainty, and disturbance intensity increase, the performance-optimal design will shift away from the maximum temporal budget toward an interior optimum. Therefore, conventional transient metrics are hypothesized to under-characterize a task-relevant temporal dimension of guidance performance.
+
+## Paper-Ready Significance
+
+The significance of this hypothesis is that it identifies a potentially important performance dimension in missile guidance that may be obscured by standard transient-response evaluation. If correct, the result would imply that guidance loops judged broadly equivalent under conventional step-response or command-response summaries can still differ materially in long-horizon intercept quality, particularly when the engagement depends on preserving slowly varying geometric structure over time. This would motivate supplementing classical transient metrics with low-band or temporal-budget diagnostics during guidance-system design, comparison, and validation. More broadly, it would suggest that the tuning of high-stakes guidance loops should account not only for short-horizon stability and responsiveness, but also for how much useful temporal structure the loop preserves and how that retained structure interacts with sensing noise and environmental uncertainty.
