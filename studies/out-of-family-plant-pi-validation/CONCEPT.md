@@ -1,0 +1,15 @@
+# Out-of-Family Validation: The Diagnostic Story Survives an Explicit Plant + PI Family
+
+The original pole-shadow studies were intentionally clean. They used low-order closed-loop templates so the geometry of the idea would be easy to see. That was the right place to begin, but it left an obvious question behind: was the phenomenon tied too closely to the chosen second-order family, or would the same diagnostic story survive once the system became a real plant-plus-controller architecture?
+
+This study says it survives.
+
+The new family uses a nominal plant, `G_p(s) = 1 / ((s + 1.0)(s + 0.2))`, together with a matched-decay PI controller family, `C(s) = K_p + K_i / s`. The construction still holds the dominant decay scale in a narrow band, but it no longer hands the closed-loop transfer function to the experiment directly. The poles, shadow metrics, and slow-band behavior now emerge from an explicit controller acting on a plant with its own structure.
+
+In that setting, the clean slow-tracking result not only remains visible. It becomes striking. The pair `zeta = 0.15` and `zeta = 0.707` differs by only about `10.3%` in simulated `2%` settling time, yet differs by about `21.6x` in slow `ramp+sine` tracking `IAE`. Step settling time is almost useless as a clean-rank detector in this family, with Spearman rank fidelity only about `0.02`, while slow-band deficit ranks the family perfectly and shadow-mass metrics track the same order in reverse. The settling-time blind spot is therefore not a curiosity of the original template. It survives a materially different architecture.
+
+The nuisance studies deepen that result. Under command-side nuisance, the best damping ratio moves from `0.15` in the clean regime to `0.25` under light noise and to `0.35` in the moderate and heavy regimes. Under measurement-side nuisance, the optimum moves from `0.15` to `0.20`, then to `0.25`, then to `0.35`. This is not a reversal toward textbook-robust damping. It is a strong interior shift. The longest shadow wins cleanly, but it does not keep winning once nuisance starts filling the loop.
+
+What makes the study especially important is that the occupancy-style interpretation also survives the family change. The proxy `noise_power * shadow_mass_l2` correlates with excess slow-tracking penalty much better than raw noise power alone, both globally and within each nuisance mode. In other words, the new family does not merely reproduce the earlier clean-regime result. It reproduces the broader design story: slow-tracking competence, settling-time blind spots, nuisance-driven optimum shifts, and an occupancy-like mechanism that helps explain when the longest shadow stops being best.
+
+The practical implication is that the project's diagnostic framework is no longer confined to a hand-specified second-order template. It now has evidence inside an explicit plant-plus-PI-controller architecture, which is exactly the kind of transition a skeptical control engineer would ask to see before taking the framework seriously.

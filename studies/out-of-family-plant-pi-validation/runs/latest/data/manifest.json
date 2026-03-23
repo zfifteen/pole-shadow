@@ -1,0 +1,24 @@
+{
+  "study": "out-of-family-plant-pi-validation",
+  "generated_files": {
+    "csv": [
+      "studies/out-of-family-plant-pi-validation/runs/latest/data/plant_pi_system_metrics.csv",
+      "studies/out-of-family-plant-pi-validation/runs/latest/data/plant_pi_clean_tracking_metrics.csv",
+      "studies/out-of-family-plant-pi-validation/runs/latest/data/plant_pi_environment_grid.csv",
+      "studies/out-of-family-plant-pi-validation/runs/latest/data/plant_pi_trial_samples.csv",
+      "studies/out-of-family-plant-pi-validation/runs/latest/data/plant_pi_pairwise_reliability.csv"
+    ],
+    "json": [
+      "studies/out-of-family-plant-pi-validation/runs/latest/data/plant_pi_bootstrap_summary.json",
+      "studies/out-of-family-plant-pi-validation/runs/latest/data/plant_pi_summary.json",
+      "studies/out-of-family-plant-pi-validation/runs/latest/data/manifest.json"
+    ],
+    "plots": [
+      "studies/out-of-family-plant-pi-validation/runs/latest/plots/plant_pi_family_overview.png",
+      "studies/out-of-family-plant-pi-validation/runs/latest/plots/plant_pi_settling_blind_spot.png",
+      "studies/out-of-family-plant-pi-validation/runs/latest/plots/plant_pi_noise_conditioned_optimum.png",
+      "studies/out-of-family-plant-pi-validation/runs/latest/plots/plant_pi_shadow_mass_occupancy.png",
+      "studies/out-of-family-plant-pi-validation/runs/latest/plots/plant_pi_pairwise_reliability.png"
+    ]
+  }
+}

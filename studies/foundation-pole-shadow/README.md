@@ -14,6 +14,8 @@ The project README says this more boldly: the distance from the imaginary axis m
 
 For a brand-new student, that can sound abstract, so this README tells the story visually.
 
+This study capsule is the opening chapter of the project, not the final word. It is still the best place to learn the core intuition, but the newer capsules in this repository now refine the picture in three ways: they show that settling-time summaries can hide slow-tracking liability, that measurement noise can move the best damping ratio, and that shadow mass itself may have an environment-conditioned sweet spot.
+
 We will move in a simple order:
 
 1. First, we will build intuition for what a "pole's shadow" looks like.
@@ -229,6 +231,8 @@ So the right conclusion is not, "more damping is bad." The right conclusion is:
 
 That is the doorway this project opens.
 
+The newer study capsules pick up from there. If you want the more mature version of the project after finishing this walkthrough, the natural next stops are [../settling-time-blind-spot/README.md](../settling-time-blind-spot/README.md), [../feedback-measurement-noise-phase-transition/README.md](../feedback-measurement-noise-phase-transition/README.md), [../shadow-mass-saturation-threshold/README.md](../shadow-mass-saturation-threshold/README.md), and the consolidated [../../technical-note/technical_note.md](../../technical-note/technical_note.md).
+
 ## 14. Where to Go Next
 
 If this folder has done its job, you should now be able to read the main project claim with clearer eyes:
@@ -244,4 +248,4 @@ That is a sophisticated idea, but it begins with a very human question:
 
 If you want a one-file visual summary after reading this story, you can also open the PDF:
 
-[Visual proof PDF](./visual_proof_pole_shadow.pdf)
+[Visual proof PDF](./runs/latest/plots/visual_proof_pole_shadow.pdf)

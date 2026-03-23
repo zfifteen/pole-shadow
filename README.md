@@ -10,6 +10,8 @@ The project asks whether the location of a system's dominant poles tells us more
 
 That is the idea behind the phrase **the pole's shadow**.
 
+The newer studies in this repository make that picture more precise. Long shadows look best in the clean slow-tracking regimes that first motivated the project, but they are not a free resource. As nuisance grows, the preferred shadow budget can move inward rather than staying at the longest-shadow extreme.
+
 ## The Project Idea
 
 The short version is simple:
@@ -23,6 +25,8 @@ That does not mean "less damping is always better." It means damping may trade o
 - faster settling,
 - stronger classical stability margin,
 - but shorter temporal integration capacity.
+
+The later study capsules add an important refinement: clean environments tend to reward longer shadows, while noisier environments can favor an interior shadow-mass budget instead.
 
 The concise thesis note for that claim lives in [docs/HYPOTHESIS.md](./docs/HYPOTHESIS.md).
 
@@ -38,7 +42,7 @@ This repository now has a small shared docs layer and a set of study capsules.
 - [studies/foundation-pole-shadow/runs/latest/plots/visual_proof_pole_shadow.pdf](./studies/foundation-pole-shadow/runs/latest/plots/visual_proof_pole_shadow.pdf): a one-file visual summary of the foundation study.
 - [studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_report.json](./studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_report.json): the machine-readable baseline evidence bundle.
 - [studies/settling-time-blind-spot/README.md](./studies/settling-time-blind-spot/README.md): the matched-settling hidden-cost study capsule.
-- [studies/shadow-mass-saturation-threshold/README.md](./studies/shadow-mass-saturation-threshold/README.md): the shadow-mass sweet-spot concept capsule.
+- [studies/shadow-mass-saturation-threshold/README.md](./studies/shadow-mass-saturation-threshold/README.md): the shadow-mass sweet-spot study capsule, including the first dedicated evidence for a moving interior optimum.
 - [studies/feedback-measurement-noise-phase-transition/README.md](./studies/feedback-measurement-noise-phase-transition/README.md): the sensor-noise phase-transition study capsule.
 
 If you want to reproduce the figures, the main scripts are:
@@ -49,7 +53,7 @@ If you want to reproduce the figures, the main scripts are:
 - [`studies/settling-time-blind-spot/scripts/latent_detector_study.py`](./studies/settling-time-blind-spot/scripts/latent_detector_study.py): the matched-settling latent-detector follow-up.
 - [`studies/feedback-measurement-noise-phase-transition/scripts/feedback_measurement_noise_study.py`](./studies/feedback-measurement-noise-phase-transition/scripts/feedback_measurement_noise_study.py): the feedback sensor-noise phase-transition study.
 
-What follows is a guided landing-page version of the story. It is shorter than the full walkthrough in [`studies/foundation-pole-shadow/README.md`](./studies/foundation-pole-shadow/README.md), but it keeps the core arc intact.
+What follows is a guided landing-page version of the foundation story. It is shorter than the full walkthrough in [`studies/foundation-pole-shadow/README.md`](./studies/foundation-pole-shadow/README.md), and it focuses on the clean-regime intuition that started the project. The newer capsules later in the repo complicate that picture by showing hidden settling-time blind spots, measurement-noise regime shifts, and environment-conditioned shadow-mass sweet spots.
 
 ## The Story in Pictures
 
@@ -129,6 +133,8 @@ Taken together, these plots support a simple but powerful reframing:
 
 That makes the distance from the stability edge interesting in a new way. It is not just a margin. It may also be a budget. A system with a longer shadow has more time to respond to gradual structure in the input. A system with a shorter shadow may be safer in the classical sense while also being less sensitive to slow unfolding change.
 
+The newer study capsules refine that story in an important way. They suggest that the framework is not really about declaring "less damping is better." It is about identifying the right temporal budget for the task environment. Clean regimes reward long shadows. Noisier regimes can move the preferred design inward, toward a smaller but still nonzero shadow mass.
+
 For students, this is a useful conceptual upgrade. Control design is not only about preventing instability. It is also about deciding what kind of time-behavior you want the system to have.
 
 ## What This Does Not Yet Prove
@@ -145,6 +151,8 @@ These plots do **not** prove that lighter damping is always better. They do **no
 
 What they do show is narrower and still valuable: in these linear examples, with these slow-signal tasks, the usual instinct to damp more aggressively can carry a hidden performance cost.
 
+The later capsules also show the complementary risk: in noisy environments, the longest shadow is not automatically best either. That is why the project now talks more naturally about environment-aware diagnostics than about a single one-direction design rule.
+
 That is enough to justify the hypothesis as a real design question rather than a poetic slogan.
 
 ## Where to Go Next
@@ -153,9 +161,9 @@ If you want the project in three different levels of depth:
 
 - Read [docs/HYPOTHESIS.md](./docs/HYPOTHESIS.md) for the concise claim.
 - Read [docs/COGNITIVE-BUDGET.md](./docs/COGNITIVE-BUDGET.md) for the first technical formalization pass.
-- Read [studies/foundation-pole-shadow/README.md](./studies/foundation-pole-shadow/README.md) for the full student-oriented visual story.
+- Read [studies/foundation-pole-shadow/README.md](./studies/foundation-pole-shadow/README.md) for the full student-oriented visual story that launched the project.
 - Open [studies/foundation-pole-shadow/runs/latest/plots/visual_proof_pole_shadow.pdf](./studies/foundation-pole-shadow/runs/latest/plots/visual_proof_pole_shadow.pdf) for a compact summary artifact.
-- Explore the newer study capsules in [studies/settling-time-blind-spot/README.md](./studies/settling-time-blind-spot/README.md), [studies/shadow-mass-saturation-threshold/README.md](./studies/shadow-mass-saturation-threshold/README.md), and [studies/feedback-measurement-noise-phase-transition/README.md](./studies/feedback-measurement-noise-phase-transition/README.md).
+- Explore the newer study capsules in [studies/settling-time-blind-spot/README.md](./studies/settling-time-blind-spot/README.md), [studies/shadow-mass-saturation-threshold/README.md](./studies/shadow-mass-saturation-threshold/README.md), and [studies/feedback-measurement-noise-phase-transition/README.md](./studies/feedback-measurement-noise-phase-transition/README.md) for the more mature, environment-aware version of the argument.
 
 If you want to explore the evidence directly, start with:
 

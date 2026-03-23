@@ -1,0 +1,555 @@
+{
+  "study": "out-of-family-plant-pi-validation",
+  "objective": "Validate the pole-shadow diagnostic framework in an explicit plant-plus-PI-controller family.",
+  "nominal_plant": "1 / ((s + 1.0)(s + 0.2))",
+  "controller_family": "C(s) = Kp + Ki / s",
+  "matched_decay_construction": {
+    "sigma_target": 0.35,
+    "p3_target": 0.5,
+    "k_p_formula": "wn^2 + 2*zeta*wn*p3 - 0.2",
+    "k_i_formula": "wn^2 * p3",
+    "wn_formula": "sigma_target / zeta"
+  },
+  "damping_grid": [
+    0.15,
+    0.2,
+    0.25,
+    0.35,
+    0.5,
+    0.707,
+    1.0
+  ],
+  "primary_clean_task": "ramp_sine",
+  "clean_rank_fidelity": {
+    "step_settling_time_2pct": 0.01801874925391118,
+    "bandwidth_3db": -1.0,
+    "slow_band_deficit_0_05": 1.0,
+    "shadow_mass_l1": -1.0,
+    "shadow_mass_l2": -1.0
+  },
+  "matched_pairs": {
+    "top_supportive_pair": {
+      "left_zeta": 0.15,
+      "right_zeta": 0.707,
+      "settling_diff_pct": 10.309278350515456,
+      "left_settling_time_2pct": 11.044417767106843,
+      "right_settling_time_2pct": 12.244897959183673,
+      "left_ramp_sine_iae": 0.33712568780428753,
+      "right_ramp_sine_iae": 7.27800159773129,
+      "iae_ratio": 21.588392285183584,
+      "better_zeta": 0.15,
+      "worse_zeta": 0.707
+    },
+    "pair_count_meeting_threshold": 8,
+    "null_report": null,
+    "top_pairs_by_iae_ratio": [
+      {
+        "left_zeta": 0.15,
+        "right_zeta": 1.0,
+        "settling_diff_pct": 29.283489096573206,
+        "left_settling_time_2pct": 11.044417767106843,
+        "right_settling_time_2pct": 8.22328931572629,
+        "left_ramp_sine_iae": 0.33712568780428753,
+        "right_ramp_sine_iae": 14.34202550950042,
+        "iae_ratio": 42.542072670019834,
+        "better_zeta": 0.15,
+        "worse_zeta": 1.0
+      },
+      {
+        "left_zeta": 0.2,
+        "right_zeta": 1.0,
+        "settling_diff_pct": 30.864197530864203,
+        "left_settling_time_2pct": 11.224489795918368,
+        "right_settling_time_2pct": 8.22328931572629,
+        "left_ramp_sine_iae": 0.5928752440538774,
+        "right_ramp_sine_iae": 14.34202550950042,
+        "iae_ratio": 24.19062973760647,
+        "better_zeta": 0.2,
+        "worse_zeta": 1.0
+      },
+      {
+        "left_zeta": 0.15,
+        "right_zeta": 0.707,
+        "settling_diff_pct": 10.309278350515456,
+        "left_settling_time_2pct": 11.044417767106843,
+        "right_settling_time_2pct": 12.244897959183673,
+        "left_ramp_sine_iae": 0.33712568780428753,
+        "right_ramp_sine_iae": 7.27800159773129,
+        "iae_ratio": 21.588392285183584,
+        "better_zeta": 0.15,
+        "worse_zeta": 0.707
+      },
+      {
+        "left_zeta": 0.25,
+        "right_zeta": 1.0,
+        "settling_diff_pct": 20.327868852459012,
+        "left_settling_time_2pct": 10.084033613445378,
+        "right_settling_time_2pct": 8.22328931572629,
+        "left_ramp_sine_iae": 0.9216840989746177,
+        "right_ramp_sine_iae": 14.34202550950042,
+        "iae_ratio": 15.56067369010278,
+        "better_zeta": 0.25,
+        "worse_zeta": 1.0
+      },
+      {
+        "left_zeta": 0.2,
+        "right_zeta": 0.707,
+        "settling_diff_pct": 8.695652173913034,
+        "left_settling_time_2pct": 11.224489795918368,
+        "right_settling_time_2pct": 12.244897959183673,
+        "left_ramp_sine_iae": 0.5928752440538774,
+        "right_ramp_sine_iae": 7.27800159773129,
+        "iae_ratio": 12.275772467689515,
+        "better_zeta": 0.2,
+        "worse_zeta": 0.707
+      },
+      {
+        "left_zeta": 0.15,
+        "right_zeta": 0.5,
+        "settling_diff_pct": 5.804749340369382,
+        "left_settling_time_2pct": 11.044417767106843,
+        "right_settling_time_2pct": 11.704681872749099,
+        "left_ramp_sine_iae": 0.33712568780428753,
+        "right_ramp_sine_iae": 3.666874946298413,
+        "iae_ratio": 10.876877909188437,
+        "better_zeta": 0.15,
+        "worse_zeta": 0.5
+      }
+    ]
+  },
+  "best_design_by_environment": {
+    "command_clean": {
+      "mode": "command",
+      "level": "clean",
+      "noise_std": 0.0,
+      "best_zeta": 0.15,
+      "best_mean_true_iae": 0.33712568780428753,
+      "best_zeta_ci_low": 0.15,
+      "best_zeta_ci_high": 0.15,
+      "best_zeta_frequency": {
+        "0_15": 1.0,
+        "0_2": 0.0,
+        "0_25": 0.0,
+        "0_35": 0.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 0.0,
+      "stability_rate_min": 1.0
+    },
+    "command_light": {
+      "mode": "command",
+      "level": "light",
+      "noise_std": 0.03,
+      "best_zeta": 0.25,
+      "best_mean_true_iae": 1.341873560196328,
+      "best_zeta_ci_low": 0.25,
+      "best_zeta_ci_high": 0.25,
+      "best_zeta_frequency": {
+        "0_15": 0.0,
+        "0_2": 0.0,
+        "0_25": 1.0,
+        "0_35": 0.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 0.452423078953879,
+      "stability_rate_min": 1.0
+    },
+    "command_moderate": {
+      "mode": "command",
+      "level": "moderate",
+      "noise_std": 0.06,
+      "best_zeta": 0.35,
+      "best_mean_true_iae": 2.248888095212499,
+      "best_zeta_ci_low": 0.35,
+      "best_zeta_ci_high": 0.35,
+      "best_zeta_frequency": {
+        "0_15": 0.0,
+        "0_2": 0.0,
+        "0_25": 0.0,
+        "0_35": 1.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 1.3026820030650685,
+      "stability_rate_min": 1.0
+    },
+    "command_heavy": {
+      "mode": "command",
+      "level": "heavy",
+      "noise_std": 0.1,
+      "best_zeta": 0.35,
+      "best_mean_true_iae": 3.107845170988735,
+      "best_zeta_ci_low": 0.35,
+      "best_zeta_ci_high": 0.35,
+      "best_zeta_frequency": {
+        "0_15": 0.0,
+        "0_2": 0.0,
+        "0_25": 0.0,
+        "0_35": 1.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 2.7750330571396327,
+      "stability_rate_min": 1.0
+    },
+    "measurement_clean": {
+      "mode": "measurement",
+      "level": "clean",
+      "noise_std": 0.0,
+      "best_zeta": 0.15,
+      "best_mean_true_iae": 0.33712568780428753,
+      "best_zeta_ci_low": 0.15,
+      "best_zeta_ci_high": 0.15,
+      "best_zeta_frequency": {
+        "0_15": 1.0,
+        "0_2": 0.0,
+        "0_25": 0.0,
+        "0_35": 0.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 0.0,
+      "stability_rate_min": 1.0
+    },
+    "measurement_light": {
+      "mode": "measurement",
+      "level": "light",
+      "noise_std": 0.02,
+      "best_zeta": 0.2,
+      "best_mean_true_iae": 1.0227025273867438,
+      "best_zeta_ci_low": 0.2,
+      "best_zeta_ci_high": 0.2,
+      "best_zeta_frequency": {
+        "0_15": 0.0,
+        "0_2": 1.0,
+        "0_25": 0.0,
+        "0_35": 0.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 0.18773668726170523,
+      "stability_rate_min": 1.0
+    },
+    "measurement_moderate": {
+      "mode": "measurement",
+      "level": "moderate",
+      "noise_std": 0.04,
+      "best_zeta": 0.25,
+      "best_mean_true_iae": 1.658800862469763,
+      "best_zeta_ci_low": 0.25,
+      "best_zeta_ci_high": 0.25,
+      "best_zeta_frequency": {
+        "0_15": 0.0,
+        "0_2": 0.0,
+        "0_25": 1.0,
+        "0_35": 0.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 0.7248550487065302,
+      "stability_rate_min": 1.0
+    },
+    "measurement_heavy": {
+      "mode": "measurement",
+      "level": "heavy",
+      "noise_std": 0.08,
+      "best_zeta": 0.35,
+      "best_mean_true_iae": 2.6614949464229998,
+      "best_zeta_ci_low": 0.35,
+      "best_zeta_ci_high": 0.35,
+      "best_zeta_frequency": {
+        "0_15": 0.0,
+        "0_2": 0.0,
+        "0_25": 0.0,
+        "0_35": 1.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 2.0623506886440337,
+      "stability_rate_min": 1.0
+    },
+    "measurement_extreme": {
+      "mode": "measurement",
+      "level": "extreme",
+      "noise_std": 0.12,
+      "best_zeta": 0.35,
+      "best_mean_true_iae": 3.590568358629639,
+      "best_zeta_ci_low": 0.35,
+      "best_zeta_ci_high": 0.35,
+      "best_zeta_frequency": {
+        "0_15": 0.0,
+        "0_2": 0.0,
+        "0_25": 0.0,
+        "0_35": 1.0,
+        "0_5": 0.0,
+        "0_707": 0.0,
+        "1": 0.0
+      },
+      "long_shadow_gap_vs_best": 3.498846651405345,
+      "stability_rate_min": 1.0
+    }
+  },
+  "occupancy_proxy_summary": {
+    "global_occupancy_proxy_vs_excess_true_iae_spearman": 0.8428571428571426,
+    "global_raw_noise_power_vs_excess_true_iae_spearman": 0.33551495229769857,
+    "per_mode": {
+      "command": {
+        "occupancy_proxy_l2_vs_excess_true_iae": 0.9077922077922078,
+        "raw_noise_power_vs_excess_true_iae": 0.41415134408456294
+      },
+      "measurement": {
+        "occupancy_proxy_l2_vs_excess_true_iae": 0.7657361795292829,
+        "raw_noise_power_vs_excess_true_iae": 0.2530909862209218
+      }
+    }
+  },
+  "pairwise_reliability": {
+    "0.15_vs_0.707": [
+      {
+        "environment_name": "measurement_clean",
+        "mode": "measurement",
+        "level": "clean",
+        "noise_std": 0.0,
+        "left_zeta": 0.15,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 1,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      },
+      {
+        "environment_name": "measurement_light",
+        "mode": "measurement",
+        "level": "light",
+        "noise_std": 0.02,
+        "left_zeta": 0.15,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      },
+      {
+        "environment_name": "measurement_moderate",
+        "mode": "measurement",
+        "level": "moderate",
+        "noise_std": 0.04,
+        "left_zeta": 0.15,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      },
+      {
+        "environment_name": "measurement_heavy",
+        "mode": "measurement",
+        "level": "heavy",
+        "noise_std": 0.08,
+        "left_zeta": 0.15,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 0.965,
+        "true_winner_ci_low": 0.935,
+        "true_winner_ci_high": 0.99,
+        "observed_winner_probability_left": 0.88,
+        "observed_winner_ci_low": 0.835,
+        "observed_winner_ci_high": 0.92
+      },
+      {
+        "environment_name": "measurement_extreme",
+        "mode": "measurement",
+        "level": "extreme",
+        "noise_std": 0.12,
+        "left_zeta": 0.15,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 0.52,
+        "true_winner_ci_low": 0.455,
+        "true_winner_ci_high": 0.59,
+        "observed_winner_probability_left": 0.285,
+        "observed_winner_ci_low": 0.225,
+        "observed_winner_ci_high": 0.345
+      }
+    ],
+    "0.25_vs_0.707": [
+      {
+        "environment_name": "measurement_clean",
+        "mode": "measurement",
+        "level": "clean",
+        "noise_std": 0.0,
+        "left_zeta": 0.25,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 1,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      },
+      {
+        "environment_name": "measurement_light",
+        "mode": "measurement",
+        "level": "light",
+        "noise_std": 0.02,
+        "left_zeta": 0.25,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      },
+      {
+        "environment_name": "measurement_moderate",
+        "mode": "measurement",
+        "level": "moderate",
+        "noise_std": 0.04,
+        "left_zeta": 0.25,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      },
+      {
+        "environment_name": "measurement_heavy",
+        "mode": "measurement",
+        "level": "heavy",
+        "noise_std": 0.08,
+        "left_zeta": 0.25,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      },
+      {
+        "environment_name": "measurement_extreme",
+        "mode": "measurement",
+        "level": "extreme",
+        "noise_std": 0.12,
+        "left_zeta": 0.25,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 0.98,
+        "true_winner_ci_low": 0.96,
+        "true_winner_ci_high": 0.995,
+        "observed_winner_probability_left": 0.95,
+        "observed_winner_ci_low": 0.915,
+        "observed_winner_ci_high": 0.98
+      }
+    ],
+    "0.35_vs_0.707": [
+      {
+        "environment_name": "measurement_clean",
+        "mode": "measurement",
+        "level": "clean",
+        "noise_std": 0.0,
+        "left_zeta": 0.35,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 1,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      },
+      {
+        "environment_name": "measurement_light",
+        "mode": "measurement",
+        "level": "light",
+        "noise_std": 0.02,
+        "left_zeta": 0.35,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      },
+      {
+        "environment_name": "measurement_moderate",
+        "mode": "measurement",
+        "level": "moderate",
+        "noise_std": 0.04,
+        "left_zeta": 0.35,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      },
+      {
+        "environment_name": "measurement_heavy",
+        "mode": "measurement",
+        "level": "heavy",
+        "noise_std": 0.08,
+        "left_zeta": 0.35,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      },
+      {
+        "environment_name": "measurement_extreme",
+        "mode": "measurement",
+        "level": "extreme",
+        "noise_std": 0.12,
+        "left_zeta": 0.35,
+        "right_zeta": 0.707,
+        "valid_pair_trial_count": 200,
+        "true_winner_probability_left": 1.0,
+        "true_winner_ci_low": 1.0,
+        "true_winner_ci_high": 1.0,
+        "observed_winner_probability_left": 1.0,
+        "observed_winner_ci_low": 1.0,
+        "observed_winner_ci_high": 1.0
+      }
+    ]
+  },
+  "claim_support": {
+    "clean_slow_tracking_separation_exists": true,
+    "matched_pair_support_exists": true,
+    "nuisance_driven_inward_movement_exists": true,
+    "occupancy_proxy_beats_raw_noise_by_0_10": true
+  }
+}

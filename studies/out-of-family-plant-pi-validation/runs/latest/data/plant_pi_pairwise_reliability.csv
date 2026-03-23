@@ -1,0 +1,16 @@
+environment_name,mode,level,noise_std,left_zeta,right_zeta,valid_pair_trial_count,true_winner_probability_left,true_winner_ci_low,true_winner_ci_high,observed_winner_probability_left,observed_winner_ci_low,observed_winner_ci_high
+measurement_clean,measurement,clean,0.0,0.15,0.707,1,1.0,1.0,1.0,1.0,1.0,1.0
+measurement_clean,measurement,clean,0.0,0.25,0.707,1,1.0,1.0,1.0,1.0,1.0,1.0
+measurement_clean,measurement,clean,0.0,0.35,0.707,1,1.0,1.0,1.0,1.0,1.0,1.0
+measurement_light,measurement,light,0.02,0.15,0.707,200,1.0,1.0,1.0,1.0,1.0,1.0
+measurement_light,measurement,light,0.02,0.25,0.707,200,1.0,1.0,1.0,1.0,1.0,1.0
+measurement_light,measurement,light,0.02,0.35,0.707,200,1.0,1.0,1.0,1.0,1.0,1.0
+measurement_moderate,measurement,moderate,0.04,0.15,0.707,200,1.0,1.0,1.0,1.0,1.0,1.0
+measurement_moderate,measurement,moderate,0.04,0.25,0.707,200,1.0,1.0,1.0,1.0,1.0,1.0
+measurement_moderate,measurement,moderate,0.04,0.35,0.707,200,1.0,1.0,1.0,1.0,1.0,1.0
+measurement_heavy,measurement,heavy,0.08,0.15,0.707,200,0.965,0.935,0.99,0.88,0.835,0.92
+measurement_heavy,measurement,heavy,0.08,0.25,0.707,200,1.0,1.0,1.0,1.0,1.0,1.0
+measurement_heavy,measurement,heavy,0.08,0.35,0.707,200,1.0,1.0,1.0,1.0,1.0,1.0
+measurement_extreme,measurement,extreme,0.12,0.15,0.707,200,0.52,0.455,0.59,0.285,0.225,0.345
+measurement_extreme,measurement,extreme,0.12,0.25,0.707,200,0.98,0.96,0.995,0.95,0.915,0.98
+measurement_extreme,measurement,extreme,0.12,0.35,0.707,200,1.0,1.0,1.0,1.0,1.0,1.0
