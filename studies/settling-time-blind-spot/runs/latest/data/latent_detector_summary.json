@@ -1,0 +1,214 @@
+{
+  "objective": "Probe whether slow-band deficit behaves like a latent detector of low-frequency tracking liability when one-shot rollout metrics become noise-contaminated.",
+  "matched_settling_family": [
+    {
+      "zeta": 0.15,
+      "wn": 3.3333333333333335,
+      "step_settling_time_2pct": 7.752584194731577,
+      "slow_band_deficit_0_05": 3.353928579069657e-07,
+      "bandwidth_3db": 5.098209588520033,
+      "clean_iae": 0.4020003696204417,
+      "clean_ise": 0.001131324479449743
+    },
+    {
+      "zeta": 0.25,
+      "wn": 2.0,
+      "step_settling_time_2pct": 7.052350783594532,
+      "slow_band_deficit_0_05": 2.5889341603176722e-06,
+      "bandwidth_3db": 2.9693529074746223,
+      "clean_iae": 1.1122588989097697,
+      "clean_ise": 0.008470578514032236
+    },
+    {
+      "zeta": 0.4,
+      "wn": 1.25,
+      "step_settling_time_2pct": 6.7022340780260095,
+      "slow_band_deficit_0_05": 1.697780354805146e-05,
+      "bandwidth_3db": 1.7187229659565475,
+      "clean_iae": 2.8416539237345484,
+      "clean_ise": 0.054782437711005584
+    },
+    {
+      "zeta": 0.55,
+      "wn": 0.9090909090909091,
+      "step_settling_time_2pct": 6.402134044681561,
+      "slow_band_deficit_0_05": 6.069411761591328e-05,
+      "bandwidth_3db": 1.1023031729653359,
+      "clean_iae": 5.356590528809519,
+      "clean_ise": 0.1943066751803609
+    },
+    {
+      "zeta": 0.707,
+      "wn": 0.7072135785007072,
+      "step_settling_time_2pct": 8.40280093364455,
+      "slow_band_deficit_0_05": 0.00016548215938299497,
+      "bandwidth_3db": 0.7074508006098592,
+      "clean_iae": 8.814565095934885,
+      "clean_ise": 0.5263443457894217
+    },
+    {
+      "zeta": 1.0,
+      "wn": 0.5,
+      "step_settling_time_2pct": 11.653884628209404,
+      "slow_band_deficit_0_05": 0.0006545098820213265,
+      "bandwidth_3db": 0.3218753304076384,
+      "clean_iae": 17.446509859570384,
+      "clean_ise": 2.0688130155732063
+    }
+  ],
+  "system_metric_rank_fidelity_vs_clean_iae": {
+    "step_settling_time_2pct": 0.4285714285714286,
+    "slow_band_deficit_0_05": 1.0,
+    "bandwidth_3db": -1.0
+  },
+  "noise_ladder": [
+    {
+      "noise_mode": "command_noise",
+      "noise_std": 0.0,
+      "spearman_mean": 1.0,
+      "spearman_p10": 1.0,
+      "spearman_median": 1.0,
+      "spearman_p90": 1.0,
+      "winner_prob_pair_a": 1.0,
+      "winner_prob_pair_b": 1.0
+    },
+    {
+      "noise_mode": "command_noise",
+      "noise_std": 0.02,
+      "spearman_mean": 0.9476190476190477,
+      "spearman_p10": 0.942857142857143,
+      "spearman_median": 0.942857142857143,
+      "spearman_p90": 0.942857142857143,
+      "winner_prob_pair_a": 1.0,
+      "winner_prob_pair_b": 1.0
+    },
+    {
+      "noise_mode": "command_noise",
+      "noise_std": 0.04,
+      "spearman_mean": 0.9009523809523811,
+      "spearman_p10": 0.8285714285714287,
+      "spearman_median": 0.942857142857143,
+      "spearman_p90": 0.942857142857143,
+      "winner_prob_pair_a": 1.0,
+      "winner_prob_pair_b": 1.0
+    },
+    {
+      "noise_mode": "command_noise",
+      "noise_std": 0.06,
+      "spearman_mean": 0.827619047619048,
+      "spearman_p10": 0.8285714285714287,
+      "spearman_median": 0.8285714285714287,
+      "spearman_p90": 0.8285714285714287,
+      "winner_prob_pair_a": 1.0,
+      "winner_prob_pair_b": 1.0
+    },
+    {
+      "noise_mode": "command_noise",
+      "noise_std": 0.08,
+      "spearman_mean": 0.6390476190476192,
+      "spearman_p10": 0.6,
+      "spearman_median": 0.6,
+      "spearman_p90": 0.7714285714285715,
+      "winner_prob_pair_a": 1.0,
+      "winner_prob_pair_b": 1.0
+    },
+    {
+      "noise_mode": "command_noise",
+      "noise_std": 0.1,
+      "spearman_mean": 0.5942857142857143,
+      "spearman_p10": 0.6,
+      "spearman_median": 0.6,
+      "spearman_p90": 0.6,
+      "winner_prob_pair_a": 0.9833333333333333,
+      "winner_prob_pair_b": 1.0
+    },
+    {
+      "noise_mode": "command_noise",
+      "noise_std": 0.12,
+      "spearman_mean": 0.4780952380952381,
+      "spearman_p10": 0.2571428571428572,
+      "spearman_median": 0.5428571428571429,
+      "spearman_p90": 0.6,
+      "winner_prob_pair_a": 0.5666666666666667,
+      "winner_prob_pair_b": 1.0
+    },
+    {
+      "noise_mode": "measurement_noise",
+      "noise_std": 0.0,
+      "spearman_mean": 1.0,
+      "spearman_p10": 1.0,
+      "spearman_median": 1.0,
+      "spearman_p90": 1.0,
+      "winner_prob_pair_a": 1.0,
+      "winner_prob_pair_b": 1.0
+    },
+    {
+      "noise_mode": "measurement_noise",
+      "noise_std": 0.02,
+      "spearman_mean": 1.0,
+      "spearman_p10": 1.0,
+      "spearman_median": 1.0,
+      "spearman_p90": 1.0,
+      "winner_prob_pair_a": 1.0,
+      "winner_prob_pair_b": 1.0
+    },
+    {
+      "noise_mode": "measurement_noise",
+      "noise_std": 0.04,
+      "spearman_mean": 0.9914285714285714,
+      "spearman_p10": 0.942857142857143,
+      "spearman_median": 1.0,
+      "spearman_p90": 1.0,
+      "winner_prob_pair_a": 1.0,
+      "winner_prob_pair_b": 1.0
+    },
+    {
+      "noise_mode": "measurement_noise",
+      "noise_std": 0.06,
+      "spearman_mean": 0.9742857142857144,
+      "spearman_p10": 0.942857142857143,
+      "spearman_median": 1.0,
+      "spearman_p90": 1.0,
+      "winner_prob_pair_a": 1.0,
+      "winner_prob_pair_b": 1.0
+    },
+    {
+      "noise_mode": "measurement_noise",
+      "noise_std": 0.08,
+      "spearman_mean": 0.945714285714286,
+      "spearman_p10": 0.8285714285714287,
+      "spearman_median": 0.942857142857143,
+      "spearman_p90": 1.0,
+      "winner_prob_pair_a": 1.0,
+      "winner_prob_pair_b": 1.0
+    },
+    {
+      "noise_mode": "measurement_noise",
+      "noise_std": 0.1,
+      "spearman_mean": 0.945714285714286,
+      "spearman_p10": 0.8285714285714287,
+      "spearman_median": 0.942857142857143,
+      "spearman_p90": 1.0,
+      "winner_prob_pair_a": 1.0,
+      "winner_prob_pair_b": 1.0
+    },
+    {
+      "noise_mode": "measurement_noise",
+      "noise_std": 0.12,
+      "spearman_mean": 0.9161904761904762,
+      "spearman_p10": 0.7714285714285715,
+      "spearman_median": 0.942857142857143,
+      "spearman_p90": 1.0,
+      "winner_prob_pair_a": 1.0,
+      "winner_prob_pair_b": 1.0
+    }
+  ],
+  "headline_findings": {
+    "measurement_noise_rank_fidelity_at_max_noise": 0.9161904761904762,
+    "command_noise_rank_fidelity_at_max_noise": 0.4780952380952381,
+    "pair_a_winner_prob_measurement_noise_max": 1.0,
+    "pair_a_winner_prob_command_noise_max": 0.5666666666666667,
+    "pair_b_winner_prob_measurement_noise_max": 1.0,
+    "pair_b_winner_prob_command_noise_max": 1.0
+  }
+}

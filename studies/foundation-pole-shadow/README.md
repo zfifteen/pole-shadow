@@ -41,7 +41,7 @@ That hidden tradeoff is the heart of this project.
 
 The first figure is the easiest way into the whole idea.
 
-![Pole shadow decay](./pole_shadow_decay.png)
+![Pole shadow decay](./runs/latest/plots/pole_shadow_decay.png)
 
 The blue curve is a system with a dominant pole farther from the stability edge. Its oscillation dies out quickly. The orange curve is a system whose dominant pole is closer to the imaginary axis. Its motion hangs around much longer.
 
@@ -60,7 +60,7 @@ For a beginner, here is the punchline: the orange system is not "better" in ever
 
 Now that we have an intuition, we can state the hypothesis more carefully.
 
-The hypothesis note argues that the distance from the imaginary axis is not just a stability label. It may behave like a **time-budget denominator**. If you want the full original framing, you can read the concise hypothesis note here: [../HYPOTHESIS.md](../HYPOTHESIS.md). In other words:
+The hypothesis note argues that the distance from the imaginary axis is not just a stability label. It may behave like a **time-budget denominator**. If you want the full original framing, you can read the concise hypothesis note here: [../../docs/HYPOTHESIS.md](../../docs/HYPOTHESIS.md). In other words:
 
 - poles closer to the imaginary axis give longer persistence,
 - longer persistence gives a longer window for temporal integration,
@@ -75,7 +75,7 @@ That is not a rejection of standard control theory. It is a reframing. Stability
 
 If the hypothesis is real, then there should be a visible tradeoff between classical robustness and temporal integration.
 
-![Tradeoff between robustness and memory](./tradeoff_pole_shadow_memory_vs_robustness.png)
+![Tradeoff between robustness and memory](./runs/latest/plots/tradeoff_pole_shadow_memory_vs_robustness.png)
 
 This figure makes the tradeoff explicit.
 
@@ -95,7 +95,7 @@ At this point, the project has moved from a metaphor to a testable prediction:
 
 Now we ask the simplest practical question: if the world changes slowly, which tuning follows it better?
 
-![Slow tracking prediction test](./pole_shadow_slow_tracking_prediction_test.png)
+![Slow tracking prediction test](./runs/latest/plots/pole_shadow_slow_tracking_prediction_test.png)
 
 This figure compares two systems:
 
@@ -130,7 +130,7 @@ Lower IAE means the output spent less total time away from the desired signal.
 
 The first falsification test uses the simplest slow signal possible: a ramp.
 
-![Falsification test: pure ramp](./falsification_ramp.png)
+![Falsification test: pure ramp](./runs/latest/plots/falsification_ramp.png)
 
 This is a clean place to start because there is very little visual clutter. The two systems both look respectable on the full response plot, but the zoomed panel and the cumulative error panel reveal the real difference. The more heavily damped system lags farther behind, and that lag accumulates into much larger IAE.
 
@@ -140,7 +140,7 @@ This is important educationally. Students often trust the full response panel to
 
 Next we make the input more realistic by combining slow drift with slow oscillation.
 
-![Falsification test: ramp plus low-frequency sine](./falsification_ramp_sine.png)
+![Falsification test: ramp plus low-frequency sine](./runs/latest/plots/falsification_ramp_sine.png)
 
 This is where the narrative of the project becomes clearer. The orange curve, the system with the longer pole shadow, remains closer to the reference. The error panel shows that both systems fall behind, but the robust system falls behind more. The cumulative error panel makes the outcome almost impossible to miss.
 
@@ -150,7 +150,7 @@ This plot matters because real environments are rarely perfect ramps. They drift
 
 Now the input is a pure, very low-frequency oscillation.
 
-![Falsification test: ultra-slow sine](./falsification_slow_sine.png)
+![Falsification test: ultra-slow sine](./runs/latest/plots/falsification_slow_sine.png)
 
 This test isolates the idea of slow variation itself. There is no overall ramp upward. There is just a very gradual back-and-forth signal. Once again, the lightly damped system performs better on the chosen metric.
 
@@ -162,7 +162,7 @@ This strengthens the central intuition: a longer-lived transient can help when t
 
 The next question is natural: what if the world is messy?
 
-![Falsification test: slow input with noise](./falsification_noisy.png)
+![Falsification test: slow input with noise](./runs/latest/plots/falsification_noisy.png)
 
 This plot adds noise to the commanded input. The gray trace shows the noisy signal, while the dashed black line shows the smoother underlying trend. The two system outputs are still readable because the plot separates the tasks of seeing context, seeing the early-time zoom, seeing rolling average error, and seeing cumulative error.
 
@@ -180,7 +180,7 @@ That is a healthier conclusion than simply saying "orange wins again."
 
 The final figure zooms out. Instead of comparing just two tunings, it asks what happens as damping ratio changes across a whole range.
 
-![Performance sweep across damping ratios](./iae_vs_damping_ratio.png)
+![Performance sweep across damping ratios](./runs/latest/plots/iae_vs_damping_ratio.png)
 
 This is the broadest summary plot in the set.
 

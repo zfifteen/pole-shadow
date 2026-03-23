@@ -1,0 +1,269 @@
+{
+  "objective": "Follow-up brainstorm experiment with true measurement noise entering the feedback path rather than the commanded input.",
+  "assumption": "Closed-loop second-order transfer functions are interpreted as unity-feedback complementary sensitivities T(s), so sensor noise enters through y = T(r - n).",
+  "noise_levels": [
+    0.0,
+    0.02,
+    0.04,
+    0.08,
+    0.12,
+    0.16,
+    0.2
+  ],
+  "matched_settling_family": [
+    {
+      "zeta": 0.15,
+      "wn": 3.3333333333333335,
+      "clean_true_iae": 0.4020011638654445,
+      "step_settling_time_2pct": 7.743097238895558,
+      "slow_band_deficit_0_05": 3.3471999803905205e-07,
+      "inverse_bandwidth_3db": 0.19617474108999902
+    },
+    {
+      "zeta": 0.25,
+      "wn": 2.0,
+      "clean_true_iae": 1.1122567744946337,
+      "step_settling_time_2pct": 7.02280912364946,
+      "slow_band_deficit_0_05": 2.5837389170146456e-06,
+      "inverse_bandwidth_3db": 0.33670604102010004
+    },
+    {
+      "zeta": 0.4,
+      "wn": 1.25,
+      "clean_true_iae": 2.841651792819632,
+      "step_settling_time_2pct": 6.722689075630252,
+      "slow_band_deficit_0_05": 1.6943719425450972e-05,
+      "inverse_bandwidth_3db": 0.5819140305743699
+    },
+    {
+      "zeta": 0.55,
+      "wn": 0.9090909090909091,
+      "clean_true_iae": 5.356588387757871,
+      "step_settling_time_2pct": 6.362545018007203,
+      "slow_band_deficit_0_05": 6.0572260070867296e-05,
+      "inverse_bandwidth_3db": 0.9071210719776761
+    },
+    {
+      "zeta": 0.707,
+      "wn": 0.7072135785007072,
+      "clean_true_iae": 8.814562940646454,
+      "step_settling_time_2pct": 8.403361344537815,
+      "slow_band_deficit_0_05": 0.00016515023235999637,
+      "inverse_bandwidth_3db": 1.4134214430566012
+    },
+    {
+      "zeta": 1.0,
+      "wn": 0.5,
+      "clean_true_iae": 17.446507667872908,
+      "step_settling_time_2pct": 11.644657863145257,
+      "slow_band_deficit_0_05": 0.0006532073257839499,
+      "inverse_bandwidth_3db": 3.106583820854682
+    }
+  ],
+  "metric_ladder": [
+    {
+      "noise_std": 0.0,
+      "best_zeta_by_mean_true_iae": 0.15,
+      "slow_band_deficit_rank_fidelity": 1.0,
+      "inverse_bandwidth_rank_fidelity": 1.0,
+      "step_settling_time_rank_fidelity": 0.4285714285714286
+    },
+    {
+      "noise_std": 0.02,
+      "best_zeta_by_mean_true_iae": 0.25,
+      "slow_band_deficit_rank_fidelity": 0.942857142857143,
+      "inverse_bandwidth_rank_fidelity": 0.942857142857143,
+      "step_settling_time_rank_fidelity": 0.48571428571428577
+    },
+    {
+      "noise_std": 0.04,
+      "best_zeta_by_mean_true_iae": 0.25,
+      "slow_band_deficit_rank_fidelity": 0.942857142857143,
+      "inverse_bandwidth_rank_fidelity": 0.942857142857143,
+      "step_settling_time_rank_fidelity": 0.48571428571428577
+    },
+    {
+      "noise_std": 0.08,
+      "best_zeta_by_mean_true_iae": 0.4,
+      "slow_band_deficit_rank_fidelity": 0.6,
+      "inverse_bandwidth_rank_fidelity": 0.6,
+      "step_settling_time_rank_fidelity": 0.8285714285714287
+    },
+    {
+      "noise_std": 0.12,
+      "best_zeta_by_mean_true_iae": 0.4,
+      "slow_band_deficit_rank_fidelity": 0.6,
+      "inverse_bandwidth_rank_fidelity": 0.6,
+      "step_settling_time_rank_fidelity": 0.8285714285714287
+    },
+    {
+      "noise_std": 0.16,
+      "best_zeta_by_mean_true_iae": 0.4,
+      "slow_band_deficit_rank_fidelity": 0.2571428571428572,
+      "inverse_bandwidth_rank_fidelity": 0.2571428571428572,
+      "step_settling_time_rank_fidelity": 0.8857142857142858
+    },
+    {
+      "noise_std": 0.2,
+      "best_zeta_by_mean_true_iae": 0.4,
+      "slow_band_deficit_rank_fidelity": 0.2571428571428572,
+      "inverse_bandwidth_rank_fidelity": 0.2571428571428572,
+      "step_settling_time_rank_fidelity": 0.8857142857142858
+    }
+  ],
+  "pairwise_reliability": [
+    {
+      "noise_std": 0.0,
+      "left_zeta": 0.15,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 1.0,
+      "observed_winner_probability_left": 1.0
+    },
+    {
+      "noise_std": 0.02,
+      "left_zeta": 0.15,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 1.0,
+      "observed_winner_probability_left": 1.0
+    },
+    {
+      "noise_std": 0.04,
+      "left_zeta": 0.15,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 1.0,
+      "observed_winner_probability_left": 1.0
+    },
+    {
+      "noise_std": 0.08,
+      "left_zeta": 0.15,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 1.0,
+      "observed_winner_probability_left": 1.0
+    },
+    {
+      "noise_std": 0.12,
+      "left_zeta": 0.15,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 0.9333333333333333,
+      "observed_winner_probability_left": 0.16666666666666666
+    },
+    {
+      "noise_std": 0.16,
+      "left_zeta": 0.15,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 0.016666666666666666,
+      "observed_winner_probability_left": 0.0
+    },
+    {
+      "noise_std": 0.2,
+      "left_zeta": 0.15,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 0.0,
+      "observed_winner_probability_left": 0.0
+    },
+    {
+      "noise_std": 0.0,
+      "left_zeta": 0.25,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 1.0,
+      "observed_winner_probability_left": 1.0
+    },
+    {
+      "noise_std": 0.02,
+      "left_zeta": 0.25,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 1.0,
+      "observed_winner_probability_left": 1.0
+    },
+    {
+      "noise_std": 0.04,
+      "left_zeta": 0.25,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 1.0,
+      "observed_winner_probability_left": 1.0
+    },
+    {
+      "noise_std": 0.08,
+      "left_zeta": 0.25,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 1.0,
+      "observed_winner_probability_left": 1.0
+    },
+    {
+      "noise_std": 0.12,
+      "left_zeta": 0.25,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 1.0,
+      "observed_winner_probability_left": 1.0
+    },
+    {
+      "noise_std": 0.16,
+      "left_zeta": 0.25,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 1.0,
+      "observed_winner_probability_left": 0.9833333333333333
+    },
+    {
+      "noise_std": 0.2,
+      "left_zeta": 0.25,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 0.7666666666666667,
+      "observed_winner_probability_left": 0.2
+    },
+    {
+      "noise_std": 0.0,
+      "left_zeta": 0.4,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 1.0,
+      "observed_winner_probability_left": 1.0
+    },
+    {
+      "noise_std": 0.02,
+      "left_zeta": 0.4,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 1.0,
+      "observed_winner_probability_left": 1.0
+    },
+    {
+      "noise_std": 0.04,
+      "left_zeta": 0.4,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 1.0,
+      "observed_winner_probability_left": 1.0
+    },
+    {
+      "noise_std": 0.08,
+      "left_zeta": 0.4,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 1.0,
+      "observed_winner_probability_left": 1.0
+    },
+    {
+      "noise_std": 0.12,
+      "left_zeta": 0.4,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 1.0,
+      "observed_winner_probability_left": 1.0
+    },
+    {
+      "noise_std": 0.16,
+      "left_zeta": 0.4,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 1.0,
+      "observed_winner_probability_left": 1.0
+    },
+    {
+      "noise_std": 0.2,
+      "left_zeta": 0.4,
+      "right_zeta": 0.707,
+      "true_winner_probability_left": 1.0,
+      "observed_winner_probability_left": 1.0
+    }
+  ],
+  "headline_findings": {
+    "clean_best_zeta": 0.15,
+    "highest_noise_best_zeta": 0.4,
+    "highest_noise_slow_band_deficit_rank_fidelity": 0.2571428571428572,
+    "highest_noise_step_settling_rank_fidelity": 0.8857142857142858
+  }
+}

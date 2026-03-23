@@ -27,13 +27,13 @@
     "matched_settling_sigma_target": 0.5
   },
   "files": {
-    "system_metrics_csv": "data/cognitive_budget_system_metrics.csv",
-    "tracking_metrics_csv": "data/cognitive_budget_tracking_metrics.csv",
-    "metric_correlations_csv": "data/metric_correlations.csv",
-    "batch_tracking_samples_csv": "data/batch_tracking_samples.csv",
-    "batch_tracking_summary_csv": "data/batch_tracking_summary.csv",
-    "matched_settling_study_csv": "data/matched_settling_study.csv",
-    "time_series_dir": "data/time_series"
+    "system_metrics_csv": "studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_system_metrics.csv",
+    "tracking_metrics_csv": "studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_tracking_metrics.csv",
+    "metric_correlations_csv": "studies/foundation-pole-shadow/runs/latest/data/metric_correlations.csv",
+    "batch_tracking_samples_csv": "studies/foundation-pole-shadow/runs/latest/data/batch_tracking_samples.csv",
+    "batch_tracking_summary_csv": "studies/foundation-pole-shadow/runs/latest/data/batch_tracking_summary.csv",
+    "matched_settling_study_csv": "studies/foundation-pole-shadow/runs/latest/data/matched_settling_study.csv",
+    "time_series_dir": "studies/foundation-pole-shadow/runs/latest/data/time_series"
   },
   "robust_vs_light_summary": [
     {

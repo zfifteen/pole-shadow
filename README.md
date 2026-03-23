@@ -24,25 +24,30 @@ That does not mean "less damping is always better." It means damping may trade o
 - stronger classical stability margin,
 - but shorter temporal integration capacity.
 
-The concise thesis note for that claim lives in [HYPOTHESIS.md](./HYPOTHESIS.md).
+The concise thesis note for that claim lives in [docs/HYPOTHESIS.md](./docs/HYPOTHESIS.md).
 
 ## What This Repository Contains
 
-This repository has four layers, each written for a different kind of reading.
+This repository now has a small shared docs layer and a set of study capsules.
 
-- [HYPOTHESIS.md](./HYPOTHESIS.md): the compact statement of the core claim and its falsifiable prediction.
-- [COGNITIVE-BUDGET.md](./COGNITIVE-BUDGET.md): the working technical note where the "cognitive budget" framing starts becoming candidate diagnostics.
-- [plots/README.md](./plots/README.md): the long, student-friendly visual walkthrough that teaches the idea step by step.
-- [plots/visual_proof_pole_shadow.pdf](./plots/visual_proof_pole_shadow.pdf): a one-file visual summary.
-- [`data/cognitive_budget_report.json`](./data/cognitive_budget_report.json): a machine-readable evidence summary that collects correlations, batch studies, and matched-settling comparisons.
+- [docs/HYPOTHESIS.md](./docs/HYPOTHESIS.md): the compact statement of the core claim and its falsifiable prediction.
+- [docs/COGNITIVE-BUDGET.md](./docs/COGNITIVE-BUDGET.md): the working technical note where the "cognitive budget" framing starts becoming candidate diagnostics.
+- [studies/foundation-pole-shadow/README.md](./studies/foundation-pole-shadow/README.md): the long, student-friendly visual walkthrough of the original pole-shadow thesis.
+- [studies/foundation-pole-shadow/runs/latest/plots/visual_proof_pole_shadow.pdf](./studies/foundation-pole-shadow/runs/latest/plots/visual_proof_pole_shadow.pdf): a one-file visual summary of the foundation study.
+- [studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_report.json](./studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_report.json): the machine-readable baseline evidence bundle.
+- [studies/settling-time-blind-spot/README.md](./studies/settling-time-blind-spot/README.md): the matched-settling hidden-cost study capsule.
+- [studies/shadow-mass-saturation-threshold/README.md](./studies/shadow-mass-saturation-threshold/README.md): the shadow-mass sweet-spot concept capsule.
+- [studies/feedback-measurement-noise-phase-transition/README.md](./studies/feedback-measurement-noise-phase-transition/README.md): the sensor-noise phase-transition study capsule.
 
 If you want to reproduce the figures, the main scripts are:
 
-- [`pole_shadow_plots.py`](./pole_shadow_plots.py): intuition plots, tradeoff plot, and the first slow-tracking comparison.
-- [`falsify_pole_shadow_prediction.py`](./falsify_pole_shadow_prediction.py): falsification-style tests, damping sweep, and PDF summary.
-- [`generate_cognitive_budget_data.py`](./generate_cognitive_budget_data.py): structured evidence export for candidate diagnostics, including CSV tables, JSON summaries, time-series traces, batch sweeps, and matched-settling studies.
+- [`studies/foundation-pole-shadow/scripts/pole_shadow_plots.py`](./studies/foundation-pole-shadow/scripts/pole_shadow_plots.py): intuition plots, tradeoff plot, and the first slow-tracking comparison.
+- [`studies/foundation-pole-shadow/scripts/falsify_pole_shadow_prediction.py`](./studies/foundation-pole-shadow/scripts/falsify_pole_shadow_prediction.py): falsification-style tests, damping sweep, and PDF summary.
+- [`studies/foundation-pole-shadow/scripts/generate_cognitive_budget_data.py`](./studies/foundation-pole-shadow/scripts/generate_cognitive_budget_data.py): structured baseline evidence export for candidate diagnostics.
+- [`studies/settling-time-blind-spot/scripts/latent_detector_study.py`](./studies/settling-time-blind-spot/scripts/latent_detector_study.py): the matched-settling latent-detector follow-up.
+- [`studies/feedback-measurement-noise-phase-transition/scripts/feedback_measurement_noise_study.py`](./studies/feedback-measurement-noise-phase-transition/scripts/feedback_measurement_noise_study.py): the feedback sensor-noise phase-transition study.
 
-What follows is a guided landing-page version of the story. It is shorter than the full walkthrough in [`plots/README.md`](./plots/README.md), but it keeps the core arc intact.
+What follows is a guided landing-page version of the story. It is shorter than the full walkthrough in [`studies/foundation-pole-shadow/README.md`](./studies/foundation-pole-shadow/README.md), but it keeps the core arc intact.
 
 ## The Story in Pictures
 
@@ -50,7 +55,7 @@ What follows is a guided landing-page version of the story. It is shorter than t
 
 Before talking about formulas, it helps to ask a physical question: after a system is disturbed, how long does the disturbance remain visible in its motion?
 
-![Pole shadow decay](./plots/pole_shadow_decay.png)
+![Pole shadow decay](./studies/foundation-pole-shadow/runs/latest/plots/pole_shadow_decay.png)
 
 The blue system dies away quickly. The orange system keeps oscillating longer. Both may be stable, but they are not equally persistent. That is the first doorway into the project: pole location changes not only whether motion decays, but how long meaningful transient behavior remains available.
 
@@ -60,7 +65,7 @@ The figure is intentionally structured to teach the eye what matters. The full r
 
 Once that intuition is in place, the next question is whether it reflects a genuine design tradeoff.
 
-![Tradeoff between robustness and memory](./plots/tradeoff_pole_shadow_memory_vs_robustness.png)
+![Tradeoff between robustness and memory](./studies/foundation-pole-shadow/runs/latest/plots/tradeoff_pole_shadow_memory_vs_robustness.png)
 
 This figure makes the project's central tension explicit. As the stability margin grows, the effective time horizon and memory proxy shrink. In plain language: the more aggressively we push the system away from the stability edge, the less long-term temporal budget it appears to keep.
 
@@ -70,7 +75,7 @@ That is the heart of the hypothesis. Classical design goals such as fast settlin
 
 If the idea is more than a metaphor, it should produce a concrete prediction: on slowly drifting inputs, a more lightly damped system should sometimes outperform a more heavily damped one.
 
-![Slow tracking prediction test](./plots/pole_shadow_slow_tracking_prediction_test.png)
+![Slow tracking prediction test](./studies/foundation-pole-shadow/runs/latest/plots/pole_shadow_slow_tracking_prediction_test.png)
 
 This figure compares a classically robust tuning with a lighter-damped "long shadow" tuning on a slow ramp plus a low-frequency sine. The top panels show the overall tracking behavior and the early-time separation. The bottom panels reveal the real difference: one system accumulates substantially more tracking error over time.
 
@@ -82,25 +87,25 @@ One plot is never enough. A useful idea should still say something coherent when
 
 #### Pure Slow Ramp
 
-![Falsification test: pure ramp](./plots/falsification_ramp.png)
+![Falsification test: pure ramp](./studies/foundation-pole-shadow/runs/latest/plots/falsification_ramp.png)
 
 The simplest slow signal already reveals the pattern: the more heavily damped system lags more, and that lag accumulates into larger error.
 
 #### Ramp Plus Low-Frequency Sine
 
-![Falsification test: ramp plus low-frequency sine](./plots/falsification_ramp_sine.png)
+![Falsification test: ramp plus low-frequency sine](./studies/foundation-pole-shadow/runs/latest/plots/falsification_ramp_sine.png)
 
 This is a more realistic slow signal. The same basic story survives: the lighter-damped system remains closer to the target, and the cumulative error panel makes the difference easy to see.
 
 #### Ultra-Slow Sine
 
-![Falsification test: ultra-slow sine](./plots/falsification_slow_sine.png)
+![Falsification test: ultra-slow sine](./studies/foundation-pole-shadow/runs/latest/plots/falsification_slow_sine.png)
 
 This test isolates slow variation without a ramp. The result again points in the same direction, suggesting the effect is not tied to one special input shape.
 
 #### Slow Input with Noise
 
-![Falsification test: slow input with noise](./plots/falsification_noisy.png)
+![Falsification test: slow input with noise](./studies/foundation-pole-shadow/runs/latest/plots/falsification_noisy.png)
 
 This is the most cautious of the supporting plots. The lighter-damped system still wins on the chosen metric, but the advantage is smaller. That nuance matters. The project looks strongest on slow, clean tracking tasks, and more modest once noise becomes prominent.
 
@@ -108,7 +113,7 @@ This is the most cautious of the supporting plots. The lighter-damped system sti
 
 The final summary plot steps back from one pair of tunings and asks what happens across a sweep.
 
-![Performance sweep across damping ratios](./plots/iae_vs_damping_ratio.png)
+![Performance sweep across damping ratios](./studies/foundation-pole-shadow/runs/latest/plots/iae_vs_damping_ratio.png)
 
 For the specific model and signal used here, performance worsens as damping ratio increases. The lighter-damped choice outperforms the more classically robust one, and the sweep makes that penalty visible from several angles rather than just one.
 
@@ -144,15 +149,16 @@ That is enough to justify the hypothesis as a real design question rather than a
 
 If you want the project in three different levels of depth:
 
-- Read [HYPOTHESIS.md](./HYPOTHESIS.md) for the concise claim.
-- Read [COGNITIVE-BUDGET.md](./COGNITIVE-BUDGET.md) for the first technical formalization pass.
-- Read [plots/README.md](./plots/README.md) for the full student-oriented visual story.
-- Open [plots/visual_proof_pole_shadow.pdf](./plots/visual_proof_pole_shadow.pdf) for a compact summary artifact.
+- Read [docs/HYPOTHESIS.md](./docs/HYPOTHESIS.md) for the concise claim.
+- Read [docs/COGNITIVE-BUDGET.md](./docs/COGNITIVE-BUDGET.md) for the first technical formalization pass.
+- Read [studies/foundation-pole-shadow/README.md](./studies/foundation-pole-shadow/README.md) for the full student-oriented visual story.
+- Open [studies/foundation-pole-shadow/runs/latest/plots/visual_proof_pole_shadow.pdf](./studies/foundation-pole-shadow/runs/latest/plots/visual_proof_pole_shadow.pdf) for a compact summary artifact.
+- Explore the newer study capsules in [studies/settling-time-blind-spot/README.md](./studies/settling-time-blind-spot/README.md), [studies/shadow-mass-saturation-threshold/README.md](./studies/shadow-mass-saturation-threshold/README.md), and [studies/feedback-measurement-noise-phase-transition/README.md](./studies/feedback-measurement-noise-phase-transition/README.md).
 
 If you want to explore the evidence directly, start with:
 
-- [`pole_shadow_plots.py`](./pole_shadow_plots.py)
-- [`falsify_pole_shadow_prediction.py`](./falsify_pole_shadow_prediction.py)
+- [`studies/foundation-pole-shadow/scripts/pole_shadow_plots.py`](./studies/foundation-pole-shadow/scripts/pole_shadow_plots.py)
+- [`studies/foundation-pole-shadow/scripts/falsify_pole_shadow_prediction.py`](./studies/foundation-pole-shadow/scripts/falsify_pole_shadow_prediction.py)
 
 The deepest question in the repository is also the simplest one:
 

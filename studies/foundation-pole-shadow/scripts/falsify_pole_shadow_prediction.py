@@ -1,7 +1,17 @@
+import sys
+from pathlib import Path
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import TransferFunction, lsim
 from matplotlib.backends.backend_pdf import PdfPages
+
+ROOT_DIR = Path(__file__).resolve().parents[3]
+SHARED_PYTHON_DIR = ROOT_DIR / "shared" / "python"
+RUN_DIR = Path(__file__).resolve().parents[1] / "runs" / "latest"
+
+if str(SHARED_PYTHON_DIR) not in sys.path:
+    sys.path.insert(0, str(SHARED_PYTHON_DIR))
 
 from plot_theme import (
     FAST_COLOR,
@@ -21,7 +31,7 @@ from plot_theme import (
 
 # Create output directory
 apply_plot_style()
-plot_dir = get_plot_dir()
+plot_dir = get_plot_dir(RUN_DIR / "plots")
 
 # NumPy compatibility
 trapz = np.trapezoid if hasattr(np, 'trapezoid') else np.trapz

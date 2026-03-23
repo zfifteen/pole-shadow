@@ -1,0 +1,18 @@
+{
+  "generated_by": "studies/foundation-pole-shadow/scripts/generate_cognitive_budget_data.py",
+  "outputs": [
+    "studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_system_metrics.csv",
+    "studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_tracking_metrics.csv",
+    "studies/foundation-pole-shadow/runs/latest/data/metric_correlations.csv",
+    "studies/foundation-pole-shadow/runs/latest/data/batch_tracking_samples.csv",
+    "studies/foundation-pole-shadow/runs/latest/data/batch_tracking_summary.csv",
+    "studies/foundation-pole-shadow/runs/latest/data/matched_settling_study.csv",
+    "studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_summary.json",
+    "studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_report.json",
+    "studies/foundation-pole-shadow/runs/latest/data/manifest.json",
+    "studies/foundation-pole-shadow/runs/latest/data/time_series/ramp.csv",
+    "studies/foundation-pole-shadow/runs/latest/data/time_series/ramp_sine.csv",
+    "studies/foundation-pole-shadow/runs/latest/data/time_series/slow_sine.csv",
+    "studies/foundation-pole-shadow/runs/latest/data/time_series/noisy.csv"
+  ]
+}

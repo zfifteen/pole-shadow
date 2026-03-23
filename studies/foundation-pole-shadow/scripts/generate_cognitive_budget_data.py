@@ -12,8 +12,9 @@ except AttributeError:
     trapz = np.trapz
 
 
-ROOT_DIR = Path(".")
-DATA_DIR = ROOT_DIR / "data"
+ROOT_DIR = Path(__file__).resolve().parents[3]
+RUN_DIR = Path(__file__).resolve().parents[1] / "runs" / "latest"
+DATA_DIR = RUN_DIR / "data"
 TIME_SERIES_DIR = DATA_DIR / "time_series"
 
 WN_NOMINAL = 1.0
@@ -602,21 +603,21 @@ def write_outputs(
     write_json(
         DATA_DIR / "manifest.json",
         {
-            "generated_by": "generate_cognitive_budget_data.py",
+            "generated_by": "studies/foundation-pole-shadow/scripts/generate_cognitive_budget_data.py",
             "outputs": [
-                "data/cognitive_budget_system_metrics.csv",
-                "data/cognitive_budget_tracking_metrics.csv",
-                "data/metric_correlations.csv",
-                "data/batch_tracking_samples.csv",
-                "data/batch_tracking_summary.csv",
-                "data/matched_settling_study.csv",
-                "data/cognitive_budget_summary.json",
-                "data/cognitive_budget_report.json",
-                "data/manifest.json",
-                "data/time_series/ramp.csv",
-                "data/time_series/ramp_sine.csv",
-                "data/time_series/slow_sine.csv",
-                "data/time_series/noisy.csv",
+                "studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_system_metrics.csv",
+                "studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_tracking_metrics.csv",
+                "studies/foundation-pole-shadow/runs/latest/data/metric_correlations.csv",
+                "studies/foundation-pole-shadow/runs/latest/data/batch_tracking_samples.csv",
+                "studies/foundation-pole-shadow/runs/latest/data/batch_tracking_summary.csv",
+                "studies/foundation-pole-shadow/runs/latest/data/matched_settling_study.csv",
+                "studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_summary.json",
+                "studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_report.json",
+                "studies/foundation-pole-shadow/runs/latest/data/manifest.json",
+                "studies/foundation-pole-shadow/runs/latest/data/time_series/ramp.csv",
+                "studies/foundation-pole-shadow/runs/latest/data/time_series/ramp_sine.csv",
+                "studies/foundation-pole-shadow/runs/latest/data/time_series/slow_sine.csv",
+                "studies/foundation-pole-shadow/runs/latest/data/time_series/noisy.csv",
             ],
         },
     )
@@ -680,13 +681,13 @@ def main():
             "matched_settling_sigma_target": SIGMA_TARGET,
         },
         "files": {
-            "system_metrics_csv": "data/cognitive_budget_system_metrics.csv",
-            "tracking_metrics_csv": "data/cognitive_budget_tracking_metrics.csv",
-            "metric_correlations_csv": "data/metric_correlations.csv",
-            "batch_tracking_samples_csv": "data/batch_tracking_samples.csv",
-            "batch_tracking_summary_csv": "data/batch_tracking_summary.csv",
-            "matched_settling_study_csv": "data/matched_settling_study.csv",
-            "time_series_dir": "data/time_series",
+                "system_metrics_csv": "studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_system_metrics.csv",
+                "tracking_metrics_csv": "studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_tracking_metrics.csv",
+                "metric_correlations_csv": "studies/foundation-pole-shadow/runs/latest/data/metric_correlations.csv",
+                "batch_tracking_samples_csv": "studies/foundation-pole-shadow/runs/latest/data/batch_tracking_samples.csv",
+                "batch_tracking_summary_csv": "studies/foundation-pole-shadow/runs/latest/data/batch_tracking_summary.csv",
+                "matched_settling_study_csv": "studies/foundation-pole-shadow/runs/latest/data/matched_settling_study.csv",
+                "time_series_dir": "studies/foundation-pole-shadow/runs/latest/data/time_series",
         },
         "robust_vs_light_summary": robust_vs_light,
         "batch_highlights": batch_highlights,
@@ -730,16 +731,16 @@ def main():
 
     print("✅ Cognitive-budget data export complete.")
     print("Files created:")
-    print("   • data/cognitive_budget_system_metrics.csv")
-    print("   • data/cognitive_budget_tracking_metrics.csv")
-    print("   • data/metric_correlations.csv")
-    print("   • data/batch_tracking_samples.csv")
-    print("   • data/batch_tracking_summary.csv")
-    print("   • data/matched_settling_study.csv")
-    print("   • data/cognitive_budget_summary.json")
-    print("   • data/cognitive_budget_report.json")
-    print("   • data/manifest.json")
-    print("   • data/time_series/*.csv")
+    print("   • studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_system_metrics.csv")
+    print("   • studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_tracking_metrics.csv")
+    print("   • studies/foundation-pole-shadow/runs/latest/data/metric_correlations.csv")
+    print("   • studies/foundation-pole-shadow/runs/latest/data/batch_tracking_samples.csv")
+    print("   • studies/foundation-pole-shadow/runs/latest/data/batch_tracking_summary.csv")
+    print("   • studies/foundation-pole-shadow/runs/latest/data/matched_settling_study.csv")
+    print("   • studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_summary.json")
+    print("   • studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_report.json")
+    print("   • studies/foundation-pole-shadow/runs/latest/data/manifest.json")
+    print("   • studies/foundation-pole-shadow/runs/latest/data/time_series/*.csv")
 
 
 if __name__ == "__main__":

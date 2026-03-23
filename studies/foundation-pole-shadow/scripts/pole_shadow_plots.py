@@ -1,6 +1,16 @@
+import sys
+from pathlib import Path
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import lsim, TransferFunction
+
+ROOT_DIR = Path(__file__).resolve().parents[3]
+SHARED_PYTHON_DIR = ROOT_DIR / "shared" / "python"
+RUN_DIR = Path(__file__).resolve().parents[1] / "runs" / "latest"
+
+if str(SHARED_PYTHON_DIR) not in sys.path:
+    sys.path.insert(0, str(SHARED_PYTHON_DIR))
 
 from plot_theme import (
     FAST_COLOR,
@@ -25,7 +35,7 @@ except AttributeError:
     trapz = np.trapz
 
 apply_plot_style()
-PLOTS_DIR = get_plot_dir()
+PLOTS_DIR = get_plot_dir(RUN_DIR / "plots")
 
 
 def save_plot(filename):

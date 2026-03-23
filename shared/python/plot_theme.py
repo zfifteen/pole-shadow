@@ -25,9 +25,9 @@ def apply_plot_style():
     plt.style.use(style_name)
 
 
-def get_plot_dir():
-    plot_dir = Path("plots")
-    plot_dir.mkdir(exist_ok=True)
+def get_plot_dir(path="plots"):
+    plot_dir = Path(path)
+    plot_dir.mkdir(parents=True, exist_ok=True)
     return plot_dir
 
 
