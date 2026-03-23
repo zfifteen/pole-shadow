@@ -32,6 +32,8 @@ This repository now has a small shared docs layer and a set of study capsules.
 
 - [docs/HYPOTHESIS.md](./docs/HYPOTHESIS.md): the compact statement of the core claim and its falsifiable prediction.
 - [docs/COGNITIVE-BUDGET.md](./docs/COGNITIVE-BUDGET.md): the working technical note where the "cognitive budget" framing starts becoming candidate diagnostics.
+- [technical-note/technical_note.md](./technical-note/technical_note.md): the evolving technical note, written modestly as a proposal supported by the current study capsules.
+- [technical-note/export/pole-shadow-technical-note.pdf](./technical-note/export/pole-shadow-technical-note.pdf): the latest exported PDF of the technical note.
 - [studies/foundation-pole-shadow/README.md](./studies/foundation-pole-shadow/README.md): the long, student-friendly visual walkthrough of the original pole-shadow thesis.
 - [studies/foundation-pole-shadow/runs/latest/plots/visual_proof_pole_shadow.pdf](./studies/foundation-pole-shadow/runs/latest/plots/visual_proof_pole_shadow.pdf): a one-file visual summary of the foundation study.
 - [studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_report.json](./studies/foundation-pole-shadow/runs/latest/data/cognitive_budget_report.json): the machine-readable baseline evidence bundle.
