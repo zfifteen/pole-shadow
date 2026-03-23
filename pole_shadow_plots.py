@@ -21,6 +21,7 @@ ENVELOPE_COLOR = "#6c757d"
 THRESHOLD_COLOR = "#a6761d"
 REFERENCE_COLOR = "#111111"
 MEMORY_COLOR = "#7b3294"
+FOCUS_SHADE = "#e8eef7"
 
 
 def save_plot(filename):
@@ -28,6 +29,12 @@ def save_plot(filename):
     output_path = PLOTS_DIR / filename
     plt.savefig(output_path, dpi=250, bbox_inches='tight')
     print(f"✓ Saved: {output_path}")
+
+
+def cumulative_integral(values, time):
+    cumulative = np.zeros_like(values)
+    cumulative[1:] = np.cumsum(0.5 * (values[1:] + values[:-1]) * np.diff(time))
+    return cumulative
 
 def plot_pole_shadow_decay():
     """Plot 1: Pole's Shadow decay comparison"""
@@ -99,34 +106,59 @@ def plot_slow_tracking():
     sys_light = TransferFunction([wn**2], [1, 2*0.25*wn, wn**2])
     _, y_light, _ = lsim(sys_light, u, t)
 
-    fig, axs = plt.subplots(3, 1, figsize=(11, 10))
+    err_signed_r = y_robust - u
+    err_signed_l = y_light - u
+    err_r = np.abs(err_signed_r)
+    err_l = np.abs(err_signed_l)
+    iae_r = trapz(err_r, t)
+    iae_l = trapz(err_l, t)
+    cum_r = cumulative_integral(err_r, t)
+    cum_l = cumulative_integral(err_l, t)
+    focus_end = 15
+    focus_mask = t <= focus_end
+    focus_series = [u[focus_mask], y_robust[focus_mask], y_light[focus_mask]]
+    focus_min = min(series.min() for series in focus_series)
+    focus_max = max(series.max() for series in focus_series)
+    focus_pad = max(0.05, 0.08 * (focus_max - focus_min))
 
-    axs[0].plot(t, u, color=REFERENCE_COLOR, linestyle='--', lw=1.8, label='Slow ramp reference + low-freq sine')
-    axs[0].plot(t, y_robust, color=FAST_COLOR, lw=2.3, label='Robust (ζ=0.707)')
-    axs[0].plot(t, y_light, color=LIGHT_SHADOW_COLOR, lw=2.3, label='Light Shadow (ζ=0.25)')
-    axs[0].set_ylabel('Output')
-    axs[0].set_title("Tracking Slowly Drifting Input")
-    axs[0].legend()
-    axs[0].grid(True, alpha=0.3)
+    fig, axs = plt.subplots(2, 2, figsize=(13, 9), constrained_layout=True)
+    ax_main, ax_zoom = axs[0]
+    ax_err, ax_cum = axs[1]
 
-    err_r = np.abs(y_robust - u)
-    err_l = np.abs(y_light - u)
-    axs[1].plot(t, err_r, color=FAST_COLOR, lw=2.1, label=f'Robust | long-term IAE = {trapz(err_r, t):.3f}')
-    axs[1].plot(t, err_l, color=LIGHT_SHADOW_COLOR, lw=2.1, label=f'Light Shadow | long-term IAE = {trapz(err_l, t):.3f}')
-    axs[1].set_ylabel('Tracking Error')
-    axs[1].set_title('Error Comparison (Light Shadow wins dramatically)')
-    axs[1].legend()
-    axs[1].grid(True, alpha=0.3)
+    ax_main.plot(t, u, color=REFERENCE_COLOR, linestyle='--', lw=1.8, label='Slow ramp reference + low-freq sine')
+    ax_main.plot(t, y_robust, color=FAST_COLOR, lw=2.3, label='Robust (ζ=0.707)')
+    ax_main.plot(t, y_light, color=LIGHT_SHADOW_COLOR, lw=2.3, label='Light Shadow (ζ=0.25)')
+    ax_main.axvspan(0, focus_end, color=FOCUS_SHADE, alpha=0.35, zorder=0)
+    ax_main.set_ylabel('Output')
+    ax_main.set_xlabel('Time t (seconds)')
+    ax_main.set_title("Tracking Slowly Drifting Input")
+    ax_main.legend(loc='upper left')
 
-    axs[2].plot(t, u, color=REFERENCE_COLOR, linestyle='--', lw=1.5)
-    axs[2].plot(t, y_robust, color=FAST_COLOR, lw=2.0)
-    axs[2].plot(t, y_light, color=LIGHT_SHADOW_COLOR, lw=2.0)
-    axs[2].set_xlabel('Time t (seconds)')
-    axs[2].set_ylabel('Output')
-    axs[2].set_title('Response to Low-Frequency Disturbance/Input')
-    axs[2].grid(True, alpha=0.3)
+    ax_zoom.plot(t[focus_mask], u[focus_mask], color=REFERENCE_COLOR, linestyle='--', lw=1.8)
+    ax_zoom.plot(t[focus_mask], y_robust[focus_mask], color=FAST_COLOR, lw=2.3)
+    ax_zoom.plot(t[focus_mask], y_light[focus_mask], color=LIGHT_SHADOW_COLOR, lw=2.3)
+    ax_zoom.set_xlim(0, focus_end)
+    ax_zoom.set_ylim(focus_min - focus_pad, focus_max + focus_pad)
+    ax_zoom.set_ylabel('Output')
+    ax_zoom.set_xlabel('Time t (seconds)')
+    ax_zoom.set_title('Zoomed response (first 15 seconds)')
 
-    plt.tight_layout()
+    ax_err.plot(t, err_signed_r, color=FAST_COLOR, lw=2.1, label=f'Robust error | IAE = {iae_r:.3f}')
+    ax_err.plot(t, err_signed_l, color=LIGHT_SHADOW_COLOR, lw=2.1, label=f'Light Shadow error | IAE = {iae_l:.3f}')
+    ax_err.axhline(0.0, color=REFERENCE_COLOR, lw=1.0, alpha=0.7)
+    ax_err.set_ylabel('Output - input')
+    ax_err.set_xlabel('Time t (seconds)')
+    ax_err.set_title('Signed tracking error')
+    ax_err.legend(loc='upper right')
+
+    ax_cum.plot(t, cum_r, color=FAST_COLOR, lw=2.1, label='Robust cumulative IAE')
+    ax_cum.plot(t, cum_l, color=LIGHT_SHADOW_COLOR, lw=2.1, label='Light Shadow cumulative IAE')
+    ax_cum.fill_between(t, cum_l, cum_r, where=cum_r >= cum_l, color=MEMORY_COLOR, alpha=0.12)
+    ax_cum.set_ylabel('Accumulated error')
+    ax_cum.set_xlabel('Time t (seconds)')
+    ax_cum.set_title('Cumulative absolute error')
+    ax_cum.legend(loc='upper left')
+
     save_plot('pole_shadow_slow_tracking_prediction_test.png')
     plt.close()
 
