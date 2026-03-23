@@ -1,8 +1,9 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "description": "Structured evidence exports for the Pole's Shadow / cognitive-budget hypothesis.",
   "assumptions": {
-    "system_family": "Continuous-time second-order closed-loop transfer functions with wn=1.0 and varying damping ratio zeta.",
+    "system_family": "Continuous-time second-order closed-loop transfer functions parameterized by damping ratio zeta and natural frequency wn.",
+    "nominal_wn": 1.0,
     "time_grid": {
       "start": 0.0,
       "end": 150.0,
@@ -23,16 +24,15 @@
       0.05,
       0.1
     ],
-    "candidate_metrics": {
-      "shadow_horizon": "Time after which the impulse response remains below epsilon times its peak magnitude.",
-      "shadow_mass_l1": "Integral of absolute impulse response.",
-      "shadow_mass_l2": "Integral of squared impulse response magnitude.",
-      "slow_band_deficit": "Integral of |1 - T(jw)|^2 over a low-frequency band."
-    }
+    "matched_settling_sigma_target": 0.5
   },
   "files": {
     "system_metrics_csv": "data/cognitive_budget_system_metrics.csv",
     "tracking_metrics_csv": "data/cognitive_budget_tracking_metrics.csv",
+    "metric_correlations_csv": "data/metric_correlations.csv",
+    "batch_tracking_samples_csv": "data/batch_tracking_samples.csv",
+    "batch_tracking_summary_csv": "data/batch_tracking_summary.csv",
+    "matched_settling_study_csv": "data/matched_settling_study.csv",
     "time_series_dir": "data/time_series"
   },
   "robust_vs_light_summary": [
@@ -75,6 +75,40 @@
       "light_shadow_iae": 9.788602484085002,
       "iae_ratio_robust_over_light": 1.1065638926643993,
       "winner": "light_shadow"
+    }
+  ],
+  "batch_highlights": [
+    {
+      "batch_name": "nominal_clean",
+      "description": "No noise, nominal natural frequency.",
+      "best_zeta_by_mean_iae": 0.1,
+      "best_mean_iae": 0.9637885893331152,
+      "worst_zeta_by_mean_iae": 1.0,
+      "worst_mean_iae": 8.793717543374711
+    },
+    {
+      "batch_name": "wn_jitter_clean",
+      "description": "No noise, natural frequency jitter in [0.9, 1.1].",
+      "best_zeta_by_mean_iae": 0.1,
+      "best_mean_iae": 0.9733593310670033,
+      "worst_zeta_by_mean_iae": 1.0,
+      "worst_mean_iae": 8.850858806012857
+    },
+    {
+      "batch_name": "wn_jitter_noisy",
+      "description": "Moderate noise with natural frequency jitter in [0.9, 1.1].",
+      "best_zeta_by_mean_iae": 0.1,
+      "best_mean_iae": 4.990003587134123,
+      "worst_zeta_by_mean_iae": 1.0,
+      "worst_mean_iae": 9.199905512523904
+    },
+    {
+      "batch_name": "wide_jitter_noisy",
+      "description": "Higher noise with wider natural frequency jitter in [0.8, 1.2].",
+      "best_zeta_by_mean_iae": 0.15,
+      "best_mean_iae": 9.781739786091446,
+      "worst_zeta_by_mean_iae": 1.0,
+      "worst_mean_iae": 12.067187802959785
     }
   ]
 }

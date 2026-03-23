@@ -3,7 +3,13 @@
   "outputs": [
     "data/cognitive_budget_system_metrics.csv",
     "data/cognitive_budget_tracking_metrics.csv",
+    "data/metric_correlations.csv",
+    "data/batch_tracking_samples.csv",
+    "data/batch_tracking_summary.csv",
+    "data/matched_settling_study.csv",
     "data/cognitive_budget_summary.json",
+    "data/cognitive_budget_report.json",
+    "data/manifest.json",
     "data/time_series/ramp.csv",
     "data/time_series/ramp_sine.csv",
     "data/time_series/slow_sine.csv",

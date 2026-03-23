@@ -1,0 +1,335 @@
+{
+  "report_version": 1,
+  "objective": "Create machine-readable supporting evidence for candidate cognitive-budget diagnostics.",
+  "candidate_metrics": {
+    "shadow_horizon_eps_0_02": "Time after which the impulse response stays below 2% of its peak magnitude.",
+    "shadow_mass_l1": "Integral of the absolute impulse response.",
+    "shadow_mass_l2": "Integral of the squared impulse response magnitude.",
+    "slow_band_deficit_0_05": "Integral of |1 - T(jw)|^2 over the low-frequency band [0, 0.05]."
+  },
+  "classical_metrics_tracked": [
+    "settling_time_approx_2pct",
+    "step_settling_time_2pct",
+    "step_overshoot",
+    "step_rise_time_10_90"
+  ],
+  "robust_vs_light_summary": [
+    {
+      "test_name": "ramp",
+      "test_title": "Pure Slow Ramp",
+      "robust_zeta": 0.707,
+      "light_shadow_zeta": 0.25,
+      "robust_iae": 5.277514367391063,
+      "light_shadow_iae": 1.8937492673904401,
+      "iae_ratio_robust_over_light": 2.7868073447037705,
+      "winner": "light_shadow"
+    },
+    {
+      "test_name": "ramp_sine",
+      "test_title": "Ramp + Low-Freq Sine",
+      "robust_zeta": 0.707,
+      "light_shadow_zeta": 0.25,
+      "robust_iae": 6.24333648387358,
+      "light_shadow_iae": 2.2332504401290185,
+      "iae_ratio_robust_over_light": 2.7956275622687854,
+      "winner": "light_shadow"
+    },
+    {
+      "test_name": "slow_sine",
+      "test_title": "Ultra-Slow Sine",
+      "robust_zeta": 0.707,
+      "light_shadow_zeta": 0.25,
+      "robust_iae": 1.5780071117667849,
+      "light_shadow_iae": 0.5618950306865761,
+      "iae_ratio_robust_over_light": 2.8083663773260774,
+      "winner": "light_shadow"
+    },
+    {
+      "test_name": "noisy",
+      "test_title": "Slow Input + Noise",
+      "robust_zeta": 0.707,
+      "light_shadow_zeta": 0.25,
+      "robust_iae": 10.83171406853351,
+      "light_shadow_iae": 9.788602484085002,
+      "iae_ratio_robust_over_light": 1.1065638926643993,
+      "winner": "light_shadow"
+    }
+  ],
+  "strongest_metric_correlations": [
+    {
+      "test_name": "noisy",
+      "top_metrics_by_absolute_spearman": [
+        {
+          "test_name": "noisy",
+          "metric_name": "settling_time_approx_2pct",
+          "pearson_with_iae": -0.6764120531569251,
+          "spearman_with_iae": -0.9954887218045112
+        },
+        {
+          "test_name": "noisy",
+          "metric_name": "shadow_mass_l1",
+          "pearson_with_iae": -0.6375961815731791,
+          "spearman_with_iae": -0.9954887218045112
+        },
+        {
+          "test_name": "noisy",
+          "metric_name": "shadow_mass_l2",
+          "pearson_with_iae": -0.6764120535743459,
+          "spearman_with_iae": -0.9954887218045112
+        },
+        {
+          "test_name": "noisy",
+          "metric_name": "slow_band_deficit_0_05",
+          "pearson_with_iae": 0.9994754363457321,
+          "spearman_with_iae": 0.9954887218045112
+        }
+      ]
+    },
+    {
+      "test_name": "ramp",
+      "top_metrics_by_absolute_spearman": [
+        {
+          "test_name": "ramp",
+          "metric_name": "settling_time_approx_2pct",
+          "pearson_with_iae": -0.819418996241998,
+          "spearman_with_iae": -1.0
+        },
+        {
+          "test_name": "ramp",
+          "metric_name": "shadow_mass_l1",
+          "pearson_with_iae": -0.7894551744923651,
+          "spearman_with_iae": -1.0
+        },
+        {
+          "test_name": "ramp",
+          "metric_name": "shadow_mass_l2",
+          "pearson_with_iae": -0.8194189965706764,
+          "spearman_with_iae": -1.0
+        },
+        {
+          "test_name": "ramp",
+          "metric_name": "slow_band_deficit_0_05",
+          "pearson_with_iae": 0.9759110319995111,
+          "spearman_with_iae": 1.0
+        }
+      ]
+    },
+    {
+      "test_name": "ramp_sine",
+      "top_metrics_by_absolute_spearman": [
+        {
+          "test_name": "ramp_sine",
+          "metric_name": "settling_time_approx_2pct",
+          "pearson_with_iae": -0.8188083918532585,
+          "spearman_with_iae": -1.0
+        },
+        {
+          "test_name": "ramp_sine",
+          "metric_name": "shadow_mass_l1",
+          "pearson_with_iae": -0.7887987740359922,
+          "spearman_with_iae": -1.0
+        },
+        {
+          "test_name": "ramp_sine",
+          "metric_name": "shadow_mass_l2",
+          "pearson_with_iae": -0.8188083921824374,
+          "spearman_with_iae": -1.0
+        },
+        {
+          "test_name": "ramp_sine",
+          "metric_name": "slow_band_deficit_0_05",
+          "pearson_with_iae": 0.9761280952620526,
+          "spearman_with_iae": 1.0
+        }
+      ]
+    },
+    {
+      "test_name": "slow_sine",
+      "top_metrics_by_absolute_spearman": [
+        {
+          "test_name": "slow_sine",
+          "metric_name": "settling_time_approx_2pct",
+          "pearson_with_iae": -0.8180085048291069,
+          "spearman_with_iae": -1.0
+        },
+        {
+          "test_name": "slow_sine",
+          "metric_name": "shadow_mass_l1",
+          "pearson_with_iae": -0.7879384274710742,
+          "spearman_with_iae": -1.0
+        },
+        {
+          "test_name": "slow_sine",
+          "metric_name": "shadow_mass_l2",
+          "pearson_with_iae": -0.8180085051589397,
+          "spearman_with_iae": -1.0
+        },
+        {
+          "test_name": "slow_sine",
+          "metric_name": "slow_band_deficit_0_05",
+          "pearson_with_iae": 0.9764176440600961,
+          "spearman_with_iae": 1.0
+        }
+      ]
+    }
+  ],
+  "batch_highlights": [
+    {
+      "batch_name": "nominal_clean",
+      "description": "No noise, nominal natural frequency.",
+      "best_zeta_by_mean_iae": 0.1,
+      "best_mean_iae": 0.9637885893331152,
+      "worst_zeta_by_mean_iae": 1.0,
+      "worst_mean_iae": 8.793717543374711
+    },
+    {
+      "batch_name": "wn_jitter_clean",
+      "description": "No noise, natural frequency jitter in [0.9, 1.1].",
+      "best_zeta_by_mean_iae": 0.1,
+      "best_mean_iae": 0.9733593310670033,
+      "worst_zeta_by_mean_iae": 1.0,
+      "worst_mean_iae": 8.850858806012857
+    },
+    {
+      "batch_name": "wn_jitter_noisy",
+      "description": "Moderate noise with natural frequency jitter in [0.9, 1.1].",
+      "best_zeta_by_mean_iae": 0.1,
+      "best_mean_iae": 4.990003587134123,
+      "worst_zeta_by_mean_iae": 1.0,
+      "worst_mean_iae": 9.199905512523904
+    },
+    {
+      "batch_name": "wide_jitter_noisy",
+      "description": "Higher noise with wider natural frequency jitter in [0.8, 1.2].",
+      "best_zeta_by_mean_iae": 0.15,
+      "best_mean_iae": 9.781739786091446,
+      "worst_zeta_by_mean_iae": 1.0,
+      "worst_mean_iae": 12.067187802959785
+    }
+  ],
+  "matched_settling_study": {
+    "rows": [
+      {
+        "zeta": 0.15,
+        "wn": 3.3333333333333335,
+        "sigma": 0.5,
+        "settling_time_approx_2pct": 8.0,
+        "step_settling_time_2pct": 7.74471808976122,
+        "step_overshoot": 0.6208380202581892,
+        "shadow_horizon_eps_0_02": 8.176022002750344,
+        "shadow_mass_l1": 4.275012438156807,
+        "slow_band_deficit_0_05": 3.3471999803905205e-07,
+        "ramp_sine_iae": 0.40200338941445746,
+        "ramp_sine_ise": 0.0011313151253298105
+      },
+      {
+        "zeta": 0.25,
+        "wn": 2.0,
+        "sigma": 0.5,
+        "settling_time_approx_2pct": 8.0,
+        "step_settling_time_2pct": 7.05088136017002,
+        "step_overshoot": 0.44427017233516186,
+        "shadow_horizon_eps_0_02": 7.725965745718214,
+        "shadow_mass_l1": 2.599250624561846,
+        "slow_band_deficit_0_05": 2.5837389170146456e-06,
+        "ramp_sine_iae": 1.1122630457334415,
+        "ramp_sine_ise": 0.008470552602972393
+      },
+      {
+        "zeta": 0.4,
+        "wn": 1.25,
+        "sigma": 0.5,
+        "settling_time_approx_2pct": 8.0,
+        "step_settling_time_2pct": 6.713339167395924,
+        "step_overshoot": 0.25382293879285656,
+        "shadow_horizon_eps_0_02": 7.725965745718214,
+        "shadow_mass_l1": 1.6803014654077508,
+        "slow_band_deficit_0_05": 1.6943719425450972e-05,
+        "ramp_sine_iae": 2.841658083794638,
+        "ramp_sine_ise": 0.0547823717874478
+      },
+      {
+        "zeta": 0.55,
+        "wn": 0.9090909090909091,
+        "sigma": 0.5,
+        "settling_time_approx_2pct": 8.0,
+        "step_settling_time_2pct": 6.413301662707838,
+        "step_overshoot": 0.1263219137864028,
+        "shadow_horizon_eps_0_02": 7.707213401675209,
+        "shadow_mass_l1": 1.2891564736279861,
+        "slow_band_deficit_0_05": 6.0572260070867296e-05,
+        "ramp_sine_iae": 5.356594708825216,
+        "ramp_sine_ise": 0.19430655166739336
+      },
+      {
+        "zeta": 0.707,
+        "wn": 0.7072135785007072,
+        "sigma": 0.49999999999999994,
+        "settling_time_approx_2pct": 8.000000000000002,
+        "step_settling_time_2pct": 8.419802475309414,
+        "step_overshoot": 0.04325492516647657,
+        "shadow_horizon_eps_0_02": 9.994999374921864,
+        "shadow_mass_l1": 1.0904053532201998,
+        "slow_band_deficit_0_05": 0.00016515023235999637,
+        "ramp_sine_iae": 8.814569303822507,
+        "ramp_sine_ise": 0.5263441442980136
+      },
+      {
+        "zeta": 1.0,
+        "wn": 0.5,
+        "sigma": 0.5,
+        "settling_time_approx_2pct": 8.0,
+        "step_settling_time_2pct": 11.663957994749342,
+        "step_overshoot": 0.0,
+        "shadow_horizon_eps_0_02": 13.651706463307912,
+        "shadow_mass_l1": 0.9999926739820573,
+        "slow_band_deficit_0_05": 0.0006532073257839499,
+        "ramp_sine_iae": 17.44651413860104,
+        "ramp_sine_ise": 2.068812625993993
+      }
+    ],
+    "separation_examples": [
+      {
+        "left_zeta": 0.15,
+        "right_zeta": 0.707,
+        "relative_step_settling_difference": 0.08017817371937648,
+        "shadow_horizon_ratio": 1.2224770642201834,
+        "shadow_mass_ratio": 3.9205717630895545,
+        "ramp_sine_iae_ratio": 21.926604441473657
+      },
+      {
+        "left_zeta": 0.25,
+        "right_zeta": 0.55,
+        "relative_step_settling_difference": 0.09042553191489364,
+        "shadow_horizon_ratio": 1.0024330900243308,
+        "shadow_mass_ratio": 2.0162413777801156,
+        "ramp_sine_iae_ratio": 4.815942352281428
+      },
+      {
+        "left_zeta": 0.15,
+        "right_zeta": 0.25,
+        "relative_step_settling_difference": 0.08958837772397098,
+        "shadow_horizon_ratio": 1.0582524271844662,
+        "shadow_mass_ratio": 1.6447095935111848,
+        "ramp_sine_iae_ratio": 2.766800168907831
+      },
+      {
+        "left_zeta": 0.25,
+        "right_zeta": 0.4,
+        "relative_step_settling_difference": 0.047872340425531845,
+        "shadow_horizon_ratio": 1.0,
+        "shadow_mass_ratio": 1.546895410182302,
+        "ramp_sine_iae_ratio": 2.5548435639348335
+      },
+      {
+        "left_zeta": 0.4,
+        "right_zeta": 0.55,
+        "relative_step_settling_difference": 0.04469273743016768,
+        "shadow_horizon_ratio": 1.0024330900243308,
+        "shadow_mass_ratio": 1.303411571660492,
+        "ramp_sine_iae_ratio": 1.8850243593248313
+      }
+    ],
+    "interpretation": "These examples are intended to show where similar settling-time behavior still leaves room for substantial separation in cognitive-budget metrics and slow-tracking performance."
+  }
+}

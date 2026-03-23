@@ -34,11 +34,13 @@ This repository has four layers, each written for a different kind of reading.
 - [COGNITIVE-BUDGET.md](./COGNITIVE-BUDGET.md): the working technical note where the "cognitive budget" framing starts becoming candidate diagnostics.
 - [plots/README.md](./plots/README.md): the long, student-friendly visual walkthrough that teaches the idea step by step.
 - [plots/visual_proof_pole_shadow.pdf](./plots/visual_proof_pole_shadow.pdf): a one-file visual summary.
+- [`data/cognitive_budget_report.json`](./data/cognitive_budget_report.json): a machine-readable evidence summary that collects correlations, batch studies, and matched-settling comparisons.
 
 If you want to reproduce the figures, the main scripts are:
 
 - [`pole_shadow_plots.py`](./pole_shadow_plots.py): intuition plots, tradeoff plot, and the first slow-tracking comparison.
 - [`falsify_pole_shadow_prediction.py`](./falsify_pole_shadow_prediction.py): falsification-style tests, damping sweep, and PDF summary.
+- [`generate_cognitive_budget_data.py`](./generate_cognitive_budget_data.py): structured evidence export for candidate diagnostics, including CSV tables, JSON summaries, time-series traces, batch sweeps, and matched-settling studies.
 
 What follows is a guided landing-page version of the story. It is shorter than the full walkthrough in [`plots/README.md`](./plots/README.md), but it keeps the core arc intact.
 
