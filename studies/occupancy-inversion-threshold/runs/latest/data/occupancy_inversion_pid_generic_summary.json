@@ -1,0 +1,52 @@
+{
+  "objective": "Replicate the inversion phenomenon in a second explicit plant-controller family using a PID-controlled second-order plant.",
+  "family_slug": "pid_generic",
+  "family_label": "Generic Explicit PID Family",
+  "pairwise_findings": {
+    "0.15_vs_0.707": {
+      "left_zeta": 0.15,
+      "right_zeta": 0.707,
+      "clean_advantage_iae": 4.348871290837408,
+      "observed_zero_crossing_noise": 0.06680575599473103,
+      "true_zero_crossing_noise": 0.07788287690938994,
+      "observed_crossing_precedes_true_crossing": true,
+      "parity_ratio_at_observed_crossing": 0.858913516575318,
+      "inversion_probability_at_observed_crossing": 0.41027181086229836,
+      "max_inversion_probability": 0.5611111111111111,
+      "evidence_of_observed_inversion": true
+    },
+    "0.25_vs_0.707": {
+      "left_zeta": 0.25,
+      "right_zeta": 0.707,
+      "clean_advantage_iae": 3.9833533398263157,
+      "observed_zero_crossing_noise": 0.11315124146782848,
+      "true_zero_crossing_noise": 0.12640715942444752,
+      "observed_crossing_precedes_true_crossing": true,
+      "parity_ratio_at_observed_crossing": 0.8989362835976008,
+      "inversion_probability_at_observed_crossing": 0.36750689704349154,
+      "max_inversion_probability": 0.4777777777777778,
+      "evidence_of_observed_inversion": true
+    },
+    "0.35_vs_0.707": {
+      "left_zeta": 0.35,
+      "right_zeta": 0.707,
+      "clean_advantage_iae": 3.4350077418248146,
+      "observed_zero_crossing_noise": null,
+      "true_zero_crossing_noise": null,
+      "observed_crossing_precedes_true_crossing": false,
+      "parity_ratio_at_observed_crossing": null,
+      "inversion_probability_at_observed_crossing": null,
+      "max_inversion_probability": 0.2777777777777778,
+      "evidence_of_observed_inversion": false
+    }
+  },
+  "strongest_inverting_pair": "0.25_vs_0.707",
+  "clean_rank_fidelity": {
+    "settling_time_vs_clean_iae_spearman": -0.4504687313477795,
+    "bandwidth_vs_clean_iae_spearman": -1.0,
+    "slow_band_deficit_vs_clean_iae_spearman": null,
+    "shadow_mass_l2_vs_clean_iae_spearman": -1.0
+  },
+  "main_claim": "In this generic PID family, the observed sensor-side metric can still flip before the true pairwise ranking changes sign.",
+  "threshold_candidate": "The useful threshold variable remains pairwise excess-penalty parity relative to the clean-regime advantage margin."
+}
